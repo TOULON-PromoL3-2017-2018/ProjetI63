@@ -42,7 +42,7 @@ create table Materiel(
 create table Type_Materiel(
   Intitule_Type_Materiel VARCHAR(20),
   Ref_Type_Materiel INTEGER,
-  Prix_unite_hf ITEGER,
+  Prix_unite_hf INTEGER,
   primary key (Ref_type_Materiel)
 );
 
