@@ -8,7 +8,6 @@
 9  -adresse (ville) étudiant *
 10 -code postal étudiant *
 11 -Membre = False de base
-
 12 -num contrat
 13 -cotisation payée
 14 -date de signature
@@ -17,13 +16,13 @@
 16 -nom service
 
 17 -Financement
-
 18 -Montant
-
 19 -Source
 20 -Validation
+
 21 -Num mouvement argent
 22 -Montant
+
 23 -Num subventionneur
 24 -Nom subventionneur
 25 -Rue subventionneur
