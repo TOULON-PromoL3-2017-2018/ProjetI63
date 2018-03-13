@@ -1,7 +1,7 @@
 create table voyageur
   (
   num_voyageur integer primary key,
-  du integer NOT NULL
+  du integer
   );
 
   create table Organisateur
