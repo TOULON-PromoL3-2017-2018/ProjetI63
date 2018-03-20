@@ -1,10 +1,10 @@
 CREATE TABLE Universite (
   NoUniversite INTEGER PRIMARY KEY,
-  NomUniversite VARCHAR(30),
-  Ville VARCHAR(30),
-  Rue VARCHAR(30),
+  NomUniversite VARCHAR(30) NOT NULL,
+  Ville VARCHAR(30) NOT NULL,
+  Rue VARCHAR(30) NOT NULL,
   Arrondissement VARCHAR(30),
-  Contact VARCHAR(30)
+  Contact VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE ParticipantAsso (
@@ -16,16 +16,16 @@ CREATE TABLE ParticipantAsso (
 CREATE TABLE ParticipantAutre (
   NoParticipantAutre INTEGER PRIMARY KEY,
   NoUniversite INTEGER REFERENCES Universite,
-  NomEtudiantAutre VARCHAR(20),
-  PrenomEtudiantAutre VARCHAR(20),
-  MailEtudiantAutre VARCHAR(40),
-  TelephoneAutre VARCHAR(20),
-  NoEtudiantAutre INTEGER
+  NomEtudiantAutre VARCHAR(20) NOT NULL,
+  PrenomEtudiantAutre VARCHAR(20) NOT NULL,
+  MailEtudiantAutre VARCHAR(40) NOT NULL,
+  TelephoneAutre VARCHAR(20) NOT NULL,
+  NoEtudiantAutre INTEGER NOT NULL
 );
 
 CREATE TABLE Presse (
   NoPresse INTEGER PRIMARY KEY,
-  Organisme VARCHAR(20)
+  Organisme VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Personnel (
@@ -41,9 +41,9 @@ CREATE TABLE Type (
 
 CREATE TABLE Sport (
   NoSport INTEGER PRIMARY KEY,
-  NomSport VARCHAR(20),
-  TypeSport VARCHAR(20),
-  NbJoueursMini INTEGER
+  NomSport VARCHAR(20) NOT NULL,
+  TypeSport VARCHAR(20) NOT NULL,
+  NbJoueursMini INTEGER NOT NULL
 );
 
 CREATE TABLE EvenementSport (
