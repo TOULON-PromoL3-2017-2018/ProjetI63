@@ -33,3 +33,4 @@
 30 -Mail représentant
 31 -Num Chef de service
 32 -Num Sous-Chef de service
+33 -Date naissance étudiant
