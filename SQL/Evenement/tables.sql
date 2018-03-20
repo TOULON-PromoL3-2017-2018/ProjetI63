@@ -1,3 +1,4 @@
+--Modif BDD à faire ici
 CREATE TABLE Universite (
   NoUniversite INTEGER PRIMARY KEY,
   NomUniversite VARCHAR(30) NOT NULL,
