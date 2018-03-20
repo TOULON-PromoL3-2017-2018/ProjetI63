@@ -62,8 +62,10 @@ CREATE TABLE CONTRAT
   num_contrat INTEGER PRIMARY KEY,
   date_sign DATE,
   date_emm DATE,
-  duree INTEGER,
+  date_dep_ant DATE,
+  date_fin_prevu DATE,
   caution_rendue BOOLEAN,
+  renouvellement BOOLEAN,
   num_etudiant INTEGER REFERENCES DEMANDEUR(num_etudiant),
   num_cautionnaire INTEGER REFERENCES CAUTIONNAIRE(num_cautionnaire),
   num_proprio INTEGER REFERENCES PROPRIETAIRE(num_proprio)
