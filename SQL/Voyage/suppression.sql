@@ -1,2 +1,2 @@
-Drop table Voyageur, Organisateur, Voyage, Participe, entre_location, Trajet, 
-  Solicite CASCADE;
+Drop table Voyageur, Organisateur,Responsable , Voyage, Participe, Trajet,
+  entre_location, Vehicule, Solicite CASCADE;
