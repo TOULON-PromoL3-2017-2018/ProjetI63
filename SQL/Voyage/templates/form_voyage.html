@@ -1,0 +1,25 @@
+<!-- Fichier formulaire pour entrer un nouveau voyage  -->
+
+<html>
+
+  <head>
+      <meta charset = "utf-8" />
+      <title> nouveau voyage </title>
+  </head>
+
+   <body>
+
+     <h1> FICHE DE NOUVEAU VOYAGE </h1>
+
+     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+     <form action = "http://localhost:5000/templates/finir_entrer_voyage" method = "POST">
+        <!-- Le debut de la ligne est ce qui va apparaitre à l'écran -->
+         <p>Type du voyage <input type = "text" name = "type" /> </p>
+         <p>Prix du voyage <input type = "text" name = "prix" /> </p>
+         <p>Type de transport <input type = "text" name ="t_transp" /> </p>
+         <p><input type = "submit" value = "confirmer l'ajout" /> </p>
+      </form>
+
+   </body>
+</html>
