@@ -1,4 +1,3 @@
---Modif BDD à faire ici
 CREATE TABLE Universite (
   NoUniversite INTEGER PRIMARY KEY,
   NomUniversite VARCHAR(30) NOT NULL,
@@ -24,6 +23,11 @@ CREATE TABLE ParticipantAutre (
   NoEtudiantAutre INTEGER NOT NULL
 );
 
+CREATE TABLE Equipe (
+  NumEquipe INTEGER PRIMARY KEY,
+  NomEquipe VARCHAR(30) NOT NULL
+);
+
 CREATE TABLE Presse (
   NoPresse INTEGER PRIMARY KEY,
   Organisme VARCHAR(20) NOT NULL
@@ -44,7 +48,7 @@ CREATE TABLE Sport (
   NoSport INTEGER PRIMARY KEY,
   NomSport VARCHAR(20) NOT NULL,
   TypeSport VARCHAR(20) NOT NULL,
-  NbJoueursMini INTEGER NOT NULL
+  NbJoueursEquipe INTEGER NOT NULL
 );
 
 CREATE TABLE EvenementSport (
@@ -67,7 +71,7 @@ CREATE TABLE Evenement(
   PrixEvenement INTEGER NOT NULL,
   DureeEvenement INTEGER NOT NULL,
   PrixPlace INTEGER NOT NULL,
-  Notation INTEGER NOT NULL
+  Notation REAL
 );
 
 CREATE TABLE InscritAsso (
@@ -80,4 +84,22 @@ CREATE TABLE InscritAutre (
   NoParticipantAutre INTEGER REFERENCES ParticipantAutre,
   NoEvenement INTEGER REFERENCES Evenement,
   PRIMARY KEY(NoParticipantAutre, NoEvenement)
+);
+
+CREATE TABLE InscritEquipeAsso (
+  NoParticipantAsso INTEGER REFERENCES ParticipantAsso,
+  NumEquipe INTEGER REFERENCES Equipe,
+  PRIMARY KEY (NoParticipantAsso, NumEquipe)
+);
+
+CREATE TABLE InscritEquipeAutre (
+  NoParticipantAutre INTEGER REFERENCES ParticipantAutre,
+  NumEquipe INTEGER REFERENCES Equipe,
+  PRIMARY KEY (NoParticipantAutre, NumEquipe)
+);
+
+CREATE TABLE InscritEquipe (
+  NumEquipe INTEGER REFERENCES Equipe,
+  NoEvenement INTEGER REFERENCES Evenement,
+  PRIMARY KEY (NumEquipe, NoEvenement)
 );
