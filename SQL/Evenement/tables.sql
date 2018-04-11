@@ -1,5 +1,5 @@
 CREATE TABLE Universite (
-  NoUniversite INTEGER PRIMARY KEY,
+  NoUniversite SERIAL PRIMARY KEY,
   NomUniversite VARCHAR(30) NOT NULL,
   Ville VARCHAR(30) NOT NULL,
   Rue VARCHAR(30) NOT NULL,
@@ -9,8 +9,8 @@ CREATE TABLE Universite (
 
 CREATE TABLE ParticipantAsso (
   NoParticipantAsso INTEGER PRIMARY KEY,
-  NoUniversite INTEGER REFERENCES Universite,
-  NoEtudiant INTEGER REFERENCES Etudiant --partie Xavier
+  NoUniversite INTEGER REFERENCES Universite
+  --NoEtudiant INTEGER REFERENCES Etudiant --partie Xavier
 );
 
 CREATE TABLE ParticipantAutre (
@@ -24,35 +24,35 @@ CREATE TABLE ParticipantAutre (
 );
 
 CREATE TABLE Equipe (
-  NumEquipe INTEGER PRIMARY KEY,
+  NumEquipe SERIAL PRIMARY KEY,
   NomEquipe VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE Presse (
-  NoPresse INTEGER PRIMARY KEY,
+  NoPresse SERIAL PRIMARY KEY,
   Organisme VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Personnel (
-  NoPersonnel INTEGER PRIMARY KEY,
+  NoPersonnel SERIAL PRIMARY KEY,
   NomPersonnel VARCHAR(20) NOT NULL,
   PrenomPersonnel VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Type (
-  NoTypeEvenement INTEGER PRIMARY KEY,
+  NoTypeEvenement SERIAL PRIMARY KEY,
   TypeEvenement VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Sport (
-  NoSport INTEGER PRIMARY KEY,
+  NoSport SERIAL PRIMARY KEY,
   NomSport VARCHAR(20) NOT NULL,
   TypeSport VARCHAR(20) NOT NULL,
   NbJoueursEquipe INTEGER NOT NULL
 );
 
 CREATE TABLE EvenementSport (
-  NoEvenementSport INTEGER PRIMARY KEY,
+  NoEvenementSport SERIAL PRIMARY KEY,
   NoSport INTEGER REFERENCES Sport,
   NoVainqueur INTEGER,
   Score VARCHAR(20),
@@ -61,7 +61,7 @@ CREATE TABLE EvenementSport (
 );
 
 CREATE TABLE Evenement(
-  NoEvenement INTEGER PRIMARY KEY,
+  NoEvenement SERIAL PRIMARY KEY,
   NoPersonnel INTEGER REFERENCES Personnel,
   NoTypeEvenement INTEGER REFERENCES Type,
   NoPresse INTEGER REFERENCES Presse,
