@@ -28,8 +28,9 @@ create table Caution(
 
 create table Location(
   Num_Location INTEGER,
-  Duree_Location DATE,
+  Duree_Location INTEGER,
   Date_debut_Location DATE,
+  forein key (Num_Etudiant),
   primary key (Num_Location)
 );
 
