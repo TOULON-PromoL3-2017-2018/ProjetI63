@@ -1,2 +1,6 @@
-\i /tmp/Voyage/tables.sql
-\i /tmp/Voyage/remplissage.sql
+\i tables.sql
+\i remplissage.sql
+
+-- \!pwd
+-- \!ls
+-- faire des chmod sur le chemin du projet

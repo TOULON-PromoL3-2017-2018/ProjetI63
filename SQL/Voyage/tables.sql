@@ -4,9 +4,10 @@ create table voyageur
   du integer
   );
 
+
 create table Organisateur
   (
-  num_organisateur integer primary key,
+  num_organisateur serial primary key,
   nom varchar(20) NOT NULL,
   ville varchar(20) NOT NULL,
   code_ps char(5) NOT NULL,
@@ -16,9 +17,11 @@ create table Organisateur
   specialisation varchar(20)
   );
 
+
+
 create table Responsable
   (
-  num_responsable integer primary key,
+  num_responsable serial primary key,
   nom_responsable varchar(20) NOT NULL,
   prenom_responsable varchar(20) NOT NULL,
   tel_responsable char(10) NOT NULL
@@ -26,7 +29,7 @@ create table Responsable
 
 create table Voyage
   (
-  num_voyage integer primary key,
+  num_voyage serial primary key,
   num_responsable integer references Responsable NOT NULL,
   num_organisateur integer references Organisateur NOT NULL,
   type varchar(20) NOT NULL,
@@ -45,7 +48,7 @@ create table Participe
 
 create table Trajet
   (
-  num_trajet integer primary key,
+  num_trajet serial primary key,
   num_voyage integer NOT NULL,
   date_depart date NOT NULL,
   date_arrive date,
@@ -58,7 +61,7 @@ create table Trajet
 
 create table entre_location
   (
-  num_entreprise integer primary key,
+  num_entreprise serial primary key,
   nom_entreprise varchar(20) NOT NULL,
   ville_entreprise varchar(20) NOT NULL,
   code_ps_entreprise char(5) NOT NULL,
