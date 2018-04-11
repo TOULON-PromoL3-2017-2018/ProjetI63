@@ -22,6 +22,8 @@ create table Forfait(
 create table Caution(
   Num_Caution INTEGER,
   Prix_Caution INTEGER,
+  forein key (Num_Etudiant),
+  forein key (Ref_Materiel),
   primary key (Num_Caution));
 
 create table Location(
