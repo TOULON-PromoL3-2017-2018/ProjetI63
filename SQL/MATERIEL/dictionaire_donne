@@ -1,35 +1,34 @@
-1	Num_Etudiant
-2	Num_Responsable_de_service
-3	Num_ParticipantAsso
-4	Num_Evenement
-5	num_type_evt
-6	Num_Forfait
-7	Prix_Forfait
-8	Num_Caution
-9	Prix_Caution
-10	Caution_encaisser
-11	Num_Location
-12	Date_debut_Location
-13	Duree_Location
-14	Num_type_Materiel
-15	Intitule_Type_Materiel
-16	Prix_unite_hf
-17	Ref_Materiel_stock
-18	Intitule_Materiel_stock
-19	Etat_Materiel_stock
-20	quantité_materiel_stock
-21	Num_Entreprise
-22	Nom_Entreprise
-23	Adresse_(rue)_Entreprise
-24	Ville_Entreprise
-25	Nom_contact_Entreprise
-26	Mail_contact_Entreprise
-27	Num_Devis
-28	Prix_estime_devis
-29	Date_Devis
-30	num_facture
-31	prix facture
-32	date_facture
-33	quantité_materiel_loué
-34	Etat_Materiel_retour
-
+Num_Etudiant
+Num_Responsable_de_service
+Num_ParticipantAsso
+Num_Evenement
+num_type_evt
+Num_Forfait
+Prix_Forfait
+Num_Caution
+Prix_Caution
+Caution_encaisser
+Num_Location
+Date_debut_Location
+Duree_Location
+Num_type_Materiel
+Intitule_Type_Materiel
+Prix_unite_hf
+Ref_Materiel_stock
+Intitule_Materiel_stock
+Etat_Materiel_stock
+quantité_materiel_stock
+Num_Entreprise
+Nom_Entreprise
+Adresse_(rue)_Entreprise
+Ville_Entreprise
+Nom_contact_Entreprise
+Mail_contact_Entreprise
+Num_Devis
+Prix_estime_devis
+Date_Devis
+num_facture
+prix facture
+date_facture
+quantité_materiel_loué
+Etat_Materiel_retour

@@ -22,7 +22,6 @@ create table Forfait(
 create table Caution(
   Num_Caution INTEGER,
   Prix_Caution INTEGER,
-  Caution_encaisser BOOL,
   primary key (Num_Caution));
 
 create table Location(
@@ -32,10 +31,11 @@ create table Location(
   primary key (Num_Location)
 );
 
-create table Materiel(
+create table Materiel_stok(
   Ref_Materiel INTEGER,
   Intitule_Materiel VARCHAR(20),
   Etat_Materiel ETAT,
+  quantite INTEGER,
   primary key (Ref_Materiel)
 );
 
@@ -86,6 +86,7 @@ create table ParticipantAsso(
   Num_ParticipantAsso INTEGER,
   primary key (Num_ParticipantAsso)
 );
+  Num_Etudiant INTEGER,
 
 create table Evenement(
   Num_Evenement INTEGER,
@@ -95,4 +96,18 @@ create table Evenement(
 create table Responsable_de_service(
   Num_Responsable_de_service INTEGER,
   primary key (Num_Responsable_de_service)
+);
+
+create table matériel_retour(
+  Num_Etudiant INTEGER,
+  Num_Location INTEGER,
+  etat_materiel_retour ETAT,
+  primary key (Num_Etudiant,Num_Location)
+);
+
+create table Caution_encaisser(
+  Num_Caution INTEGER,
+  Num_Etudiant INTEGER,
+  Caution_encaisser BOOL
+  primary key(Num_Etudiant,Num_Caution)
 );
