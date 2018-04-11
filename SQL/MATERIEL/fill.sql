@@ -25,4 +25,5 @@ INSERT INTO Forfait VALUES
 INSERT INTO Caution VALUES
 (1,30,1,1),
 (2,30,2,1),
-(3,30,3,4);
+(3,30,3,4),
+(4,30;4,2);
