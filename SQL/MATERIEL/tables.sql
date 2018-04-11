@@ -53,6 +53,7 @@ create table Facture(
   Num_Facture INTEGER,
   Date_Facture DATE,
   Prix_Facture INTEGER,
+  forein key (Num_Entreprise),
   primary key (Num_Facture)
 );
 
