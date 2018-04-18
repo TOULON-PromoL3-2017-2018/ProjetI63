@@ -1,1 +1,2 @@
-CREATE VIEW Classement AS
+--inutile pour l'instant
+--CREATE VIEW ClassementEquipe AS
