@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+  <head>
+
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/static/style_logement.css" />
+    <title>Nouveau logement</title>
+  </head>
+   <body>
+      <h1><strong>Enregistrement des informations liées au logement. </strong></h1>
+      <br/><br/><br/><br/><br/>
+      <h3>Vos informations:</h3>
+      <ul>
+        <li>Nom du Propriétaire : {{nom}} </li>
+        <li>Prenom du Propriétaire: {{prenom}}  </li>
+        <li>Adresse du Propriétaire : {{adr}} </li>
+        <li>Numéro de téléphone du Propriétaire : {{telephone}}</li>
+      </ul>
+      <br/><br/>
+      <h3 align="center">Le logement :</h3>
+
+      <form action = "http://localhost:5000/new_logement" method = "POST">
+        <p>
+          Cochez le type de logement:<br />
+          <input type="radio" name="choix" value="Maison" id="Maison"/>
+          <label for="Maison">Maison</label><br/>
+          <input type="radio" name="choix" value="Appartement" id="Appartement"/>
+          <label for="Appartement">Appartement</label><br/>
+          <input type="radio" name="choix" value="Studio" id="Studio"/>
+          <label for="Studio">Maison</label><br/>
+          <input type="radio" name="choix" value="Duplex" id="Duplex"/>
+          <label for="Duplex">Maison</label><br/>
+        </p>
+        <div>
+          <label for="usurface">Surface:</label>
+          <input type="text" id="surf" name="surf" placeholder="en m²" required>
+          <span class="validity"></span>
+        </div>
+        <div>
+          <label for="upieces">Nombre de pièces:</label>
+          <input type="text" id="pcs" name="pcs" required>
+          <span class="validity"></span>
+        </div>
+        <div>
+          <label for="ulieu">Localisation:</label>
+          <input type="text" id="lieu" name="lieu" placeholder="80 rue du coton 83000 Toulon" required>
+          <span class="validity"></span>
+        </div>
+        <p>
+          Prestations du logement :<br/>
+          <input type="checkbox" name="Meublé" id="Meublé" />
+          <label for="Meublé">Meublé</label><br/>
+          <input type="checkbox" name="Non_Meublé" id="Non_Meublé" />
+          <label for="Non_Meublé">Non meublé</label><br/>
+          <input type="checkbox" name="Park" id="Park" />
+          <label for="Park">Parking privé</label><br/>
+          <input type="checkbox" name="Garage" id="Garage" />
+          <label for="Garage">Garage</label><br/>
+        </p>
+        <div>
+          <label for="ucaution">Montant de la caution:</label>
+          <input type="text" id="prix_caution" name="prix_caution" required>
+          <span class="validity"></span>
+        </div>
+        <div>
+          <label for="uloyer">Montant du loyer:</label>
+          <input type="text" id="prix_loyer" name="prix_loyer" required>
+          <span class="validity"></span>
+        </div>
+      </form>
+
+
+   </body>
+</html>
