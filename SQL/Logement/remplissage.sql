@@ -4,7 +4,7 @@ INSERT INTO PROPRIETAIRE(nom_proprio,prenom_proprio,tel_proprio,adr_proprio) VAL
 INSERT INTO PROPRIETAIRE(nom_proprio,prenom_proprio,tel_proprio,adr_proprio) VALUES('Tintin','Jules',0632323232,'rue de la tisane');
 INSERT INTO PROPRIETAIRE(nom_proprio,prenom_proprio,tel_proprio,adr_proprio) VALUES('Pat','Tom',0698989898,'rue des oliviers');
 
-INSERT INTO LOGEMENT(type_logement,surface_logement,nb_pieces,localisation,prestations,montant_caution,montant_loyer)  VALUES('Maison',98,4,'Rue de la tarte au fraises','Meublé',1200,1200);
+INSERT INTO LOGEMENT(type_logement,surface_logement,nb_pieces,localisation,prestations,montant_caution,montant_loyer) VALUES('Maison',98,4,'Rue de la tarte au fraises','Meublé',1200,1200);
 INSERT INTO LOGEMENT(type_logement,surface_logement,nb_pieces,localisation,prestations,montant_caution,montant_loyer) VALUES('Appartement',45,2,'Rue de la crêperie','Non meublé',500,500);
 INSERT INTO LOGEMENT(type_logement,surface_logement,nb_pieces,localisation,prestations,montant_caution,montant_loyer) VALUES('Studio',30,2,'Avenue des cerisiers','Parking privé',400,400);
 INSERT INTO LOGEMENT(type_logement,surface_logement,nb_pieces,localisation,prestations,montant_caution,montant_loyer) VALUES('Maison',80,3,'impasse des citrons',NULL,1000,1000);

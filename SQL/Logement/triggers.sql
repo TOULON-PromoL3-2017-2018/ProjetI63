@@ -1,23 +1,23 @@
 /*Trigger de verification de donnees pour la table logement*/
-CREATE OR REPLACE FUNCTION verif_logement()
-RETURNS TRIGGER
-AS $$
-
-BEGIN
-	IF new.nb_pieces IS NULL THEN
-		RAISE EXCEPTION 'Le nombre de pièces du logement % ne peut pas être nul',new.num_logement;
-	END IF;
-
-	IF new.surface_logement IS NULL THEN
-		RAISE EXCEPTION 'La surface du logement % ne peut pas être nulle', new.num_logement;
-	END IF;
-	RETURN NULL;
-END;
-
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER verif_logement BEFORE INSERT OR UPDATE ON LOGEMENT
-	FOR EACH ROW EXECUTE PROCEDURE verif_logement();
+-- CREATE OR REPLACE FUNCTION verif_logement()
+-- RETURNS TRIGGER
+-- AS $$
+--
+-- BEGIN
+-- 	-- IF new.nb_pieces IS NULL THEN
+-- 	-- 	RAISE EXCEPTION 'Le nombre de pièces du logement % ne peut pas être nul',new.num_logement;
+-- 	-- END IF;
+--
+-- 	-- IF new.surface_logement IS NULL THEN
+-- 	-- 	RAISE EXCEPTION 'La surface du logement % ne peut pas être nulle', new.num_logement;
+-- 	-- END IF;
+-- 	RETURN NULL;
+-- END;
+--
+-- $$ LANGUAGE plpgsql;
+--
+-- CREATE TRIGGER verif_logement BEFORE INSERT OR UPDATE ON LOGEMENT
+-- 	FOR EACH ROW EXECUTE PROCEDURE verif_logement();
 
 
 /* trigger permettant d'initialiser la date du contrat à la date du jour*/
