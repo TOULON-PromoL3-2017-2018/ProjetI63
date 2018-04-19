@@ -15,7 +15,7 @@ BEGIN
 END;
 
 $$ LANGUAGE plpgsql;
-	 
+
 CREATE TRIGGER verif_logement BEFORE INSERT OR UPDATE ON LOGEMENT
 	FOR EACH ROW EXECUTE PROCEDURE verif_logement();
 
@@ -43,10 +43,10 @@ RETURNS TRIGGER
 AS $$
 
 BEGIN
-	 
+
 	IF new.date_emm < new.date_sign THEN
 		RAISE EXCEPTION 'Vous ne pouvez pas emménager avant que le contrat % soit signé',new.num_contrat;
-		
+
 	END IF;
 
 	IF new.date_dep_ant < new.date_sign THEN
@@ -63,7 +63,7 @@ BEGIN
 
 	IF new.date_fin_prevu < new.date_emm THEN
 		RAISE EXCEPTION 'Vous ne pouvez pas partir si vous ne vous êtes pas installés';
-	END IF;	
+	END IF;
 
 	IF new.date_fin_prevu < new.date_sign THEN
 		RAISE EXCEPTION 'Vous ne pouvez pas avoir une date de fin de contrat si aucun contrat';
@@ -72,7 +72,7 @@ BEGIN
 END;
 
 $$ LANGUAGE plpgsql;
-	 
+
 CREATE TRIGGER verif_dates_contrat AFTER INSERT OR UPDATE ON CONTRAT
 	FOR EACH ROW EXECUTE PROCEDURE verif_dates_contrat();
 
@@ -86,28 +86,24 @@ BEGIN
 
 	IF new.date_fin_prevu<NOW() AND new.renouvellement='0' THEN
 		UPDATE CONTRAT SET contrat_termine ='1';
-		
+
 	END IF;
-	
+
 
 	IF new.date_dep_ant<NOW() AND new.renouvellement='0' THEN
 		UPDATE CONTRAT SET contrat_termine ='1';
-		
+
 	END IF;
 
 	IF new.date_fin_prevu=NOW() AND new.renouvellement='1' THEN
 		UPDATE CONTRAT SET contrat_termine ='0';
-			
+
 	END IF;
 	RETURN NEW;
 	--RETURN NULL;
-	
+
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER contrat_fini AFTER INSERT OR UPDATE ON CONTRAT
+CREATE TRIGGER contrat_fini AFTER INSERT ON CONTRAT
 	FOR EACH ROW EXECUTE PROCEDURE contrat_fini();
-
-
-
-
