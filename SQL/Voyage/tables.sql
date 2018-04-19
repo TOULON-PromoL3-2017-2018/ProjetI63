@@ -9,6 +9,7 @@ create table Organisateur
   (
   num_organisateur serial primary key,
   nom varchar(20) NOT NULL,
+  prenom varchar(20),
   ville varchar(20) NOT NULL,
   code_ps char(5) NOT NULL,
   rue varchar(50) NOT NULL,

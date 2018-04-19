@@ -1,38 +1,48 @@
 CREATE TABLE PROPRIETAIRE
 (
-  num_proprio INTEGER PRIMARY KEY,
+  num_proprio SERIAL PRIMARY KEY,
   nom_proprio VARCHAR(15) NOT NULL,
   prenom_proprio VARCHAR(15) NOT NULL,
   tel_proprio INTEGER NOT NULL,
   adr_proprio VARCHAR(30) NOT NULL
-
 );
+
+CREATE DOMAIN types AS VARCHAR(15)
+CHECK(VALUE IN ('Maison','Studio','Appartement','Loft','duplex'));
+
+CREATE DOMAIN prestations_logement AS VARCHAR(20)
+CHECK(VALUE IN('Meublé','Non meublé','Garage','Parking privé'));
 
 CREATE TABLE LOGEMENT
 (
-  num_logement INTEGER PRIMARY KEY,
-  type_logement VARCHAR(15) NOT NULL,
-  surface_logement INTEGER NOT NULL,
+  num_logement SERIAL PRIMARY KEY,
+  type_logement types NOT NULL,
+  surface_logement INTEGER,-- NOT NULL,
   nb_pieces INTEGER NOT NULL,
   localisation VARCHAR(30) NOT NULL,
-  prestations VARCHAR(20),
+  prestations prestations_logement,
   montant_caution INTEGER,
   montant_loyer INTEGER,
-  num_proprio INTEGER REFERENCES PROPRIETAIRE(num_proprio)
+  num_proprio SERIAL REFERENCES PROPRIETAIRE(num_proprio)
 
 );
 
+
+CREATE DOMAIN taches AS VARCHAR(20)
+CHECK(VALUE IN ('Cuisine','Repassage','Ménage','Jardinage','Courses','Bricolage'));
+
+
 CREATE TABLE DEMANDEUR
 (
-  num_etudiant INTEGER PRIMARY KEY,
+  num_etudiant SERIAL PRIMARY KEY,
   budget_etudiant INTEGER,
-  taches_preferences VARCHAR(20)
+  taches_preferences taches
 
 );
 
 CREATE TABLE CAUTIONNAIRE
 (
-  num_cautionnaire INTEGER PRIMARY KEY,
+  num_cautionnaire SERIAL PRIMARY KEY,
   nom_cautionnaire VARCHAR(15),
   prenom_cautionnaire VARCHAR(15),
   tel_cautionnaire INTEGER,
@@ -43,31 +53,32 @@ CREATE TABLE CAUTIONNAIRE
 
 CREATE TABLE SERVICE
 (
-  num_service INTEGER PRIMARY KEY,
-  aides_souhaitees VARCHAR(20)
+  num_service SERIAL PRIMARY KEY,
+  aides_souhaitees taches
 
 );
 
 
 CREATE TABLE ASSOCIE
 (
-  num_service INTEGER REFERENCES SERVICE(num_service),
-  num_logement INTEGER REFERENCES LOGEMENT(num_logement),
+  num_service SERIAL REFERENCES SERVICE(num_service),
+  num_logement SERIAL REFERENCES LOGEMENT(num_logement),
   PRIMARY KEY(num_service,num_logement)
 );
 
 
 CREATE TABLE CONTRAT
 (
-  num_contrat INTEGER PRIMARY KEY,
+  num_contrat SERIAL PRIMARY KEY,
   date_sign DATE,
   date_emm DATE,
   date_dep_ant DATE,
   date_fin_prevu DATE,
   caution_rendue BOOLEAN,
   renouvellement BOOLEAN,
-  num_etudiant INTEGER REFERENCES DEMANDEUR(num_etudiant),
-  num_cautionnaire INTEGER REFERENCES CAUTIONNAIRE(num_cautionnaire),
-  num_proprio INTEGER REFERENCES PROPRIETAIRE(num_proprio)
+  contrat_termine BOOLEAN DEFAULT '0',
+  num_etudiant SERIAL REFERENCES DEMANDEUR(num_etudiant),
+  num_cautionnaire SERIAL REFERENCES CAUTIONNAIRE(num_cautionnaire),
+  num_proprio SERIAL REFERENCES PROPRIETAIRE(num_proprio)
 
 );
