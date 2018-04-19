@@ -26,13 +26,13 @@ RETURNS TRIGGER
 AS $$
 BEGIN
 	IF new.date_sign IS NULL THEN
-		UPDATE CONTRAT SET date_sign = '2018-01-18';--current_timestamp;
+		UPDATE CONTRAT_LOGEMENT SET date_sign = '2018-01-18';--current_timestamp;
 	END IF;
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER creation_contrat AFTER INSERT OR UPDATE ON CONTRAT
+CREATE TRIGGER creation_contrat AFTER INSERT OR UPDATE ON CONTRAT_LOGEMENT
 	FOR EACH ROW EXECUTE PROCEDURE creation_contrat();
 
 
@@ -73,7 +73,7 @@ END;
 
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER verif_dates_contrat AFTER INSERT OR UPDATE ON CONTRAT
+CREATE TRIGGER verif_dates_contrat AFTER INSERT OR UPDATE ON CONTRAT_LOGEMENT
 	FOR EACH ROW EXECUTE PROCEDURE verif_dates_contrat();
 
 
@@ -85,18 +85,18 @@ AS $$
 BEGIN
 
 	IF new.date_fin_prevu<NOW() AND new.renouvellement='0' THEN
-		UPDATE CONTRAT SET contrat_termine ='1';
+		UPDATE CONTRAT_LOGEMENT SET contrat_termine ='1';
 
 	END IF;
 
 
 	IF new.date_dep_ant<NOW() AND new.renouvellement='0' THEN
-		UPDATE CONTRAT SET contrat_termine ='1';
+		UPDATE CONTRAT_LOGEMENT SET contrat_termine ='1';
 
 	END IF;
 
 	IF new.date_fin_prevu=NOW() AND new.renouvellement='1' THEN
-		UPDATE CONTRAT SET contrat_termine ='0';
+		UPDATE CONTRAT_LOGEMENT SET contrat_termine ='0';
 
 	END IF;
 	RETURN NEW;
@@ -105,5 +105,5 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER contrat_fini AFTER INSERT ON CONTRAT
+CREATE TRIGGER contrat_fini AFTER INSERT ON CONTRAT_LOGEMENT
 	FOR EACH ROW EXECUTE PROCEDURE contrat_fini();

@@ -30,8 +30,8 @@ INSERT INTO SERVICE_LOGEMENT(aides_souhaitees) VALUES('Ménage');
 
 
 
-INSERT INTO CONTRAT(date_emm,date_dep_ant,date_fin_prevu,caution_rendue,renouvellement) VALUES('2018/02/12',NULL,'2018/04/07','0','0');
-INSERT INTO CONTRAT(date_emm,date_dep_ant,date_fin_prevu,caution_rendue,renouvellement) VALUES('2018/11/11','2018/12/05','2018/12/08','1','0');
-INSERT INTO CONTRAT(date_emm,date_dep_ant,date_fin_prevu,caution_rendue,renouvellement) VALUES('2018/04/19',NULL,'2018/05/16','0','0');
-INSERT INTO CONTRAT(date_emm,date_dep_ant,date_fin_prevu,caution_rendue,renouvellement) VALUES('2018/05/14',NULL,'2018/07/15','0','0');
-INSERT INTO CONTRAT(date_emm,date_dep_ant,date_fin_prevu,caution_rendue,renouvellement) VALUES('2018/06/15',NULL,'2018/08/15','0','0');
+INSERT INTO CONTRAT_LOGEMENT(date_emm,date_dep_ant,date_fin_prevu,caution_rendue,renouvellement) VALUES('2018/02/12',NULL,'2018/04/07','0','0');
+INSERT INTO CONTRAT_LOGEMENT(date_emm,date_dep_ant,date_fin_prevu,caution_rendue,renouvellement) VALUES('2018/11/11','2018/12/05','2018/12/08','1','0');
+INSERT INTO CONTRAT_LOGEMENT(date_emm,date_dep_ant,date_fin_prevu,caution_rendue,renouvellement) VALUES('2018/04/19',NULL,'2018/05/16','0','0');
+INSERT INTO CONTRAT_LOGEMENT(date_emm,date_dep_ant,date_fin_prevu,caution_rendue,renouvellement) VALUES('2018/05/14',NULL,'2018/07/15','0','0');
+INSERT INTO CONTRAT_LOGEMENT(date_emm,date_dep_ant,date_fin_prevu,caution_rendue,renouvellement) VALUES('2018/06/15',NULL,'2018/08/15','0','0');
