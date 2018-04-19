@@ -8,9 +8,15 @@ params = {
 conn = psycopg2.connect(**params)
 cur = conn.cursor()
 
-#redemarre à 1 a chaque lancement donc le faire par fichier !!!!
-#et ecrire chaque changement dans le fichier via fonction !!!!
-noparticipant = 11
+query = "select max(noparticipantasso), max(noparticipantautre) from participantasso, participantautre;"
+cur.execute(query)
+res = cur.fetchall()
+noun = res[0][0]
+nodeux = res[0][1]
+if (noun > nodeux):
+    noparticipant = noun + 1;
+else:
+    noparticipant = nodeux + 1;
 
 @app.route("/", methods = ["POST", "GET"])
 def accueil():
@@ -29,7 +35,6 @@ def inscritext():
     if flask.request.method == "POST":
         NoPart = noparticipant
         noparticipant += 1
-        #balance la fonction pour ecrire changement
         NumUniv = flask.request.form['NoUniv']
         Nom = flask.request.form['NomEtud']
         Prenom = flask.request.form['PrenomEtud']

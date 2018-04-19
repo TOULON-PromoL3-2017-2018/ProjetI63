@@ -58,7 +58,9 @@ INSERT INTO Sport (NomSport, TypeSport, NbJoueursEquipe) VALUES ('Foot', 'Collec
 INSERT INTO EvenementSport (NoSport, NoVainqueur, Score, RecompenseVainqueur, NombreSpectateur)
             VALUES (1, 1, '112 - 94', 20, 1000);
 INSERT INTO EvenementSport (NoSport, NoVainqueur, Score, RecompenseVainqueur, NombreSpectateur)
-            VALUES (1, 1, '120 - 103', 20, 1500);
+            VALUES (1, 2, '120 - 103', 20, 1500);
+INSERT INTO EvenementSport (NoSport, NoVainqueur, Score, RecompenseVainqueur, NombreSpectateur)
+            VALUES (1, 2, '125 - 106', 20, 2000);
 INSERT INTO EvenementSport (NoSport, NoVainqueur, Score, RecompenseVainqueur, NombreSpectateur)
             VALUES (2, 6, '3 - 2', 30, 500);
 
