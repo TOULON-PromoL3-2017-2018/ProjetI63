@@ -57,7 +57,7 @@ CREATE TABLE Subvention(num_subvention INTEGER NOT NULL,
                         PRIMARY KEY(num_subvention),
                         FOREIGN KEY (num_subventionneur) REFERENCES Subventionneurs(num_subventionneur));
 
-CREATE TABLE Contrat(num_contrat INTEGER NOT NULL,
+CREATE TABLE Contrat_asso(num_contrat INTEGER NOT NULL,
                      cotisation BOOLEAN NOT NULL,
                      date_signature DATE NOT NULL,
                      num_etudiant INTEGER NOT NULL,
