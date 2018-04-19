@@ -51,7 +51,7 @@ CREATE TABLE CAUTIONNAIRE
 
 );
 
-CREATE TABLE SERVICE
+CREATE TABLE SERVICE_LOGEMENT
 (
   num_service SERIAL PRIMARY KEY,
   aides_souhaitees taches
@@ -61,7 +61,7 @@ CREATE TABLE SERVICE
 
 CREATE TABLE ASSOCIE
 (
-  num_service SERIAL REFERENCES SERVICE(num_service),
+  num_service SERIAL REFERENCES SERVICE_LOGEMENT(num_service),
   num_logement SERIAL REFERENCES LOGEMENT(num_logement),
   PRIMARY KEY(num_service,num_logement)
 );

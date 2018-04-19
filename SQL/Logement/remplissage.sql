@@ -22,11 +22,11 @@ INSERT INTO CAUTIONNAIRE(nom_cautionnaire,prenom_cautionnaire,tel_cautionnaire,a
 INSERT INTO CAUTIONNAIRE(nom_cautionnaire,prenom_cautionnaire,tel_cautionnaire,adr_cautionnaire,revenus_cautionnaire) VALUES('Mouse','Mickey',0656565656,'chemin des guimauves',1500);
 INSERT INTO CAUTIONNAIRE(nom_cautionnaire,prenom_cautionnaire,tel_cautionnaire,adr_cautionnaire,revenus_cautionnaire) VALUES('Duck','Donald',0621212121,'rue des papayes',1480);
 
-INSERT INTO SERVICE(aides_souhaitees) VALUES('Repassage');
-INSERT INTO SERVICE(aides_souhaitees) VALUES('Jardinage');
-INSERT INTO SERVICE(aides_souhaitees) VALUES('Cuisine');
-INSERT INTO SERVICE(aides_souhaitees) VALUES('Ménage');
-INSERT INTO SERVICE(aides_souhaitees) VALUES('Ménage');
+INSERT INTO SERVICE_LOGEMENT(aides_souhaitees) VALUES('Repassage');
+INSERT INTO SERVICE_LOGEMENT(aides_souhaitees) VALUES('Jardinage');
+INSERT INTO SERVICE_LOGEMENT(aides_souhaitees) VALUES('Cuisine');
+INSERT INTO SERVICE_LOGEMENT(aides_souhaitees) VALUES('Ménage');
+INSERT INTO SERVICE_LOGEMENT(aides_souhaitees) VALUES('Ménage');
 
 
 
