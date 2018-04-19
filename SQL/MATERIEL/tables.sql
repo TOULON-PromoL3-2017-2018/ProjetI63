@@ -14,19 +14,19 @@ as char
 check(value in('AB','B','TB'));
 
 
-create table Forfait(
+create table Forfait(--
   Ref_Forfait INTEGER,
   Prix_Forfait INTEGER,
   primary key (ref_Forfait));
 
-create table Caution(
+create table Caution(--
   Num_Caution INTEGER,
   Prix_Caution INTEGER,
   forein key (Num_Etudiant),
   forein key (Ref_Materiel),
   primary key (Num_Caution));
 
-create table Location(
+create table Location(--
   Num_Location INTEGER,
   Duree_Location INTEGER,
   Date_debut_Location DATE,
@@ -34,7 +34,7 @@ create table Location(
   primary key (Num_Location)
 );
 
-create table Materiel_stok(
+create table Materiel_stok(--
   Ref_Materiel INTEGER,
   Intitule_Materiel VARCHAR(20),
   Etat_Materiel ETAT,
@@ -42,21 +42,22 @@ create table Materiel_stok(
   primary key (Ref_Materiel)
 );
 
-create table Type_Materiel(
+create table Type_Materiel(--
   Intitule_Type_Materiel VARCHAR(20),
   Ref_Type_Materiel INTEGER,
   Prix_unite_hf INTEGER,
   primary key (Ref_type_Materiel)
 );
 
-create table Facture(
+create table Facture(--
   Num_Facture INTEGER,
   Date_Facture DATE,
   Prix_Facture INTEGER,
+  forein key (Num_Entreprise),
   primary key (Num_Facture)
 );
 
-create table Entreprise(
+create table Entreprise(--
   Num_Entreprise INTEGER,
   Nom_Entreprise VARCHAR(20),
   Adresse_(rue)_Entreprise VARCHAR(50),
@@ -66,49 +67,50 @@ create table Entreprise(
   primary key (Num_Entreprise)
 );
 
-create table Devis(
+create table Devis(--
   Num_Devis INTEGER,
   Prix_estime INTEGER,
   Date_Devis INTEGER,
+  forein key(Num_Entreprise),
   primary key (Num_Devis)
 );
 
-create table Materiel_Entreprise(
+create table Materiel_Entreprise(--trigger
   Num_Entreprise INTEGER,
   Ref_type_Materiel INTEGER,
   Quantité INTEGER,
   primary key (Num_Entreprise,Ref_type_Materiel)
 );
 
-create table Etudiant(
+create table Etudiant(--
   Num_Etudiant INTEGER,
   primary key (Num_Etudiant)
 );
 
-create table ParticipantAsso(
+create table ParticipantAsso(--
   Num_ParticipantAsso INTEGER,
   primary key (Num_ParticipantAsso)
 );
   Num_Etudiant INTEGER,
 
-create table Evenement(
+create table Evenement(--
   Num_Evenement INTEGER,
   primary key (Num_Evenement)
 );
 
-create table Responsable_de_service(
+create table Responsable_de_service(--
   Num_Responsable_de_service INTEGER,
   primary key (Num_Responsable_de_service)
 );
 
-create table matériel_retour(
-  Num_Etudiant INTEGER,
+create table matériel_retour(--trigger
+  Ref_Materiel INTEGER,
   Num_Location INTEGER,
   etat_materiel_retour ETAT,
-  primary key (Num_Etudiant,Num_Location)
+  primary key (Ref_Materiel,Num_Location)
 );
 
-create table Caution_encaisser(
+create table Caution_encaisser(--trigger
   Num_Caution INTEGER,
   Num_Etudiant INTEGER,
   Caution_encaisser BOOL
