@@ -20,7 +20,7 @@ CREATE TABLE ParticipantAutre (
   PrenomEtudiantAutre VARCHAR(20) NOT NULL,
   MailEtudiantAutre VARCHAR(40) NOT NULL,
   TelephoneAutre VARCHAR(20) NOT NULL,
-  NoEtudiantAutre INTEGER NOT NULL
+  NoEtudiantAutre BIGINT NOT NULL
 );
 
 CREATE TABLE Equipe (

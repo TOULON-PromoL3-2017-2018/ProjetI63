@@ -36,9 +36,9 @@ def inscritext():
         Email = flask.request.form['Mail']
         Telep = flask.request.form['Tel']
         NumEtud = flask.request.form['NoEtud']
-        query = "INSERT INTO ParticipantAutre VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}')".format\
-        (NoPart, NumUniv, Nom, Prenom, Email, Telep, NumEtud)
-        cur.execute(query)
+        query = "INSERT INTO ParticipantAutre VALUES(%s ,%s, %s, %s, %s, %s, %s)"
+        data = (str(NoPart), NumUniv, Nom, Prenom, Email, Telep, NumEtud)
+        cur.execute(query, data)
         conn.commit()
         return flask.render_template("inscritext.html", NoParti = NoPart)
 
