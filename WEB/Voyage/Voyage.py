@@ -21,6 +21,8 @@ def accueil():
     return flask.render_template('accueil.html')
 
 ###################################################
+###################################################
+###################################################
 
 @app.route('/templates/form_voyage', methods = ['POST','GET'])
 
@@ -42,12 +44,13 @@ def fin_voy():
 
 #les mots après le .format doibent correspondre à ceux ecrit avant le = au dessus
         query = "INSERT into VOYAGE (num_responsable, num_organisateur, \
-        type, prix, type_transport) Values ('{}', '{}', '{}', '{}', '{}');".format (
-        num_responsable, num_organisateur, type_voy, prix, t_transp)
+        type, prix, type_transport) Values (%s, %s, %s, %s, %s);"
+        # attention: data est un tuple !!
+        data = (num_responsable, num_organisateur, type_voy, prix, t_transp)
         #execute la requete et met tout dans le buffer
-        curr.execute(query)
+        curr.execute(query, data)
         #sert à mettre ce qu'il y a dans le buffer dans la table
-        conn.commit()  #mettre en commentaire jusque là
+        conn.commit()
         #affiche à l'ecran les donnees qu'on a rentre
 # Le result_... doit correspondre à celui dans le fichier perosnne.html
         return flask.render_template('finir_entrer_voyage.html',\
@@ -56,6 +59,47 @@ def fin_voy():
         result_type_transp = t_transp)
 
 ###################################################
+###################################################
+###################################################
+@app.route('/templates/form_organisateur', methods = ['Post', 'GET'])
+
+def n_orga():
+    return flask.render_template('form_organisateur.html')
+
+###################################################
+@app.route('/templates/finir_organisateur', methods = ['POST', 'GET'])
+
+def fin_orga():
+    if flask.request.method == 'POST':
+        nom = flask.request.form['nom']
+        prenom = flask.request.form['prenom']
+        ville = flask.request.form['ville']
+        code_ps = flask.request.form['c_p']
+        rue = flask.request.form['rue']
+        tel = flask.request.form['tel']
+        mail = flask.request.form['mail']
+        spe = flask.request.form['spe']
+
+        query = "INSERT into organisateur (nom, prenom, ville, code_ps, rue, tel, \
+        mail, specialisation) Values (%s, %s, %s, %s, %s, %s, %s, %s)"
+
+        data = (nom, prenom, ville, code_ps, rue, tel, mail , spe)
+        curr.execute(query, data)
+        conn.commit()
+
+        return flask.render_template('finir_organisateur.html', \
+        result_nom = nom, result_prenom = prenom, result_ville = ville, \
+        result_code_ps = code_ps, result_rue = rue, result_tel = tel, \
+        result_mail = mail, result_spe = spe)
+
+###################################################
+###################################################
+###################################################
+
+# @app.route('templates/form')
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+    # SQLAlchemy
+    # initd.org/psycopg/docs/usage.html
