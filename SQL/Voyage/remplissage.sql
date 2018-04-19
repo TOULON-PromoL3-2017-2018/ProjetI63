@@ -2,14 +2,18 @@ insert into voyageur values(123);
 insert into voyageur values(231, 200);
 insert into voyageur values(567);
 
-insert into Organisateur (nom, ville, code_ps, rue, tel, mail) values('orgnum1',
-   'toulouse', '11111', '32 rue du commerce', '0612532653', 'org1.caramel@orange.fr');
-insert into Organisateur (nom, ville, code_ps, rue, tel, mail) values('orgnum2',
-   'brignoles', '83200', '256 rue de la liberté', '0689423135', 'org2.chocolat@gmail.fr');
-insert into Organisateur (nom, ville, code_ps, rue, tel, mail) values('orgnum3',
-   'Lyon', '56312', '3256 boulevard longchamps', '0653213589', 'org3.vanille@orange.fr');
-insert into Organisateur (nom, ville, code_ps, rue, tel, mail) values('orgnum4',
-   'Toulon', '83100', '21 avenue du chemin', '0632359854', 'org4.fraise@hotmail.fr');
+insert into Organisateur (nom, prenom, ville, code_ps, rue, tel, mail) values(
+  'orgnum1', 'preorgnum1', 'toulouse', '11111', '32 rue du commerce',
+  '0612532653', 'org1.caramel@orange.fr');
+insert into Organisateur (nom, prenom, ville, code_ps, rue, tel, mail) values(
+  'orgnum2', 'preorgnum2', 'brignoles', '83200', '256 rue de la liberté',
+  '0689423135', 'org2.chocolat@gmail.fr');
+insert into Organisateur (nom, prenom, ville, code_ps, rue, tel, mail) values(
+  'orgnum3', 'preorgnum1', 'Lyon', '56312', '3256 boulevard longchamps',
+  '0653213589', 'org3.vanille@orange.fr');
+insert into Organisateur (nom, prenom, ville, code_ps, rue, tel, mail) values(
+  'orgnum4', 'preorgnum1', 'Toulon', '83100', '21 avenue du chemin',
+  '0632359854', 'org4.fraise@hotmail.fr');
 
 insert into Responsable (nom_responsable, prenom_responsable, tel_responsable)
   values('Tomate', 'Persil', '0653254875');
