@@ -2,23 +2,23 @@
 <html>
 <head>
     <meta charset = "utf-8" />
-    <title> Nouvelle inscription </title>
+    <title>Nouvelle inscription</title>
 </head>
 
  <body>
 
-   <h1> Données étudiant </h1>
+   <h1 align = 'center'>Données étudiant :</h1>
 
    <br/><br/><br/><br/>
 
-   <form action = "http://localhost:5000/templates/valid_insc" method = "POST">
+   <form action = "http://localhost:5000/valid_insc/" method = "POST">
       <!-- Le debut de la ligne est ce qui va apparaitre à l'écran -->
        <p>Nom étudiant <input type = "text" name = "name_etu" placeholder="Ex : CLAIN"/> </p>
        <p>Prénom étudiant <input type = "text" name = "pren_etu" placeholder="Ex : Mauvais"/> </p>
-       <p>Date de naissance <input type = "date" name = "date" placeholder="yyyy-mm-dd"/> </p>
+       <p>Date de naissance <input type = "text" name = "date" placeholder="yyyy-mm-dd"/> </p>
        <p>Filière <input type = "text" name = "fil" placeholder="Ex : Branleur"/> </p>
-       <p>Telephone <input type = "number" name ="tel" placeholder="Ex : 0601241648"/> </p>
-       <p>Mail <input type="text" name="mail" placeholder="Ex : branleur@exemple.fr"/></p>
+       <p>Telephone <input type = "tel" name ="tel" placeholder="Ex : 0601241648"/> </p>
+       <p>Mail <input type="email" name="mail" placeholder="Ex : branleur@exemple.fr"/></p>
        <p>Rue <input type="text" name="rue" placeholder="Ex : 12 rue des lillas"/></p>
        <p>Ville <input type="text" name="town" placeholder="Ex : Moncul"/></p>
        <p>Code postal <input type="number" name="code" placeholder="Ex : 88888"/></p>
