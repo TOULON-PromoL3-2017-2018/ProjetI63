@@ -102,7 +102,7 @@ def inscrituniv():
         return flask.render_template('inscrituniv.html')
 
 
-@app.route("/evenement/equipe", methods=["POST", "GET"])
+@app.route("/evenement/equipe/", methods=["POST", "GET"])
 def equipe():
     query = "SELECT * FROM Equipe"
     cur.execute(query)
@@ -129,19 +129,91 @@ def inscritequipe():
         cur.execute(query, data)
         rowother = cur.fetchall()
         if len(rowother) != 0:
-            # manque les requetes sql
-            return flask.render_template('inscritequipe.html', NomEqui=NomEq)
+            query = "INSERT INTO Equipe (NomEquipe) VALUES (%s)"
+            data = (NomEq)
+            cur.execute(query, data)
+            conn.commit()
+            query = "SELECT max(NumEquipe) FROM Equipe"
+            cur.execute(query)
+            res = cur.fetchall()
+            NumEq = res[0] # a verifier
+            query = "INSERT INTO InscritEquipeAutre VALUES (%s, %s)"
+            data = (NoPart, NumEq)
+            cur.execute(query, data)
+            conn.commit()
+            return flask.render_template('inscritequipe.html', NomEqui=NomEq,\
+                                         NumEqui=NumEq)
         query = "SELECT noparticipantasso FROM ParticipantAsso WHERE \
         noparticipantasso = %s"
         data = (NoPart)
         cur.execute(query, data)
         rowasso = cur.fetchall()
         if len(rowasso) != 0:
-            # manque les requetes sql
-            return flask.render_template('inscritequipe.html', NomEqui=NomEq)
+            query = "INSERT INTO Equipe (NomEquipe) VALUES (%s)"
+            data = (NomEq)
+            cur.execute(query, data)
+            conn.commit()
+            query = "SELECT max(NumEquipe) FROM Equipe"
+            cur.execute(query)
+            res = cur.fetchall()
+            NumEq = res[0] # a verifier
+            query = "INSERT INTO InscritEquipeAsso VALUES (%s, %s)"
+            data = (NoPart, NumEq)
+            cur.execute(query, data)
+            conn.commit()
+            return flask.render_template('inscritequipe.html', NomEqui=NomEq,\
+                                         NumEqui=NumEq)
         return flask.render_template('erreurinscriteq.html', NoParti=NoPart)
-#faire les 2 html du dessus + le chemin dans equipe.html(le formpart)
 # faire import time et faire date = t.localtime() puis date[x] pour avoir les infos
+
+
+@app.route("/evenement/formpart/", methods=["POST", "GET"])
+def formpart():
+    return flask.render_template('formpart.html')
+
+
+@app.route("/evenement/inscritpart/", methods=["POST", "GET"])
+def inscritpart():
+    if flask.request.method == "POST":
+        NoPart = flask.request.form['NumPart']
+        NumEq = flask.request.form['NumEquipe']
+        query = "SELECT noparticipantautre FROM participantautre WHERE \
+        noparticipantautre = %s"
+        data = (NoPart)
+        cur.execute(query, data)
+        rowother = cur.fetchall()
+        if len(rowother) != 0:
+            query = "SELECT NumEquipe FROM Equipe WHERE NumEquipe = %s"
+            data = (NumEq)
+            cur.execute(query)
+            res = cur.fetchall()
+            if len(res) != 0:
+                query = "INSERT INTO InscritEquipeAutre VALUES (%s, %s)"
+                data = (NoPart, NumEq)
+                cur.execute(query, data)
+                conn.commit()
+                return flask.render_template('inscritpart.html', NumEqui=NumEq)
+            return flask.render_template('erreurequipe.html', NumEqui=NumEq)
+        query = "SELECT noparticipantasso FROM ParticipantAsso WHERE \
+        noparticipantasso = %s"
+        data = (NoPart)
+        cur.execute(query, data)
+        rowasso = cur.fetchall()
+        if len(rowasso) != 0:
+            query = "SELECT NumEquipe FROM Equipe WHERE NumEquipe = %s"
+            data = (NumEq)
+            cur.execute(query)
+            res = cur.fetchall()
+            if len(res) != 0:
+                query = "INSERT INTO InscritEquipeAutre VALUES (%s, %s)"
+                data = (NoPart, NumEq)
+                cur.execute(query, data)
+                conn.commit()
+                return flask.render_template('inscritpart.html', NumEqui=NumEq)
+            return flask.render_template('erreurequipe.html', NumEqui=NumEq)
+        return flask.render_template('erreurinscriteq.html', NoParti=NoPart)
+
+# faire evenement et ce qui lui est associé
 
 # demander pour compte admin sur site pour creer evenement la je fais juste
 # la participation
