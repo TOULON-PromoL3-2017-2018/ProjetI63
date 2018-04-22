@@ -3,10 +3,12 @@ import psycopg2
 
 app = flask.Flask(__name__)
 
-param = {'host': '10.9.185.1'}  # "dbname='testpython' user='marc'
+# param = {'host': '10.9.185.1'}  # "dbname='testpython' user='marc'
+param = "host='localhost' dbname='testpython' user='marc' password='mdp'"
 
 try:
-    conn = psycopg2.connect(**param)
+    # conn = psycopg2.connect(**param)
+    conn = psycopg2.connect(param)
     print("\n connecté \n")
 except:
     print("\nERREUR DE CO !!!\n")
@@ -39,28 +41,27 @@ def fin_voy():
         # fichier entrer_voyage.html
         num_responsable = flask.request.form['num_resp']
         num_organisateur = flask.request.form['num_org']
+        dest = flask.request.form['destination']
         type_voy = flask.request.form['type']
         prix = flask.request.form['prix']
-        t_transp = flask.request.form['t_transp']
 
         # les mots après le .format doibent correspondre à ceux ecrit avant
         # le = au dessus
         query = "INSERT into VOYAGE (num_responsable, num_organisateur, \
-        type, prix, type_transport) Values (%s, %s, %s, %s, %s);"
+        destination, type, prix) Values (%s, %s, %s, %s, %s);"
         # attention: data est un tuple !!
-        data = (num_responsable, num_organisateur, type_voy, prix, t_transp)
+        data = (num_responsable, num_organisateur, dest, type_voy, prix)
         # execute la requete et met tout dans le buffer
         curr.execute(query, data)
         # sert à mettre ce qu'il y a dans le buffer dans la table
         conn.commit()
         # affiche à l'ecran les donnees qu'on a rentre
-        # Le result_... doit correspondre à celui dans le fichier perosnne.html
         return flask.render_template('finir_entrer_voyage.html',
                                      result_num_resp=num_responsable,
                                      result_num_org=num_organisateur,
+                                     result_destination=dest,
                                      result_type_voy=type_voy,
-                                     result_prix=prix,
-                                     result_type_transp=t_transp)
+                                     result_prix=prix)
 
 ###################################################
 ###################################################

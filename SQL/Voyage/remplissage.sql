@@ -23,29 +23,39 @@ insert into Responsable (nom_responsable, prenom_responsable, tel_responsable)
   values('Courgette', 'Ail', '0621489632');
 
 
-insert into Voyage (num_responsable, num_organisateur, type, prix,
-  type_transport) values(3, 1, 'culturel', '15 000', 'TGV');
-insert into Voyage (num_responsable, num_organisateur, type, prix,
-  type_transport) values(2, 3, 'decouverte', '2 000', 'BUS');
-insert into Voyage (num_responsable, num_organisateur, type, prix,
-  type_transport) values(1, 1, 'vacances', '100', 'BUS');
-insert into Voyage (num_responsable, num_organisateur, type, prix,
-  type_transport) values(2, 2, 'culturel', '250', 'BUS');
+insert into Voyage (num_responsable, num_organisateur, destination, type, prix)
+  values(3, 1, 'Moscou', 'culturel', '1000');
+insert into Voyage (num_responsable, num_organisateur, destination, type, prix)
+  values(2, 3, 'Paris', 'decouverte', '250');
+insert into Voyage (num_responsable, num_organisateur, destination, type, prix)
+  values(1, 1, 'Londres', 'vacances', '300');
+insert into Voyage (num_responsable, num_organisateur, destination, type, prix)
+  values(2, 2, 'Moscou', 'culturel', '1200');
 
 insert into participe values(123, 2, NULL, 2);
 insert into participe values(123, 4, NULL, 1);
 insert into participe values(231, 2, 8, 1);
 insert into participe values(567, 2, NULL, 2);
 
-insert into trajet (num_voyage, date_depart, date_arrive, lieu_depart,
-  lieu_arrive, heure_depart, heure_arrive) values(3, '2018/03/25',
-  '2018/03/26', 'Toulon', 'Reims', '06:30', '15:30');
-insert into trajet (num_voyage, date_depart, date_arrive, lieu_depart,
-  lieu_arrive, heure_depart, heure_arrive) values(1, '2017/11/15',
-    '2017/11/15', 'Toulon', 'Poitier', '06:30', '15:30');
-insert into trajet (num_voyage, date_depart, date_arrive, lieu_depart,
-  lieu_arrive, heure_depart, heure_arrive) values(3, '2018/01/11',
-    '2018/01/11', 'Toulon', 'Nantes', '06:30', '15:30');
+
+insert into trajet (lieu_depart, lieu_arrive) values('Toulon', 'Moscou');
+insert into trajet (lieu_depart, lieu_arrive) values('Moscou', 'Paris');
+insert into trajet (lieu_depart, lieu_arrive) values('Toulon', 'Paris');
+insert into trajet (lieu_depart, lieu_arrive) values('Paris', 'Toulon');
+
+
+insert into necessite (num_trajet, num_voyage, date_depart, date_arrive,
+  heure_depart, heure_arrive, prix_trajet) values(1, 2, '2018/03/25',
+  '2018/03/26', '06:50', '13:30', 50);
+insert into necessite (num_trajet, num_voyage, date_depart, date_arrive,
+  heure_depart, heure_arrive, prix_trajet) values(2, 3, '2017/11/15',
+  '2017/11/15', '06:30', '15:30', 100);
+insert into necessite (num_trajet, num_voyage, date_depart, date_arrive,
+  heure_depart, heure_arrive, prix_trajet) values(3, 2, '2018/01/11',
+  '2018/01/11', '09:22', '15:18', 75);
+insert into necessite (num_trajet, num_voyage, date_depart, date_arrive,
+  heure_depart, heure_arrive, prix_trajet) values(2, 2, '2018/03/25',
+  '2018/03/26', '15:50', '11:00', 25);
 
 
 insert into entre_location (nom_entreprise, ville_entreprise,
@@ -64,4 +74,4 @@ insert into entre_location (nom_entreprise, ville_entreprise,
 insert into Vehicule values('XA-23-FDS', 2, 'BUS', 50);
 insert into vehicule values('FTY-235-FDR', 1, 'Voiture', 4);
 
-insert into solicite values(1, 3, 'XA-23-FDS', '0635982654', '56', 3, 45);
+insert into solicite values(1, 'XA-23-FDS', '0635982654', 56, 3, 45);

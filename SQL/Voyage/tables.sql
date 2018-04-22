@@ -33,9 +33,9 @@ create table Voyage
   num_voyage serial primary key,
   num_responsable integer references Responsable NOT NULL,
   num_organisateur integer references Organisateur NOT NULL,
+  destination varchar(20) NOT NULL,
   type varchar(20) NOT NULL,
-  prix varchar(6) NOT NULL,
-  type_transport varchar(20) NOT NULL
+  prix varchar(6) NOT NULL
   );
 
 create table Participe
@@ -50,15 +50,21 @@ create table Participe
 create table Trajet
   (
   num_trajet serial primary key,
-  num_voyage integer NOT NULL,
-  date_depart date NOT NULL,
-  date_arrive date,
-  lieu_depart varchar(20) NOT NULL,
-  lieu_arrive varchar(20) NOT NULL,
-  heure_depart char(5) NOT NULL, --format 06:32
-  heure_arrive char(5)
+  lieu_depart varchar(20) NOT NULL, --format 06:32
+  lieu_arrive varchar(20) NOT NULL
   );
 
+create table Necessite
+  (
+  num_trajet integer references Trajet NOT NULL,
+  num_voyage integer references Voyage NOT NULL,
+  date_depart date NOT NULL,
+  date_arrive date,
+  heure_depart char(5) NOT NULL,
+  heure_arrive char(5) NOT NULL,
+  prix_trajet integer NOT NULL,
+  primary key (num_voyage, num_trajet)
+  );
 
 create table entre_location
   (
@@ -81,7 +87,6 @@ create table Vehicule
 
 create table Solicite
   (
-  num_voyage integer NOT NULL,
   num_trajet integer NOT NULL,
   immatriculation varchar(50) references Vehicule(immatriculation) NOT NULL,
   tel_chauffeur char(10) NOT NULL,
