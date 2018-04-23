@@ -136,7 +136,7 @@ def inscritequipe():
             query = "SELECT max(NumEquipe) FROM Equipe"
             cur.execute(query)
             res = cur.fetchall()
-            NumEq = res[0] # a verifier
+            NumEq = res[0][0]
             query = "INSERT INTO InscritEquipeAutre VALUES (%s, %s)"
             data = (NoPart, NumEq)
             cur.execute(query, data)
@@ -156,7 +156,7 @@ def inscritequipe():
             query = "SELECT max(NumEquipe) FROM Equipe"
             cur.execute(query)
             res = cur.fetchall()
-            NumEq = res[0] # a verifier
+            NumEq = res[0][0]
             query = "INSERT INTO InscritEquipeAsso VALUES (%s, %s)"
             data = (NoPart, NumEq)
             cur.execute(query, data)
