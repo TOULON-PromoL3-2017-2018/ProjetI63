@@ -9,7 +9,7 @@ conn = psycopg2.connect(**params)
 cur = conn.cursor()
 
 query = "select max(noparticipantasso), max(noparticipantautre) from\
-participantasso, participantautre;"
+ participantasso, participantautre;"
 cur.execute(query)
 res = cur.fetchall()
 noun = res[0][0]
