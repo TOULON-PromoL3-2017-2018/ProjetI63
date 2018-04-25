@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+
+  <head>
+
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/static/style_logement.css" />
+    <title>Nouveau logement</title>
+  </head>
+   <body>
+      <h1 align="center"><strong>Enregistrement des informations liées au logement. </strong></h1>
+      <br/><br/><br/><br/><br/>
+      <div class="recapitulatif">
+      <h3>Récapitulatif de votre annonce:</h3>
+      <ul>
+        Nom : {{nom}}
+        Prénom : {{prenom}}
+        Résidant : {{adr}}
+        Numéro de téléphone : {{telephone}}
+        Surface: {{surface}} m²
+        Pièces: {{pieces}}
+        Caution : {{caution}} euros
+        Loyer : {{loyer}} euros
+        Type : {{type_log}}
+        Prestations : {{prest}}
+        Services souhaités : {{service}}
+      </ul>
+      </div>
+      <br/><br/>
+
+      <p style="text-align: center;"><input type="submit" value="Confirmer"></p>
+
+
+
+ </body>
+</html>

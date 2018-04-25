@@ -1,7 +1,7 @@
 --Partie remplissage Université
 INSERT INTO Universite (NomUniversite, Ville, Rue, Arrondissement, Contact)
                       VALUES ('La Garde', 'La Garde',
-                               'Rue université', '13', 'guigui@mail.com');
+                               'Rue universite', '13', 'guigui@mail.com');
 INSERT INTO Universite (NomUniversite, Ville, Rue, Arrondissement, Contact)
                       VALUES ('ParisCentre', 'Paris',
                                'Rue Sartre', '5', '0600000000');
@@ -59,6 +59,8 @@ INSERT INTO EvenementSport (NoSport, NoVainqueur, Score, RecompenseVainqueur, No
             VALUES (1, 1, '112 - 94', 20, 1000);
 INSERT INTO EvenementSport (NoSport, NoVainqueur, Score, RecompenseVainqueur, NombreSpectateur)
             VALUES (1, 2, '120 - 103', 20, 1500);
+INSERT INTO EvenementSport (NoSport, NoVainqueur, Score, RecompenseVainqueur, NombreSpectateur)
+            VALUES (1, 2, '125 - 106', 20, 2000);
 INSERT INTO EvenementSport (NoSport, NoVainqueur, Score, RecompenseVainqueur, NombreSpectateur)
             VALUES (2, 6, '3 - 2', 30, 500);
 

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <p>Universités déjà inscrites</p>
+  <p>{{Universites}}</p>
+  <aside>
+    <nav>
+      <ul>
+        <li><a href="/evenement/formuniv/">Inscrire une université</a></li>
+        <li><a href="/">Retourner à l'accueil</a></li>
+      </ul>
+    </nav>
+  </aside>
+</body>
+</html>
