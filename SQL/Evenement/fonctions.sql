@@ -14,14 +14,20 @@ $$ LANGUAGE PLPGSQL;
 
 --Retourne les personnes gagnantes pour ce sport
 --Sport individuel uniquement
---Retourne le NoParticipantAsso en attendant fusion avec table Etudiant
---Faire test natural join avec evenement et InscritAsso et InscritAutre
---et voir ce qui en sort.
---CREATE OR REPLACE FUNCTION GagnantPers(clsport TEXT) RETURNS
---TABLE(NumParticipant INTEGER, NbVictoire BIGINT) AS $$
---BEGIN
-  --en attente
---END;
---$$ LANGUAGE PLPGSQL;
---un truc  dans le genre mais prob de doublon et manque le compte
---select distinct noevenementsport, novainqueur from participantasso, participantautre, evenementsport natural join sport where (noparticipantasso = novainqueur or noparticipantautre = novainqueur) and nomsport = 'Tennis';
+--Retourne le NoParticipant en attendant fusion avec table Etudiant
+CREATE OR REPLACE FUNCTION GagnantPers(clsport TEXT) RETURNS
+TABLE(NumParticipant INTEGER, NbVictoire BIGINT) AS $$
+DECLARE
+  numsport INT;
+BEGIN
+  numsport := (SELECT nosport FROM sport WHERE nomsport = clsport);
+  RETURN query
+  select novainqueur, count(*)
+  from (select noparticipantautre, nouniversite from participantautre union all select * from participantasso) as participant, evenementsport
+  where participant.noparticipantautre = evenementsport.novainqueur and nosport = numsport group by novainqueur;
+
+END;
+$$ LANGUAGE PLPGSQL;
+
+
+--select novainqueur, count(*) from (select noparticipantautre, nouniversite from participantautre union all select * from participantasso) as participant, evenementsport where participant.noparticipantautre = evenementsport.novainqueur and nosport = 2 group by novainqueur;
