@@ -1,6 +1,9 @@
 CREATE SCHEMA projeti63;
 SET search_path to projeti63;
-CREATE DOMAIN Filiere AS VARCHAR(6) CHECK (VALUE IN ('INFO', 'EEA', 'BIO', 'PC', 'MATHS', 'LEA', 'STAPS', 'LLCERA', 'LLCERE', 'COMPTA', 'ECO', 'SOCIO', 'SEGPA'));
+CREATE DOMAIN Filiere AS VARCHAR(6) CHECK (VALUE IN ('INFO', 'EEA', 'BIO', 'PC',
+  'MATHS', 'LEA', 'STAPS', 'LLCERA', 'LLCERE', 'COMPTA', 'ECO', 'SOCIO', 'SEGPA',
+  'info', 'eea', 'bio', 'pc', 'maths', 'lea', 'staps', 'llcera', 'llcere',
+  'compta', 'eco', 'socio', 'segpa'));
 
 CREATE TABLE Etudiant(num_etudiant SERIAL NOT NULL,
                       nom_etudiant VARCHAR(25) NOT NULL,
