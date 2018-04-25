@@ -19,6 +19,7 @@ if (noun > nodeux):
 else:
     noparticipant = nodeux + 1
 
+# en attendant la mise en commun
 @app.route("/",  methods=["POST", "GET"])
 @app.route("/evenement/", methods=["POST", "GET"])
 def accueil():
