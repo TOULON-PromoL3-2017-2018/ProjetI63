@@ -3,12 +3,12 @@ import psycopg2
 
 app = flask.Flask(__name__)
 
-# param = {'host': '10.9.185.1'}  # "dbname='testpython' user='marc'
-param = "host='localhost' dbname='testpython' user='marc' password='mdp'"
+param = {'host': '10.9.185.1'}  # "dbname='testpython' user='marc'
+# param = "host='localhost' dbname='testpython' user='marc' password='mdp'"
 
 try:
-    # conn = psycopg2.connect(**param)
-    conn = psycopg2.connect(param)
+    conn = psycopg2.connect(**param)
+    # conn = psycopg2.connect(param)
     print("\n connecté \n")
 except:
     print("\nERREUR DE CO !!!\n")
@@ -104,7 +104,78 @@ def fin_orga():
 ###################################################
 ###################################################
 
-# @app.route('templates/form')
+@app.route('/templates/form_responsable', methods=['POST', 'GET'])
+def n_resp():
+    return flask.render_template('form_responsable.html')
+
+###################################################
+
+@app.route('/templates/finir_responsable', methods=['POST', 'GET'])
+def fin_resp():
+    if flask.request.method == 'POST':
+        nom = flask.request.form['nom']
+        prenom = flask.request.form['prenom']
+        tel = flask.request.form['tel']
+
+        query = "INSERT into Responsable (nom_responsable, prenom_responsable,\
+        tel_responsable) values (%s, %s, %s)"
+        data = (nom, prenom, tel)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('finir_responsable.html',
+                                     result_nom=nom, result_prenom=prenom,
+                                     result_tel=tel)
+
+###################################################
+###################################################
+###################################################
+
+@app.route('/templates/form_entre_loc', methods=['POST', 'GET'])
+def n_entr_loc():
+    return flask.render_template('form_entre_loc.html')
+
+###################################################
+
+@app.route('/templates/finir_entre_loc', methods=['POST', 'GET'])
+def fin_entr_loc():
+    if flask.request.method == 'POST':
+        nom = flask.request.form['nom']
+        ville = flask.request.form['ville']
+        code_ps = flask.request.form['c_ps']
+        rue = flask.request.form['rue']
+        tel = flask.request.form['tel']
+        mail = flask.request.form['mail']
+
+        query = "INSERT into entre_location (nom_entreprise, ville_entreprise,\
+        code_ps_entreprise, rue_entreprise, tel_entreprise, mail_entreprise)\
+        values (%s, %s, %s, %s, %s, %s)"
+        data = (nom, ville, code_ps, rue, tel, mail)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('finir_entre_loc.html', result_nom=nom)
+
+###################################################
+###################################################
+###################################################
+
+@app.route('/templates/form_trajet', methods=['POST', 'GET'])
+def n_trajet():
+    return flask.render_template('form_trajet.html')
+
+###################################################
+
+@app.route('/templates/finir_trajet', methods=['POST', 'GET'])
+def fin_trajet():
+    if flask.request.method == 'POST':
+        l_d = flask.request.form['lieu_dep']
+        l_a = flask.request.form['lieu_arr']
+
+        query = "INSERT into trajet (lieu_depart, lieu_arrive) values (%s, %s)"
+        data = (l_d, l_a)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('finir_trajet.html', result_l_d=l_d,
+                                     result_l_a=l_a)
 
 if __name__ == '__main__':
     app.run(debug=True)

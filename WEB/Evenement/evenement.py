@@ -19,13 +19,14 @@ if (noun > nodeux):
 else:
     noparticipant = nodeux + 1
 
-
-@app.route("/", methods=["POST", "GET"])
+# en attendant la mise en commun
+@app.route("/",  methods=["POST", "GET"])
+@app.route("/evenement/", methods=["POST", "GET"])
 def accueil():
     return flask.render_template('accueil.html')
 
 
-@app.route("/formext/", methods=["POST", "GET"])
+@app.route("/evenement/formext/", methods=["POST", "GET"])
 def formext():
     query = "SELECT NoUniversite, NomUniversite FROM Universite"
     cur.execute(query)
@@ -33,7 +34,7 @@ def formext():
     return flask.render_template('formext.html', Universites=rows)
 
 
-@app.route("/inscritext/", methods=["POST", "GET"])
+@app.route("/evenement/inscritext/", methods=["POST", "GET"])
 def inscritext():
     global noparticipant
     if flask.request.method == "POST":
@@ -60,6 +61,7 @@ def formint():
 
 @app.route("/evenement/inscritint/", methods=["POST", "GET"])
 def inscritint():
+    # Ne fonctionne que quand j'aurais le lien avec Xavier
     global noparticipant
     if flask.request.method == "POST":
         NoPart = noparticipant
@@ -125,7 +127,7 @@ def inscritequipe():
         NomEq = flask.request.form['NomEquipe']
         query = "SELECT noparticipantautre FROM participantautre WHERE \
         noparticipantautre = %s"
-        data = (NoPart)
+        data = (NoPart,)
         cur.execute(query, data)
         rowother = cur.fetchall()
         if len(rowother) != 0:
@@ -150,7 +152,7 @@ def inscritequipe():
         rowasso = cur.fetchall()
         if len(rowasso) != 0:
             query = "INSERT INTO Equipe (NomEquipe) VALUES (%s)"
-            data = (NomEq)
+            data = (NomEq,)
             cur.execute(query, data)
             conn.commit()
             query = "SELECT max(NumEquipe) FROM Equipe"
@@ -182,11 +184,13 @@ def inscritpart():
         data = (NoPart)
         cur.execute(query, data)
         rowother = cur.fetchall()
+        # verif si dans participantautre
         if len(rowother) != 0:
             query = "SELECT NumEquipe FROM Equipe WHERE NumEquipe = %s"
-            data = (NumEq)
-            cur.execute(query)
+            data = (NumEq,)
+            cur.execute(query, data)
             res = cur.fetchall()
+            # verif si dans equipe
             if len(res) != 0:
                 query = "INSERT INTO InscritEquipeAutre VALUES (%s, %s)"
                 data = (NoPart, NumEq)
@@ -199,13 +203,15 @@ def inscritpart():
         data = (NoPart)
         cur.execute(query, data)
         rowasso = cur.fetchall()
+        # verif si dans participantasso
         if len(rowasso) != 0:
             query = "SELECT NumEquipe FROM Equipe WHERE NumEquipe = %s"
-            data = (NumEq)
-            cur.execute(query)
+            data = (NumEq,)
+            cur.execute(query, data)
             res = cur.fetchall()
+            # verif si dans equipe
             if len(res) != 0:
-                query = "INSERT INTO InscritEquipeAutre VALUES (%s, %s)"
+                query = "INSERT INTO InscritEquipeAsso VALUES (%s, %s)"
                 data = (NoPart, NumEq)
                 cur.execute(query, data)
                 conn.commit()
