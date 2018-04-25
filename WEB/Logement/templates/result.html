@@ -4,44 +4,43 @@
   <head>
 
     <meta charset="utf-8" />
-    <!--<link rel="stylesheet" href="/static/style2.css" />-->
+    <link rel="stylesheet" href="/static/style_proprio.css" />
     <title>Nouveau logement.</title>
   </head>
    <body>
-      <h1><strong>Veuillez vous identifier </strong></h1>
-      <br/><br/><br/><br/><br/>
-      <h3>Vos informations: </h3>
+      <h1><strong>Identification du propriétaire </strong></h1>
+      <br/><br/><br/><br/><br/><br/><br/>
+      <div>
+      
+      <h3>Veuillez entrer vos informations en tant que propriétaire. </h3>
 
-
-      <!--<form><textarea>name="Nom :" rows=7 cols=40></textarea> </form>
-      -->
       <form action = "http://localhost:5000/new_logement" method = "POST">
-        <div>
-          <label for="uname">Votre nom:</label>
+        
+          <label for="uname">Votre nom* :</label>
           <input type="text" id="name" name="name" required>
           <span class="validity"></span>
-        </div>
-        <div>
-          <label for="uprename">Votre prénom:</label>
+          <br/><br/>
+        
+          <label for="uprename">Votre prénom* :</label>
           <input type="text" id="prename" name="prename" required>
           <span class="validity"></span>
-        </div>
-        <div>
-          <label for="utel">Numéro de téléphone:</label>
+        
+          <br/><br/>
+          <label for="utel">Numéro de téléphone* :</label>
           <input type="text" id="tel" name="tel" required>
           <span class="validity"></span>
-        </div>
-        <div>
-          <label for="uadr">Votre adresse:</label>
+          <br/><br/>
+        
+          <label for="uadr">Votre adresse* :</label>
           <input type="text" id="adresse" name="adresse" required>
           <span class="validity"></span>
-        </div>
-          <input type="submit" value="Suivant">
+          
+          <br><br/>
+          <p style="text-align: center;"><input class="bouton2"  type="submit" value="Suivant"></p>
+          <br/><br/>
+          <p class="annexe"> (Les données suivies d'une étoile(*) sont obligatoires.)</p>
       </form>
 
-      <!--<form action = "http://localhost:5000/emprunt" method = "POST">
-
-        <input type = "submit" value = "Valider" /><br/>
-      </form>-->
+      </div>
    </body>
 </html>
