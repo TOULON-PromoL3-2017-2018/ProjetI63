@@ -10,20 +10,25 @@
    <body>
       <h1 align="center"><strong>Enregistrement des informations liées au logement. </strong></h1>
       <br/><br/><br/><br/><br/>
-      <h3>Vos informations Propriétaire:</h3>
+      <div class="recapitulatif">
+      <h3>Récapitulatif de votre annonce:</h3>
       <ul>
-
-        <li>Surface: {{surface}} m²</li>
-        <li>Pièces: {{pieces}}</li>
-        <li>Caution : {{caution}} euros </li>
-        <li>Loyer : {{loyer}} euros </li>
-        <li>Type : {{type_log}} </li>
-        <!--<li>type : {{type_log}} </li>-->
-
+        Nom : {{nom}}
+        Prénom : {{prenom}}
+        Résidant : {{adr}}
+        Numéro de téléphone : {{telephone}}
+        Surface: {{surface}} m²
+        Pièces: {{pieces}}
+        Caution : {{caution}} euros
+        Loyer : {{loyer}} euros
+        Type : {{type_log}}
+        Prestations : {{prest}}
+        Services souhaités : {{service}}
       </ul>
+      </div>
       <br/><br/>
 
-      <p style="text-align: center;"><input type="submit" value="Suivant"></p>
+      <p style="text-align: center;"><input type="submit" value="Confirmer"></p>
 
 
 

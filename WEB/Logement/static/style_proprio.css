@@ -1,0 +1,74 @@
+body{
+  background-image:url("fond11.jpg");
+  /*background-size:15%;
+  background-repeat: repeat-x;
+*/
+}
+
+
+
+h1
+{
+  text-align: center;
+  font-family: "Comic Sans MS","Arial Black";
+  font-size: x-large;
+  color: black;
+  background-color: #FFEFD5;/*#E6E6FA;/*#F5DEB3; #DCDCDC;*/
+  width: 1218px;
+  border: 2px solid black;
+  padding: 25px;
+  margin: 3px; /* Marge extérieure de 50px */
+  position: fixed;
+
+
+
+}
+h3
+{
+  text-align: left;
+  font-family: "Trebuchet MS","Comic Sans MS","Arial Black";
+  color: black;
+  font-size: large;
+  padding: 0px;
+  margin: 40px;
+}
+
+div
+{
+  text-align: justify;
+  background-color:white;
+  border:1px solid black;
+  padding:20px;
+  float:left;
+  margin:10px;
+  position:relative;
+  left:280px;
+  box-shadow:0px 0px 17px #BBB;
+}
+
+.bouton2 {
+  border:none;
+  padding:6px 0 6px 0;
+  border-radius:8px;
+  font:bold 13px Arial;
+  color:#fff;
+  width:95px;
+  height:35px;
+  background:#A9A9A9;
+  
+}
+
+.annexe{
+  text-align:right;
+  color:red;
+
+}
+
+
+form
+{
+  text-align: center;
+  font-family: "Trebuchet MS","Comic Sans MS","Arial Black";
+  color: black;
+  margin: 20px;
+}

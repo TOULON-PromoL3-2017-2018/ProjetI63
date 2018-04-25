@@ -9,18 +9,23 @@
   </head>
    <body>
       <h1 align="center"><strong>Enregistrement des informations liées au logement. </strong></h1>
-      <br/><br/><br/><br/><br/>
+      <!--<br/><br/><br/><br/><br/><br/><br/>
+      <div class="proprio">
       <h3>Vos informations Propriétaire:</h3>
       <ul>
         <li>Nom : {{nom}} </li>
-        <li>Prenom : {{prenom}}  </li>
+        <li>Prénom : {{prenom}}  </li>
         <li>Résidant : {{adr}} </li>
         <li>Numéro de téléphone : {{telephone}}</li>
       </ul>
-      <br/><br/>
-      <h3 align="center">Le logement :</h3>
+      </div>-->
+ 
+      <!-- -->
+      <br/><br/><br/><br/><br/><br/><br/>
+      <div class="logement">
+      <h3 align="center">Veuillez rentrer les informations concernant le logement que vous désirez mettre en location ou en colocation en échange d'aide à domicile.</h3>
 
-      <form action = "http://localhost:5000/enregistrement_logement" method = "POST">
+      <form action = "http://localhost:5000/recap_annonce" method = "POST">
         <p>
           Cochez le type de logement:<br />
           <input type="radio" name="choix" value="Maison" id="Maison" required/>
@@ -34,65 +39,67 @@
           <input type="radio" name="choix" value="Loft" id="Loft" required/>
           <label for="Loft">Loft</label><br/>
         </p>
-      
-        <div>
+
+          </br>
           <label for="usurface">Surface:</label>
           <input type="text" id="surf" name="surf" placeholder="en m²" required>
           <span class="validity"></span>
-        </div>
-        <div>
+        
+          <br></br>
           <label for="upieces">Nombre de pièces:</label>
           <input type="text" id="pcs" name="pcs" required>
           <span class="validity"></span>
-        </div>
-        <div>
+        
+          <br></br>
           <label for="ulieu">Localisation:</label>
           <input type="text" id="lieu" name="lieu" placeholder="80 rue du coton 83000 Toulon" required>
           <span class="validity"></span>
-        </div>
-        <br/>
-        <!--<p>
+        
+        <br></br>
+        <p>
           Prestations du logement :<br/>
-          <input type="checkbox" name="Meublé" id="Meublé" />
+          <input type="checkbox" name="choix_prest" value="Meublé" />
           <label for="Meublé">Meublé</label><br/>
-          <input type="checkbox" name="Non_Meublé" id="Non_Meublé" />
+          <input type="checkbox" name="choix_prest" value="Non_Meublé" />
           <label for="Non_Meublé">Non meublé</label><br/>
-          <input type="checkbox" name="Park" id="Park" />
+          <input type="checkbox" name="choix_prest" value="Park" />
           <label for="Park">Parking privé</label><br/>
-          <input type="checkbox" name="Garage" id="Garage" />
+          <input type="checkbox" name="choix_prest" value="Garage" />
           <label for="Garage">Garage</label><br/>
-        </p>-->
-        <br/>
-        <div>
-          <label for="ucaution">Caution:</label>
-          <input type="text" id="prix_caution" name="prix_caution" required>
-          <span class="validity"></span>
-        </div>
-        <div>
-          <label for="uloyer">Montant du loyer:</label>
-          <input type="text" id="prix_loyer" name="prix_loyer" required>
-          <span class="validity"></span>
-        </div>
-        <br/>
-        <!--
+          <!-- PENSER A METTRE UNE VALEUR NON COMMUNIQUEE PAR DEFAUT-->
+        </p>
+        
+        <br></br>
+        <label for="ucaution">Caution:</label>
+        <input type="text" id="prix_caution" name="prix_caution" required>
+        <span class="validity"></span>
+        
+        <br></br>
+        <label for="uloyer">Montant du loyer:</label>
+        <input type="text" id="prix_loyer" name="prix_loyer" required>
+        <span class="validity"></span>
+        
+        <br></br>
+        
         <p>
           Aide à domicile souhaitée:<br />
-          <input type="checkbox" name="Ménage" id="Ménage" />
+          <input type="checkbox" name="choix_serv" value="Ménage" />
           <label for="Ménage">Ménage</label><br/>
-          <input type="checkbox" name="Repassage" id="Repassage" />
+          <input type="checkbox" name="choix_serv" value="Repassage" />
           <label for="Repassage">Repassage</label><br/>
-          <input type="checkbox" name="Courses" id="Courses" />
+          <input type="checkbox" name="choix_serv" value="Courses" />
           <label for="Courses">Courses</label><br/>
-          <input type="checkbox" name="Jardinage" id="Jardinage" />
+          <input type="checkbox" name="choix_serv" value="Jardinage" />
           <label for="Jardinage">Jardinage</label><br/>
-          <input type="checkbox" name="Bricolage" id="Bricolage" />
+          <input type="checkbox" name="choix_serv" value="Bricolage" />
           <label for="Bricolage">Bricolage</label><br/>
-          <input type="checkbox" name="Cuisine" id="Cuisine" />
+          <input type="checkbox" name="choix_serv" value="Cuisine" />
           <label for="Cuisine">Cuisine</label><br/>
-
+          <!-- PENSER A METTRE UNE VALEUR AUCUNE PAR DEFAUT!!-->
         </p>
-      -->
+      
         <p style="text-align: center;"><input type="submit" value="Suivant"></p>
+        </div>
       </form>
 
 
