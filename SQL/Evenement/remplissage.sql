@@ -1,7 +1,7 @@
 --Partie remplissage Université
 INSERT INTO Universite (NomUniversite, Ville, Rue, Arrondissement, Contact)
                       VALUES ('La Garde', 'La Garde',
-                               'Rue université', '13', 'guigui@mail.com');
+                               'Rue universite', '13', 'guigui@mail.com');
 INSERT INTO Universite (NomUniversite, Ville, Rue, Arrondissement, Contact)
                       VALUES ('ParisCentre', 'Paris',
                                'Rue Sartre', '5', '0600000000');

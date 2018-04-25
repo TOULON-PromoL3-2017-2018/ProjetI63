@@ -16,8 +16,8 @@ CREATE TABLE Etudiant(num_etudiant SERIAL NOT NULL,
                       PRIMARY KEY (num_etudiant));
 
 CREATE TABLE Service_asso(num_service SERIAL NOT NULL,
-                     nom_service VARCHAR(20) NOT NULL,
-                     PRIMARY KEY (num_service));
+                          nom_service VARCHAR(20) NOT NULL,
+                          PRIMARY KEY (num_service));
 
 CREATE TABLE Chef_de_Service(num_chef_de_service SERIAL NOT NULL,
                              num_etudiant INTEGER NOT NULL,
@@ -41,24 +41,31 @@ CREATE TABLE Subventionneurs(num_subventionneur SERIAL NOT NULL,
                              tel_subventionneur VARCHAR(12) NOT NULL,
                              nom_représentant VARCHAR(20) NOT NULL,
                              mail_représentant VARCHAR(30) NOT NULL,
-                             PRIMARY KEY(num_subventionneur));
+                             PRIMARY KEY (num_subventionneur));
 
 CREATE TABLE Financement(num_demande_argent SERIAL NOT NULL,
                          montant INTEGER NOT NULL,
                          source INTEGER NOT NULL,
                          validation BOOLEAN NOT NULL,
-                         PRIMARY KEY(num_demande_argent),
-                         FOREIGN KEY(source) REFERENCES Service_asso(num_service));
+                         PRIMARY KEY (num_demande_argent),
+                         FOREIGN KEY (source) REFERENCES Service_asso(num_service));
 
 CREATE TABLE Subvention(num_subvention SERIAL NOT NULL,
                         montant REAL NOT NULL,
                         num_subventionneur INTEGER NOT NULL,
-                        PRIMARY KEY(num_subvention),
+                        PRIMARY KEY (num_subvention),
                         FOREIGN KEY (num_subventionneur) REFERENCES Subventionneurs(num_subventionneur));
 
 CREATE TABLE Contrat_asso(num_contrat SERIAL NOT NULL,
-                     cotisation BOOLEAN NOT NULL,
-                     date_signature DATE NOT NULL,
-                     num_etudiant INTEGER NOT NULL,
-                     PRIMARY KEY(num_contrat),
-                     FOREIGN KEY (num_etudiant) REFERENCES Etudiant(num_etudiant));
+                          cotisation BOOLEAN NOT NULL,
+                          date_signature DATE NOT NULL,
+                          num_etudiant INTEGER NOT NULL,
+                          PRIMARY KEY (num_contrat),
+                          FOREIGN KEY (num_etudiant) REFERENCES Etudiant(num_etudiant));
+
+CREATE TABLE Comptes_membres(num_compte SERIAL NOT NULL,
+                             login varchar(30) NOT NULL,
+                             mdp varchar(30) NOT NULL,
+                             num_etudiant INTEGER NOT NULL,
+                             PRIMARY KEY (num_compte),
+                             FOREIGN KEY (num_etudiant) REFERENCES Etudiant(num_etudiant));

@@ -116,3 +116,14 @@ INSERT INTO Contrat_asso(cotisation, date_signature, num_etudiant) VALUES
 ('1', '2018-04-11', 14);
 INSERT INTO Contrat_asso(cotisation, date_signature, num_etudiant) VALUES
 ('1', '2018-04-11', 15);
+
+INSERT INTO Comptes_membres(login, mdp, num_etudiant) VALUES
+(admin1, admin1, 10);
+INSERT INTO Comptes_membres(login, mdp, num_etudiant) VALUES
+(admin2, admin2, 9);
+INSERT INTO Comptes_membres(login, mdp, num_etudiant) VALUES
+(admin3, admin3, 8);
+INSERT INTO Comptes_membres(login, mdp, num_etudiant) VALUES
+(admin4, admin4, 7);
+INSERT INTO Comptes_membres(login, mdp, num_etudiant) VALUES
+(admin5, admin5, 6);

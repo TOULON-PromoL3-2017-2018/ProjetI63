@@ -5,8 +5,7 @@
   <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <!--Afficher les universités et leurs numéros ici-->
-  <p>Université disponible</p>
+  <p>Universités disponibles</p>
   <p>{{Universites}}</p>
   <form action = "http://localhost:5000/inscritext/" method="POST">
     <!--Pour s'inscrire à un evenement il doit fournir son numparticipant à defaut de compte-->
