@@ -44,17 +44,17 @@ insert into trajet (lieu_depart, lieu_arrive) values('Toulon', 'Paris');
 insert into trajet (lieu_depart, lieu_arrive) values('Paris', 'Toulon');
 
 
-insert into necessite (num_trajet, num_voyage, date_depart, date_arrive,
-  heure_depart, heure_arrive, prix_trajet) values(1, 2, '2018/03/25',
+insert into necessite (num_trajet, num_voyage, sens, date_depart, date_arrive,
+  heure_depart, heure_arrive, prix_trajet) values(1, 2, 'aller', '2018/03/25',
   '2018/03/26', '06:50', '13:30', 50);
-insert into necessite (num_trajet, num_voyage, date_depart, date_arrive,
-  heure_depart, heure_arrive, prix_trajet) values(2, 3, '2017/11/15',
+insert into necessite (num_trajet, num_voyage, sens, date_depart, date_arrive,
+  heure_depart, heure_arrive, prix_trajet) values(2, 3, 'retour', '2017/11/15',
   '2017/11/15', '06:30', '15:30', 100);
-insert into necessite (num_trajet, num_voyage, date_depart, date_arrive,
-  heure_depart, heure_arrive, prix_trajet) values(3, 2, '2018/01/11',
+insert into necessite (num_trajet, num_voyage, sens, date_depart, date_arrive,
+  heure_depart, heure_arrive, prix_trajet) values(3, 2, 'aller', '2018/01/11',
   '2018/01/11', '09:22', '15:18', 75);
-insert into necessite (num_trajet, num_voyage, date_depart, date_arrive,
-  heure_depart, heure_arrive, prix_trajet) values(2, 2, '2018/03/25',
+insert into necessite (num_trajet, num_voyage, sens, date_depart, date_arrive,
+  heure_depart, heure_arrive, prix_trajet) values(2, 2, 'retour', '2018/03/25',
   '2018/03/26', '15:50', '11:00', 25);
 
 

@@ -58,10 +58,11 @@ create table Necessite
   (
   num_trajet integer references Trajet NOT NULL,
   num_voyage integer references Voyage NOT NULL,
+  sens varchar(6) NOT NULL,
   date_depart date NOT NULL,
-  date_arrive date,
-  heure_depart char(5) NOT NULL,
-  heure_arrive char(5) NOT NULL,
+  date_arrive date NOT NULL,
+  heure_depart char(5),
+  heure_arrive char(5),
   prix_trajet integer NOT NULL,
   primary key (num_voyage, num_trajet)
   );
