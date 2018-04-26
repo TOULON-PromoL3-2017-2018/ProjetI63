@@ -1,0 +1,25 @@
+<!-- Fichier formulaire pour entrer un nouveau vehicule -->
+
+<html>
+
+  <head>
+    <meta charset = "utf-8" />
+    <title> nouveau véhicule </title>
+  </head>
+
+  <body>
+
+    <h1> FICHE DE NOUVEau VEHICULE </h1>
+
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+    <form action = "http://localhost:5000/templates/finir_vehicule" method = "POST">
+      <p> Immatriculation <input type = "text" name = "immatriculation" required /> </p>
+      <p> Numeros d'entreprise <input type = "text" name = "n_e_l" required /> </p>
+      <p> Type de véhicule <input type = "text" name = "type" required/> </p>
+      <p> Nombre de places disponibles <input type = "text" name = "places" /> </p>
+      <p> <input type = "submit" value = "confirmer l'ajout" /> </p>
+    </form>
+
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- en-tête de la page -->
+    <meta charset = "utf-8" />
+    <style>/*css*/
+    /* creation du fond d'écran :
+    url : nom de l'image (mis dans template)
+    background-repeat:no-repeat l'image ne se repete pas
+    background-size: cover : l'image s'etend au site*/
+    body{background-image: url("fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
+    </style>
+    <title>Nouvelle inscription</title>
+</head>
+
+ <body>
+   <!-- corp de la page -->
+   <!-- un titre -->
+   <h1><div align="middle">INSCRIPTION :</h1>
+   <h1><div align="left">CONNECTION :</h1>
+
+   <br/><br/><br/><br/>
+   <!-- INSCRIPTION et CONNECTION-->
+   <form action = "http://localhost:5000/valid_insc/" method = "POST">
+      <!-- Le debut de la ligne est ce qui va apparaitre à l'écran -->
+      <p><div align="left"> Se connecter <div align="middle"> Les informations seront envoyé a votre mail étudiant </p>
+      <p><div align="left">pseudo <input type = "text" name = "pseudo" placeholder="Ex : ..."/><div align="middle">pseudo <input type = "text" name = "pseudo" placeholder="Ex : ..."/> </p>
+      <p><div align="left">mot de passe <input type = "password" name = "mot de passe" placeholder="Ex : ..."/><div align="middle">mot de passe <input type = "password" name = "mot de passe" placeholder="Ex : ..."/></p>
+      <p>numéro étudiant <input type = "text" name = "num_etudiant" placeholder="Ex : H11........"/> </p>
+      <p><div align="left"><input type = "submit" value = "Connecter" /><div align="middle"><input type = "submit" value = "Créer un compte" /> </p>
+      <!-- sert a effacer toute les parties saisie
+      <input type="reset" value="Reset"> -->
+
+ </body>
+</html>

@@ -1,0 +1,32 @@
+<!-- Fichier formulaire pour entrer une nouvelle entreprise de location -->
+
+<html>
+
+  <head>
+    <meta charset = "utf-8" />
+    <title> trajet => voyage </title>
+  </head>
+
+  <body>
+
+    <h1> REFERENCEZ UN TRAJET POUR UN VOYAGE </h1>
+
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+    <form action = "http://localhost:5000/templates/finir_necessite" method = "POST">
+      <p> Numero de trajet* <input type = "text" name = "n_t" placeholder="2" required/> </p>
+      <p> Numero de voyage* <input type = "text" name = "n_v" placeholder="1" required/> </p>
+      <p> Sens du trajet* <input type = "text" name = "s" placeholder="aller" required/> </p>
+      <p> Date de depart* <input type = "date" name = "d_p" required/> </p>
+      <p> Date d'arrivé* <input type = "date" name = "d_a" required/> </p>
+      <p> Heure de depart <input type = "time" name = "h_d" /> </p>
+      <p> Heure d'arrivé <input type = "time" name = "h_a" /> </p>
+      <p> Prix du trajet* <input type = "text" name = "prix" placeholder="150" required/> </p>
+      <br/>
+      <p> Les champs avec une * sont obligatoires</p>
+      <br/>
+      <p> <input type = "submit" value = "confirmer l'ajout" /> </p>
+    </form>
+
+  </body>
+</html>
