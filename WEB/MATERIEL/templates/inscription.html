@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- en-tête de la page -->
+    <meta charset = "utf-8" />
+    <style>/*css*/
+    /* creation du fond d'écran :
+    url : nom de l'image (mis dans template)
+    background-repeat:no-repeat l'image ne se repete pas
+    background-size: cover : l'image s'etend au site*/
+    body{background-image: url("fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
+    </style>
+    <title>Nouvelle inscription</title>
+</head>
+
+ <body>
+   <!-- corp de la page -->
+   <h1 align = 'center'>Données étudiant :</h1>
+
+   <br/><br/><br/><br/>
+
+   <form action = "http://localhost:5000/valid_insc/" method = "POST">
+      <!-- Le debut de la ligne est ce qui va apparaitre à l'écran -->
+       <p>Nom étudiant <input type = "text" name = "name_etu" placeholder="Ex : Nom"/> </p>
+       <p>Prénom étudiant <input type = "text" name = "pren_etu" placeholder="Ex : Prénom"/> </p>
+       <p>Date de naissance <input type = "text" name = "date" placeholder="aaaa-mm-jj"/> </p>
+       <p>Filière <input type = "text" name = "fil" placeholder="Ex : science pour l'ingénieur"/> </p>
+       <p>Telephone <input type = "tel" name ="tel" placeholder="Ex : 06050403002"/> </p>
+       <p>Mail <input type="email" name="mail" placeholder="Ex : branleur@exemple.fr"/></p>
+       <p>Rue <input type="text" name="rue" placeholder="Ex : 12 rue des lillas"/></p>
+       <p>Ville <input type="text" name="town" placeholder="Ex : Moncul"/></p>
+       <p>Code postal <input type="number" name="code" placeholder="Ex : 88888"/></p>
+       <p><input type = "submit" value = "Ajouter l'étudiant" /> </p>
+    </form>
+
+ </body>
+</html>
