@@ -177,6 +177,64 @@ def fin_trajet():
         return flask.render_template('finir_trajet.html', result_l_d=l_d,
                                      result_l_a=l_a)
 
+###################################################
+###################################################
+###################################################
+
+@app.route('/templates/form_vehicule', methods=['POST', 'GET'])
+def n_vehicule():
+    return flask.render_template('form_vehicule.html')
+
+###################################################
+
+@app.route('/templates/finir_vehicule', methods=['POST', 'GET'])
+def fin_vehicule():
+    if flask.request.method == 'POST':
+        imm = flask.request.form['immatriculation']
+        num_entr_loc = flask.request.form['n_e_l']
+        type_v = flask.request.form['type']
+        nb_places = flask.request.form['places']
+        query = "INSERT into Vehicule (immatriculation, num_entre_location,\
+        type_vehicule, nb_places) values (%s, %s, %s, %s)"
+        data = (imm, num_entr_loc, type_v, nb_places)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('finir_vehicule.html', result_imm=imm,
+                                     result_type=type_v)
+
+###################################################
+###################################################
+###################################################
+
+@app.route('/templates/form_necessite', methods=['POST', 'GET'])
+def n_association():
+    return flask.render_template('form_necessite.html')
+
+###################################################
+
+@app.route('/templates/finir_necessite', methods=['POST', 'GET'])
+def fin_association():
+    if flask.request.method == 'POST':
+        num_traj = flask.request.form['n_t']
+        num_voy = flask.request.form['n_v']
+        sens = flask.request.form['s']
+        dat_dep = flask.request.form['d_p']
+        dat_arr = flask.request.form['d_a']
+        heur_dep = flask.request.form['h_d']
+        heur_arr = flask.request.form['h_a']
+        prix = flask.request.form['prix']
+
+        query = "INSERT into Necessite (num_trajet, num_voyage, sens,\
+        date_depart, date_arrive, heure_depart, heure_arrive, prix_trajet)\
+        values (%s, %s, %s, %s, %s, %s, %s, %s)"
+        data = (num_traj, num_voy, sens, dat_dep, dat_arr, heur_dep, heur_arr, prix)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('finir_necessite.html', result_trajet=num_traj,
+                                     result_voyage=num_voy)
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
