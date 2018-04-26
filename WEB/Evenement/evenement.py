@@ -224,4 +224,32 @@ def inscritpart():
 # demander pour compte admin sur site pour creer evenement la je fais juste
 # la participation
 
+# requete pour evenement passé :
+# select noevenement, typeevenement, notation, dateevenement from evenement natural join type ;
+
+# requete pour evenement futur :
+# select noevenement, typeevenement, dateevenement, nomsport from evenement natural join type left outer join (select * from evenementsport natural join sport) as t on evenement.noevenementsport = t.noevenementsport;
+@app.route("/evenement/evenement/", methods=["POST", "GET"])
+def evenement():
+    return flask.render_template('evenement.html')
+
+
+# pour date faire :
+# >>> from datetime import datetime
+# >>> past = datetime.now()
+# >>> present = datetime.now()
+# >>> past < present
+# True
+# >>> datetime(3000, 1, 1) < present
+# False
+# >>> present - datetime(2000, 4, 4)
+# datetime.timedelta(4242, 75703, 762105)
+
+# Pour ici faire : rows[0][1] < rows[1][1]   retourne True
+
+@app.route("/evenement/evenementpasse/", methods=["POST", "GET"])
+def evenementpasse():
+    pass
+
+
 app.run(debug=True)
