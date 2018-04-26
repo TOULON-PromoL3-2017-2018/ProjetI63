@@ -30,7 +30,6 @@ INSERT INTO Etudiant(nom_etudiant, prenom_etudiant, date_naissance_etudiant, fil
 ('LERCH', 'Soëlie', '1994-12-25', 'SEGPA', '0481736347', 'lerch-soelie@univ-tln.fr', 'osef', 'osefvraiment', 11111, '1');
 INSERT INTO Etudiant(nom_etudiant, prenom_etudiant, date_naissance_etudiant, filiere_etudiant, tel_etudiant, mail_etudiant, rue_etudiant, ville_etudiant, code_postal_etudiant, membre_asso) VALUES
 ('PLOW', 'Phil', '1993-04-14', 'MATHS', '0648719642', 'plow-philippe@univ-tln.fr', '154 uqzfjqegh', 'Toulouse', 31000, '1');
---passer par serial plutôt pour num etud
 
 INSERT INTO Service_asso(nom_service) VALUES
 ('Evenement');
@@ -118,12 +117,12 @@ INSERT INTO Contrat_asso(cotisation, date_signature, num_etudiant) VALUES
 ('1', '2018-04-11', 15);
 
 INSERT INTO Comptes_membres(login, mdp, num_etudiant) VALUES
-(admin1, admin1, 10);
+('admin1', 'admin1', 10);
 INSERT INTO Comptes_membres(login, mdp, num_etudiant) VALUES
-(admin2, admin2, 9);
+('admin2', 'admin2', 9);
 INSERT INTO Comptes_membres(login, mdp, num_etudiant) VALUES
-(admin3, admin3, 8);
+('admin3', 'admin3', 8);
 INSERT INTO Comptes_membres(login, mdp, num_etudiant) VALUES
-(admin4, admin4, 7);
+('admin4', 'admin4', 7);
 INSERT INTO Comptes_membres(login, mdp, num_etudiant) VALUES
-(admin5, admin5, 6);
+('admin5', 'admin5', 6);

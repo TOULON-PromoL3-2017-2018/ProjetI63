@@ -26,7 +26,7 @@ def new_insc():
 
 
 @app.route('/form_insc_subv/', methods=['POST', 'GET'])
-def new_insc():
+def new_inscr():
     return flask.render_template('form_insc_subv.html')
 
 
@@ -47,7 +47,7 @@ def inscription():
         query = "INSERT INTO Etudiant(nom_etudiant, prenom_etudiant,\
         date_naissance_etudiant, filiere_etudiant, tel_etudiant,\
         mail_etudiant, rue_etudiant, ville_etudiant, code_postal_etudiant,\
-        membre_asso) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+        membre_asso) VALUES (%s, %s, to_date(%s, 'DD MM YYYY'), %s, %s, %s, %s, %s, %s, %s);"
         data = (nom_etu, pre_etu, date_nais, filiere, tel_etu, mail_etu,
                 rue_etu, ville_etu, code_post, mbr_asso)
         curr.execute(query, data)
@@ -79,13 +79,15 @@ def inscription2():
 
 @app.route('/finances/', methods=['POST', 'GET'])
 def finance():
+    # return flask.render_template('finances.html', res_cpt=trigger de etat des
+    #comptes)
     return flask.render_template('finances.html')
 
 
 @app.route('/financements/', methods=['POST', 'GET'])
 def financements():
     curr.execute("SELECT (num_demande_argent, montant, source,\
-    validation) FROM Financement WHERE num_demande_argent=id AND validation=1")
+    validation) FROM Financement WHERE validation=1")
     return flask.render_template('financements.html')
 
 
