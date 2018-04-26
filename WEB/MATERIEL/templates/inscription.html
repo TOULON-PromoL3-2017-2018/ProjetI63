@@ -15,23 +15,21 @@
 
  <body>
    <!-- corp de la page -->
-   <h1 align = 'center'>Données étudiant :</h1>
+   <!-- un titre -->
+   <h1><div align="middle">INSCRIPTION :</h1>
+   <h1><div align="left">CONNECTION :</h1>
 
    <br/><br/><br/><br/>
-
+   <!-- INSCRIPTION et CONNECTION-->
    <form action = "http://localhost:5000/valid_insc/" method = "POST">
       <!-- Le debut de la ligne est ce qui va apparaitre à l'écran -->
-       <p>Nom étudiant <input type = "text" name = "name_etu" placeholder="Ex : Nom"/> </p>
-       <p>Prénom étudiant <input type = "text" name = "pren_etu" placeholder="Ex : Prénom"/> </p>
-       <p>Date de naissance <input type = "text" name = "date" placeholder="aaaa-mm-jj"/> </p>
-       <p>Filière <input type = "text" name = "fil" placeholder="Ex : science pour l'ingénieur"/> </p>
-       <p>Telephone <input type = "tel" name ="tel" placeholder="Ex : 06050403002"/> </p>
-       <p>Mail <input type="email" name="mail" placeholder="Ex : branleur@exemple.fr"/></p>
-       <p>Rue <input type="text" name="rue" placeholder="Ex : 12 rue des lillas"/></p>
-       <p>Ville <input type="text" name="town" placeholder="Ex : Moncul"/></p>
-       <p>Code postal <input type="number" name="code" placeholder="Ex : 88888"/></p>
-       <p><input type = "submit" value = "Ajouter l'étudiant" /> </p>
-    </form>
+      <p><div align="left"> Se connecter <div align="middle"> Les informations seront envoyé a votre mail étudiant </p>
+      <p><div align="left">pseudo <input type = "text" name = "pseudo" placeholder="Ex : ..."/><div align="middle">pseudo <input type = "text" name = "pseudo" placeholder="Ex : ..."/> </p>
+      <p><div align="left">mot de passe <input type = "password" name = "mot de passe" placeholder="Ex : ..."/><div align="middle">mot de passe <input type = "password" name = "mot de passe" placeholder="Ex : ..."/></p>
+      <p>numéro étudiant <input type = "text" name = "num_etudiant" placeholder="Ex : H11........"/> </p>
+      <p><div align="left"><input type = "submit" value = "Connecter" /><div align="middle"><input type = "submit" value = "Créer un compte" /> </p>
+      <!-- sert a effacer toute les parties saisie
+      <input type="reset" value="Reset"> -->
 
  </body>
 </html>
