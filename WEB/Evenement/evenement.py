@@ -1,5 +1,7 @@
 import flask
 import psycopg2
+from datetime import datetime
+# changer nom accueil.html partout !!!
 
 app = flask.Flask(__name__)
 params = {
@@ -114,9 +116,6 @@ def equipe():
 
 @app.route("/evenement/formequipe/", methods=["POST", "GET"])
 def formequipe():
-    # si inscrit dans table de base ok sinon faire une erreur
-    # donc renseigner num participant pour le mettre dans inscritequipe
-    # donner num equipe comme identifiant
     return flask.render_template('formequipe.html')
 
 
@@ -166,7 +165,6 @@ def inscritequipe():
             return flask.render_template('inscritequipe.html', NomEqui=NomEq,\
                                          NumEqui=NumEq)
         return flask.render_template('erreurinscriteq.html', NoParti=NoPart)
-# faire import time et faire date = t.localtime() puis date[x] pour avoir les infos
 
 
 @app.route("/evenement/formpart/", methods=["POST", "GET"])
@@ -181,7 +179,7 @@ def inscritpart():
         NumEq = flask.request.form['NumEquipe']
         query = "SELECT noparticipantautre FROM participantautre WHERE \
         noparticipantautre = %s"
-        data = (NoPart)
+        data = (NoPart,)
         cur.execute(query, data)
         rowother = cur.fetchall()
         # verif si dans participantautre
@@ -200,7 +198,7 @@ def inscritpart():
             return flask.render_template('erreurequipe.html', NumEqui=NumEq)
         query = "SELECT noparticipantasso FROM ParticipantAsso WHERE \
         noparticipantasso = %s"
-        data = (NoPart)
+        data = (NoPart,)
         cur.execute(query, data)
         rowasso = cur.fetchall()
         # verif si dans participantasso
@@ -219,37 +217,171 @@ def inscritpart():
             return flask.render_template('erreurequipe.html', NumEqui=NumEq)
         return flask.render_template('erreurinscriteq.html', NoParti=NoPart)
 
-# faire evenement et ce qui lui est associé
 
-# demander pour compte admin sur site pour creer evenement la je fais juste
-# la participation
-
-# requete pour evenement passé :
-# select noevenement, typeevenement, notation, dateevenement from evenement natural join type ;
-
-# requete pour evenement futur :
-# select noevenement, typeevenement, dateevenement, nomsport from evenement natural join type left outer join (select * from evenementsport natural join sport) as t on evenement.noevenementsport = t.noevenementsport;
+# juste participation pas d'édition avec ajout d'évènement
 @app.route("/evenement/evenement/", methods=["POST", "GET"])
 def evenement():
     return flask.render_template('evenement.html')
 
 
-# pour date faire :
-# >>> from datetime import datetime
-# >>> past = datetime.now()
-# >>> present = datetime.now()
-# >>> past < present
-# True
-# >>> datetime(3000, 1, 1) < present
-# False
-# >>> present - datetime(2000, 4, 4)
-# datetime.timedelta(4242, 75703, 762105)
-
-# Pour ici faire : rows[0][1] < rows[1][1]   retourne True
-
 @app.route("/evenement/evenementpasse/", methods=["POST", "GET"])
 def evenementpasse():
-    pass
+    todaydate = datetime.now()
+    query = "SELECT noevenement, typeevenement, notation, dateevenement FROM \
+            evenement NATURAL JOIN type WHERE dateevenement < %s"
+    data = (todaydate,)
+    cur.execute(query, data)
+    rowevenpast = cur.fetchall()
+    return flask.render_template('evenementpasse.html', Evpast=rowevenpast)
 
 
+@app.route("/evenement/evenementfutur/", methods=["POST", "GET"])
+def evenementfutur():
+    todaydate = datetime.now()
+    query = "SELECT noevenement, typeevenement, dateevenement, nomsport from \
+    evenement natural join type left outer join (select * from \
+    evenementsport natural join sport) as t on \
+    evenement.noevenementsport = t.noevenementsport WHERE \
+    dateevenement >= %s"
+    data = (todaydate,)
+    cur.execute(query, data)
+    rowevenfutur = cur.fetchall()
+    return flask.render_template('evenementfutur.html', Evfutur=rowevenfutur)
+
+
+@app.route("/evenement/inscriptionevenement/", methods=["POST", "GET"])
+def inscriptionevenement():
+    return flask.render_template('inscriptionevenement.html')
+
+
+@app.route("/evenement/forminscritev/", methods=["POST", "GET"])
+def forminscritev():
+    if flask.request.method == "POST":
+        NoEv = flask.request.form['NumEven']
+        todaydate = datetime.now()
+        query = "SELECT noevenement FROM evenement WHERE dateevenement\
+                > %s AND noevenement = %s"
+        data = (todaydate, NoEv)
+        cur.execute(query, data)
+        row = cur.fetchall()
+        # si evenement bien valide
+        if len(row) != 0:
+            # test si evenement sport et si oui si coll ou ind
+            query = "SELECT noevenementsport FROM evenement WHERE noevenement =\
+                    %s"
+            data = (NoEv,)
+            cur.execute(query, data)
+            res = cur.fetchall()
+            if res[0][0] == None:
+                # si pas evenement sportif
+                return flask.render_template('forminscritevind.html',
+                                             NumEv=NoEv)
+            noevsport = res[0][0]
+            query = "SELECT typesport FROM evenementsport NATURAL JOIN \
+                    sport WHERE noevenementsport = %s"
+            data = (noevsport,)
+            cur.execute(query, data)
+            res = cur.fetchall()
+            if res[0][0] == 'Individuel':
+                return flask.render_template('forminscritevind.html',
+                                             NumEv=NoEv)
+            return flask.render_template('forminscriteveq.html', NumEv=NoEv)
+        return flask.render_template('erreurevenement.html', NumEv=NoEv)
+
+
+@app.route("/evenement/inscritevind/", methods=["POST", "GET"])
+def inscritevind():
+    if flask.request.method == "POST":
+        NoEv = flask.request.form['NumEven']
+        NoPart = flask.request.form['NumPart']
+        query = "SELECT noparticipantautre FROM participantautre WHERE \
+        noparticipantautre = %s"
+        data = (NoPart,)
+        cur.execute(query, data)
+        rowother = cur.fetchall()
+        # verif si dans participantautre
+        if len(rowother) != 0:
+            query = "INSERT INTO inscritautre VALUES (%s, %s)"
+            data = (NoPart, NoEv)
+            cur.execute(query, data)
+            conn.commit()
+            return flask.render_template('inscritevind.html', NumEv=NoEv)
+        query = "SELECT noparticipantasso FROM ParticipantAsso WHERE \
+        noparticipantasso = %s"
+        data = (NoPart,)
+        cur.execute(query, data)
+        rowasso = cur.fetchall()
+        # verif si dans participantasso
+        if len(rowasso) != 0:
+            query = "INSERT INTO inscritasso VALUES (%s, %s)"
+            data = (NoPart, NoEv)
+            cur.execute(query, data)
+            conn.commit()
+            return flask.render_template('inscritevind.html', NumEv=NoEv)
+        return flask.render_template('erreurinscriteq.html', NoParti=NoPart)
+
+
+@app.route("/evenement/inscriteveq/", methods=["POST", "GET"])
+def inscriteveq():
+    if flask.request.method == "POST":
+        NoEv = flask.request.form['NumEven']
+        NoEq = flask.request.form['NumEquipe']
+        query = "SELECT NumEquipe FROM Equipe WHERE NumEquipe = %s"
+        data = (NoEq,)
+        cur.execute(query, data)
+        res = cur.fetchall()
+        # verif si dans equipe
+        if len(res) != 0:
+            query = "INSERT INTO inscritequipe VALUES (%s, %s)"
+            data = (NoEq, NoEv)
+            cur.execute(query, data)
+            conn.commit()
+            return flask.render_template('inscritevind.html', NumEv=NoEv)
+        return flask.render_template('erreurequipe.html', NumEqui=NoEq)
+
+
+@app.route("/evenement/classement/", methods=["POST", "GET"])
+def classement():
+    query = "SELECT nomsport FROM sport"
+    cur.execute(query)
+    res = cur.fetchall()
+    return flask.render_template('classement.html', Sport=res)
+
+
+@app.route("/evenement/afficheclass/", methods=["POST", "GET"])
+def afficheclass():
+    if flask.request.method == "POST":
+        NomSp = flask.request.form['NomSport']
+        query = "SELECT nomsport FROM sport WHERE nomsport = %s"
+        data = (NomSp,)
+        cur.execute(query, data)
+        res = cur.fetchall()
+        # verif si sport existe
+        if len(res) != 0:
+            # test si sport coll ou Individuel
+            query = "SELECT typesport FROM sport WHERE nomsport = %s"
+            data = (NomSp,)
+            cur.execute(query, data)
+            res = cur.fetchall()
+            if res[0][0] == 'Individuel':
+                query = "SELECT * FROM GagnantPers(%s)"
+                cur.execute(query, data)
+                res = cur.fetchall()
+                return flask.render_template('afficheclass.html',
+                                             NomSport=NomSp, Class=res)
+            query = "SELECT * FROM GagnantEq(%s)"
+            cur.execute(query, data)
+            res = cur.fetchall()
+            return flask.render_template('afficheclass.html',
+                                         NomSport=NomSp, Class=res)
+        return flask.render_template('erreursport.html', NomSport=NomSp)
+
+
+# si le temps faire test si aucun classement à afficher
+
+
+
+# en voie d'amelioration ajout de notation dans les inscrits et avec trigger
+# mettre la notation moyenne dans evenement
+# manque traitement si déjà inscrit donc risque de bug
 app.run(debug=True)
