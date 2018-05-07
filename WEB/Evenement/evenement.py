@@ -1,7 +1,7 @@
 import flask
 import psycopg2
 from datetime import datetime
-# changer nom accueil.html partout !!!
+
 
 app = flask.Flask(__name__)
 params = {
@@ -25,7 +25,7 @@ else:
 @app.route("/",  methods=["POST", "GET"])
 @app.route("/evenement/", methods=["POST", "GET"])
 def accueil():
-    return flask.render_template('accueil.html')
+    return flask.render_template('accueilev.html')
 
 
 @app.route("/evenement/formext/", methods=["POST", "GET"])

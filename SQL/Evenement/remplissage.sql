@@ -46,7 +46,7 @@ INSERT INTO Personnel (NomPersonnel, PrenomPersonnel) VALUES ('BUTTLER', 'Jimmy'
 
 --Partie remplissage Type
 INSERT INTO Type (TypeEvenement) VALUES ('Sport');
-INSERT INTO Type (TypeEvenement) VALUES ('Musée');
+INSERT INTO Type (TypeEvenement) VALUES ('Musee');
 INSERT INTO Type (TypeEvenement) VALUES ('Bricolage');
 
 --Partie remplissage Sport
@@ -66,25 +66,25 @@ INSERT INTO EvenementSport (NoSport, NoVainqueur, Score, RecompenseVainqueur, No
 
 --Partie remplissage Evenement
 INSERT INTO Evenement (NoPersonnel, NoTypeEvenement, NoPresse, NoEvenementSport,
-                       DateEvenement, VilleEvenement, PrixEvenement, DureeEvenement,
+                       DateEvenement, VilleEvenement, PrixEvenement,
                        PrixPlace, Notation)
                       VALUES (3, 1, 2, 1, '2018/03/30', 'Marseille',
-                              4500, 1, 10, 15.4);
+                              4500, 10, 15.4);
 INSERT INTO Evenement (NoPersonnel, NoTypeEvenement, NoPresse, NoEvenementSport,
-                       DateEvenement, VilleEvenement, PrixEvenement, DureeEvenement,
+                       DateEvenement, VilleEvenement, PrixEvenement,
                        PrixPlace, Notation)
                       VALUES (2, 1, 2, 2, '2018/03/31', 'Paris',
-                              6000, 1, 20, 16.8);
+                              6000, 20, 16.8);
 INSERT INTO Evenement (NoPersonnel, NoTypeEvenement, NoPresse, NoEvenementSport,
-                       DateEvenement, VilleEvenement, PrixEvenement, DureeEvenement,
+                       DateEvenement, VilleEvenement, PrixEvenement,
                        PrixPlace, Notation)
                       VALUES (1, 1, 1, 3, '2018/04/06', 'Toulon',
-                              1500, 2, 15, 13.2);
+                              1500, 15, 13.2);
 INSERT INTO Evenement (NoPersonnel, NoTypeEvenement, NoPresse, NoEvenementSport,
-                       DateEvenement, VilleEvenement, PrixEvenement, DureeEvenement,
+                       DateEvenement, VilleEvenement, PrixEvenement,
                        PrixPlace, Notation)
                       VALUES (2, 2, 3, NULL, '2018/06/15', 'Paris',
-                              0, 1, 0, NULL);
+                              0, 0, NULL);
 
 --Partie remplissage InscritAsso
 INSERT INTO InscritAsso VALUES (3, 3);

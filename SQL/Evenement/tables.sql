@@ -69,7 +69,6 @@ CREATE TABLE Evenement(
   DateEvenement DATE NOT NULL,
   VilleEvenement VARCHAR(20),
   PrixEvenement INTEGER NOT NULL,
-  DureeEvenement INTEGER NOT NULL,
   PrixPlace INTEGER NOT NULL,
   Notation REAL
 );
