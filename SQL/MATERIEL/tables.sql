@@ -1,8 +1,5 @@
 -- clain cyril
 
-create schema asso;
-SET search_path to asso;
-
 --creation d'un domaine BOOL :
 create domain BOOL
 as char
@@ -10,7 +7,7 @@ check(value in('T','F'));
 
 --creation d'un domaine ETAT :
 create domain ETAT
-as char
+as varchar(3)
 check(value in('AB','B','TB'));
 
 --creation d'un domaine Filiere (xavier l'a écris ):
@@ -22,30 +19,31 @@ CREATE DOMAIN Filiere AS VARCHAR(6) CHECK (VALUE IN ('INFO', 'EEA', 'BIO', 'PC',
 create table Forfait(--
   Ref_Forfait INTEGER,
   Prix_Forfait INTEGER,
-  primary key (ref_Forfait));
+  primary key (Ref_Forfait));
 
 create table Caution(--
   Num_Caution INTEGER,
   Prix_Caution INTEGER,
-  forein key (Num_Etudiant),
-  forein key (Ref_Materiel),
+
+  foreign key (Num_Etudiant),
+  foreign key (Ref_Materiel),
   primary key (Num_Caution));
 
 create table Location(--
   Num_Location INTEGER,
   Duree_Location INTEGER,
   Date_debut_Location DATE,
-  forein key (Num_Etudiant),
+  foreign key (Num_Etudiant),
   primary key (Num_Location)
 );
 
-create table Materiel_stok(--
+create table Materiel_stock(--
   Ref_Materiel INTEGER,
   Intitule_Materiel VARCHAR(20),
   Ref_Type_Materiel INTEGER,
   Etat_Materiel ETAT,
   quantite INTEGER,
-  forein key (Ref_Type_Materiel),
+  foreign key (Ref_Type_Materiel) REFERENCES Type_Materiel,
   primary key (Ref_Materiel)
 );
 
@@ -60,7 +58,7 @@ create table Facture(--
   Num_Facture INTEGER,
   Date_Facture DATE,
   Prix_Facture INTEGER,
-  forein key (Num_Entreprise),
+  foreign key (Num_Entreprise),
   primary key (Num_Facture)
 );
 
@@ -78,7 +76,7 @@ create table Devis(--
   Num_Devis INTEGER,
   Prix_estime INTEGER,
   Date_Devis INTEGER,
-  forein key(Num_Entreprise),
+  foreign key(Num_Entreprise),
   primary key (Num_Devis)
 );
 
@@ -86,8 +84,8 @@ create table Materiel_Entreprise(--trigger
   Num_Entreprise INTEGER,
   Ref_type_Materiel INTEGER,
   Quantité INTEGER,
-  forein key(Num_Entreprise),
-  forein key(Ref_type_Materiel),
+  foreign key(Num_Entreprise),
+  foreign key(Ref_type_Materiel),
   primary key (Num_Entreprise,Ref_type_Materiel)
 );
 
@@ -108,7 +106,7 @@ CREATE TABLE Etudiant(-- xavier l'a écris
 create table ParticipantAsso(--
   Num_ParticipantAsso INTEGER,
   Num_Etudiant INTEGER,
-  forein key(Num_Etudiant),
+  foreign key(Num_Etudiant),
   primary key (Num_ParticipantAsso)
 );
 
@@ -126,7 +124,7 @@ create table matériel_retour(--trigger
   Ref_Materiel INTEGER,
   Num_Location INTEGER,
   etat_materiel_retour ETAT,
-  forein key (Ref_Materiel),
+  foreign key (Ref_Materiel),
   primary key (Ref_Materiel,Num_Location)
 );
 

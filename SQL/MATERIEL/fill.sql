@@ -1,4 +1,4 @@
-INSERT INTO Materiel_stok VALUES
+INSERT INTO Materiel_stock VALUES
 (1,'chaussure de ski',1, TB, 30),
 (2,'baton de ski',1, TB, 30),
 (3,'combi de ski',1, TB, 30),
