@@ -1,0 +1,25 @@
+<!-- Fichier formulaire pour associer un voyageur à un voyage  -->
+
+<html>
+
+  <head>
+      <meta charset = "utf-8" />
+      <title> satisfaction du voyage </title>
+  </head>
+
+   <body>
+
+     <h1> FICHE DE SATISFACTION D'UN VOYAGEUR </h1>
+
+     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+     <form action = "http://localhost:5000/voyage/finir_satisfaction" method = "POST">
+        <!-- Le debut de la ligne est ce qui va apparaitre à l'écran -->
+         <p>Numero étudiant <input type = "text" name = "num_v" /> </p>
+         <p>Numero de voyage <input type = "text" name = "num_voy" /> </p>
+         <p>Satisfaction <input type = "text" name = "s" /> </p>
+         <p><input type = "submit" value = "confirmer l'ajout" /> </p>
+      </form>
+
+   </body>
+</html>
