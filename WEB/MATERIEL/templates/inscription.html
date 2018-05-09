@@ -23,10 +23,14 @@
    <!-- INSCRIPTION et CONNECTION-->
    <form action = "http://localhost:5000/valid_insc/" method = "POST">
       <!-- Le debut de la ligne est ce qui va apparaitre à l'écran -->
-      <p><div align="left"> Se connecter <div align="middle"> Les informations seront envoyé a votre mail étudiant </p>
-      <p><div align="left">pseudo <input type = "text" name = "pseudo" placeholder="Ex : ..."/><div align="middle">pseudo <input type = "text" name = "pseudo" placeholder="Ex : ..."/> </p>
-      <p><div align="left">mot de passe <input type = "password" name = "mot de passe" placeholder="Ex : ..."/><div align="middle">mot de passe <input type = "password" name = "mot de passe" placeholder="Ex : ..."/></p>
-      <p>numéro étudiant <input type = "text" name = "num_etudiant" placeholder="Ex : H11........"/> </p>
+      <p><div align="left"> Se connecter <div align="middle"> Les informations seront envoyé a votre mail </p>
+      <p><div align="left">Pseudo <input type = "text" name = "pseudo" placeholder="Ex : ..."/><div align="middle">pseudo <input type = "text" name = "pseudo" placeholder="Ex : ..."/> </p>
+      <p><div align="left">Mot de passe <input type = "password" name = "mot de passe" placeholder="Ex : ..."/><div align="middle">mot de passe <input type = "password" name = "mot de passe" placeholder="Ex : ..."/></p>
+      <p>Numéro étudiant <input type = "text" name = "num_etudiant" placeholder="Ex : 11........"/> </p>
+      <p>Mail     <input type="email" name="mail" id="mail" class="field-long" placeholder="exemple@mail.com" /> </p>
+      <p>Rue <input type="text" name="rue" placeholder="Ex : 7 rue emille pellepol"/></p>
+      <p>Ville <input type="text" name="town" placeholder="Ex : LE LUC"/></p>
+      <p>Code postal <input type="number" value="83000" name="code_postal" placeholder="Ex : 83200"/></p>
       <p><div align="left"><input type = "submit" value = "Connecter" /><div align="middle"><input type = "submit" value = "Créer un compte" /> </p>
       <!-- sert a effacer toute les parties saisie
       <input type="reset" value="Reset"> -->

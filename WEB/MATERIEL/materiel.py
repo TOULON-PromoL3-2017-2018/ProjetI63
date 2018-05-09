@@ -1,29 +1,51 @@
 import flask
 import psycopg2
-from datetime import datetime
-
 
 app = flask.Flask(__name__)
-params = {
-  'host': 'localhost'
-}
+params = "\
+  database= sinfo1\
+  username= cclain594\
+  host= localhost\
+  port= 5432\
+"
+
+param = {'host': '10.9.186.217'}
+
 try:
-    conn = psycopg2.connect(**params)
+    conn = psycopg2.connect(**param)
     print("\n connecté")
 except:
     print("\n erreur de connection")
+    exit(1)
 
+curr = conn.cursor()
 
-cur = conn.cursor()
+# Me permet d'orienter la recherche des tables dans le schema
+curr.execute("SET SEARCH_PATH TO asso")
 
-@app.route('/validation_inscription/', methods=['POST', 'GET'])
+@app.route('inscription.html', methods=['POST', 'GET'])
 def inscription():
     if flask.request.method == 'POST':
-        pseudo = flask.request.form['pseudo']
-        mdp = flask.request.form['mdp']
-        num_étudiant = flask.request.form['Num_Etudiant']
+        Pseudo = flask.request.form['pseudo']
+        Mdp = flask.request.form['mdp']
+        Num_étudiant = flask.request.form['Num_Etudiant']
+        Mail = flask.request.form['MAIL']
+        Rue = flask.request.form['Rue']
+        Ville = flask.request.form['Ville']
+        Code_postal = flask.request.form['Code_postal']
 
-        query = "INSERT INTO inscrit(pseudo, mdp, Num_Etudiant) VALUES (%s, %s, %d);"
+        query = "INSERT INTO inscrit(pseudo, mdp, Num_Etudiant) \
+        VALUES (%s, %s, %d, %s, %s, %s, %s);"
 
-@app.route('/verif_connection', methods=['POST', 'GET'])
-def connection():
+        data = (Pseudo, Mdp, Num_étudiant, Mail, Rue, Ville, Code_postal)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('inscription_réussi.html', res_nom=nom_etu)
+
+#@app.route('/verif_connection', methods=['POST', 'GET'])
+#def connection():
+
+
+if __name__ == '__main__':
+
+    app.run(debug=True)

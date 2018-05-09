@@ -22,8 +22,8 @@ create table Forfait(--
   primary key (Ref_Forfait));
 
 
-CREATE TABLE Etudiant(-- xavier l'a écris
-  Num_Etudiant SERIAL NOT NULL,
+CREATE TABLE Etudiant( -- base écrite par xavier
+  Num_Etudiant SERIAL primary key,
   nom_etudiant VARCHAR(25) NOT NULL,
   prenom_etudiant VARCHAR(25) NOT NULL,
   date_naissance_etudiant DATE NOT NULL,
@@ -33,8 +33,7 @@ CREATE TABLE Etudiant(-- xavier l'a écris
   rue_etudiant VARCHAR(30) NOT NULL,
   ville_etudiant VARCHAR(25) NOT NULL,
   code_postal_etudiant INTEGER NOT NULL,
-  membre_asso BOOLEAN NOT NULL,
-  PRIMARY KEY (Num_Etudiant));
+  membre_asso BOOLEAN NOT NULL);
 
 
 
@@ -88,7 +87,7 @@ create table Facture(--
   Num_Facture INTEGER,
   Date_Facture DATE,
   Prix_Facture INTEGER,
-  Num_Entreprise INTEGER;
+  Num_Entreprise INTEGER,
   foreign key (Num_Entreprise) REFERENCES Entreprise,
   primary key (Num_Facture)
 );
@@ -96,8 +95,8 @@ create table Facture(--
 create table Devis(--
   Num_Devis INTEGER,
   Prix_estime INTEGER,
-  Date_Devis INTEGER,
-  Num_Entreprise INTEGER;
+  Date_Devis DATE,
+  Num_Entreprise INTEGER,
   foreign key(Num_Entreprise) REFERENCES Entreprise,
   primary key (Num_Devis)
 );
@@ -138,15 +137,19 @@ create table matériel_retour(--trigger
 
 create table Caution_encaisser(--trigger
   Num_Caution INTEGER,
-  Num_Etudiant INTEGER,
-  Caution_encaisser BOOL
+  --Num_Etudiant INTEGER,
+  Caution_encaisser BOOL,
+  Num_Etudiant INTEGER REFERENCES Etudiant(Num_Etudiant),
   primary key(Num_Etudiant,Num_Caution)
 );
 
 create table inscrit(
-  pseudo VARCHAR(20),
-  mdp VARCHAR(20),
-  Num_Etudiant INTEGER,
-  foreign key Num_Etudiant REFERENCES Etudiant,
+  pseudo VARCHAR(20) NOT NULL,
+  mdp VARCHAR(20) NOT NULL,
+  Num_Etudiant integer REFERENCES Etudiant,-- on pourrais laisser des non étudiants s'inscrire
+  Mail VARCHAR(40) NOT NULL
+  Rue VARCHAR(30) NOT NULL,
+  Ville VARCHAR(25) NOT NULL,
+  Code_postal INTEGER NOT NULL,
   primary key (pseudo)
 );
