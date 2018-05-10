@@ -15,7 +15,6 @@
 
  <body>
    <!-- corp de la page -->
-   {% include 'message.html' %}
    <br/><br/><br/><br/><br/><br/>
     <div id="container_formulaire">
     <div id="container_form">
@@ -24,13 +23,13 @@
         <legend> Se connecter </legend>
 
             <p>
-                <label for="pseudo">Adresse mail :</label>
-                <input type="email" name="mail" id="mail" size="15" maxlength="100" required />
+                <label for="pseudo"> pseudo :</label>
+                <input type="text" name="pseudo" id="pseudo" maxlength="20" required />
             </p>
 
             <p>
                 <label for="mdp">Mot de passe :</label>
-                <input type="password" name="mdp" id="mdp" size="15" maxlength="100" required />
+                <input type="password" name="mdp" id="mdp" maxlength="20" required />
             </p>
 
             <input id="envoyer" type="submit" value="Envoyer" />

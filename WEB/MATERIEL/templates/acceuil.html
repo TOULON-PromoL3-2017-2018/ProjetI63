@@ -16,7 +16,10 @@
 <body>
   <!-- corp de la page -->
   <!--<p><div align="right"><input type = "button" value = "Connecter" /><div align="top"><input type = "button" value = "Créer un compte" /> </p> -->
-  <div align="right"><button onclick="fonction_inscription()">Inscription'</button>
+  <div align="right"><!--<button onclick="fonction_inscription()">Inscription</button>-->
+    <form method="post" action="inscription.html">
+    <input id="envoyer" type="submit" value="s'enscrire" />
+    </form>
   <h1 align = "center">
     Louer son matériel
   </h1>
@@ -29,6 +32,7 @@
     <img src="/etudiants/cclain594/proj_groupe/ProjetI63/WEB/MATERIEL/static/client.png" heigt ="100" width="500"><br><br>-->
 
   </p>
+  <!-- essaie de fonction pour le bouton
   <script>
   function fonction_inscription() {
       var x = document.createElement("s'inscrire");
@@ -37,7 +41,7 @@
       x.appendChild(t);
       document.body.appendChild(x);
   }
-  </script>
+</script> -->
   <header>
     <!-- liste de lien (redirection ) -->
     <nav>
