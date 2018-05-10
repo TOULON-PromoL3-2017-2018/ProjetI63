@@ -8,7 +8,7 @@
     url : nom de l'image (mis dans template)
     background-repeat:no-repeat l'image ne se repete pas
     background-size: cover : l'image s'etend au site*/
-    body{background-image: url("fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
+    body{background-image: url("../static/fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
     </style>
     <title>Nouvelle inscription</title>
 </head>
@@ -59,7 +59,7 @@
 
              <p>
                  <label for="Num_Etudiant">numéro etudiant :</label>
-                 <input type ="number" name="Num_Etudiant" required />
+                 <input type ="number" name="Num_Etudiant" maxlength="2" required />
              <input id="envoyer" type="submit" value="Envoyer" />
 
          </fieldset>

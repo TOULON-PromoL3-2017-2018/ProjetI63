@@ -8,18 +8,17 @@
   url : nom de l'image (mis dans template)
   background-repeat:no-repeat l'image ne se repete pas
   background-size: cover : l'image s'etend au site*/
-  body{background-image: url("fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
+  body{background-image: url("static/fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
   </style>
   <!-- titre de la page ( sur le navigateur) -->
   <title> Réservation de matériel </title>
 </head>
 <body>
   <!-- corp de la page -->
-  <!--<p><div align="right"><input type = "button" value = "Connecter" /><div align="top"><input type = "button" value = "Créer un compte" /> </p> -->
-  <div align="right"><!--<button onclick="fonction_inscription()">Inscription</button>-->
-    <form method="post" action="inscription.html">
-    <input id="envoyer" type="submit" value="s'enscrire" />
-    </form>
+  <p><div align="right"><a href='/subscription/'> inscription </a>
+
+    <!--<button onclick="fonction_inscription()">Inscription</button>-->
+
   <h1 align = "center">
     Louer son matériel
   </h1>
@@ -47,7 +46,7 @@
     <nav>
       <ul>
         <!-- <a href> : lien hypertexte, qui est utilisé pour relier une page à l’autre -->
-        <div align="center"><li><a href="/home/cclain594/projet/WEB/MATERIEL/templates/catalogue.html"> consulter le catalogue</a></li>
+        <div align="center"><li><a href="/catalogue/"> consulter le catalogue</a></li>
         <div align="center"><li><a href="/"> prendre un rendez-vous</a></li>
       </ul>
     </nav>
