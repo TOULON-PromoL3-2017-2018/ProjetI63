@@ -15,21 +15,58 @@
 
  <body>
    <!-- corp de la page -->
-   <!-- un titre -->
-   <h1><div align="middle">INSCRIPTION :</h1>
-   <h1><div align="left">CONNECTION :</h1>
+   {% include 'message.html' %}
+   <br/><br/><br/><br/><br/><br/>
+    <div id="container_formulaire">
+    <div id="container_form">
+        <form method="post" action="/login/">
+        <fieldset>
+        <legend> Se connecter </legend>
 
-   <br/><br/><br/><br/>
-   <!-- INSCRIPTION et CONNECTION-->
-   <form action = "http://localhost:5000/valid_insc/" method = "POST">
-      <!-- Le debut de la ligne est ce qui va apparaitre à l'écran -->
-      <p><div align="left"> Se connecter <div align="middle"> Les informations seront envoyé a votre mail étudiant </p>
-      <p><div align="left">pseudo <input type = "text" name = "pseudo" placeholder="Ex : ..."/><div align="middle">pseudo <input type = "text" name = "pseudo" placeholder="Ex : ..."/> </p>
-      <p><div align="left">mot de passe <input type = "password" name = "mot de passe" placeholder="Ex : ..."/><div align="middle">mot de passe <input type = "password" name = "mot de passe" placeholder="Ex : ..."/></p>
-      <p>numéro étudiant <input type = "text" name = "num_etudiant" placeholder="Ex : H11........"/> </p>
-      <p><div align="left"><input type = "submit" value = "Connecter" /><div align="middle"><input type = "submit" value = "Créer un compte" /> </p>
-      <!-- sert a effacer toute les parties saisie
-      <input type="reset" value="Reset"> -->
+            <p>
+                <label for="pseudo">Adresse mail :</label>
+                <input type="email" name="mail" id="mail" size="15" maxlength="100" required />
+            </p>
 
+            <p>
+                <label for="mdp">Mot de passe :</label>
+                <input type="password" name="mdp" id="mdp" size="15" maxlength="100" required />
+            </p>
+
+            <input id="envoyer" type="submit" value="Envoyer" />
+
+        </fieldset>
+        </form>
+    </div>
+    <div id="container_form">
+         <form method="post" action="/subscription/" >
+         <fieldset>
+         <legend> Créer un compte </legend>
+
+             <p>
+                 <label for="pseudo">pseudo :</label>
+                 <input type="text" name="pseudo" id="pseudo" placeholder="Ex: Toto" maxlength="20" required />
+             </p>
+
+             <p>
+                 <label for="mdp">Mot de passe :</label>
+                 <input type="password" name="mdp" id="mdp" maxlength="20" required />
+             </p>
+
+             <p>
+                 <label for="mdp_vérifié">Confirmé le mot de passe :</label>
+                 <input type="password" name="mdp_vérifié" id="mdp_vérifié" maxlength="20" required />
+             </p>
+
+             <p>
+                 <label for="Num_Etudiant">numéro etudiant :</label>
+                 <input type ="number" name="Num_Etudiant" required />
+             <input id="envoyer" type="submit" value="Envoyer" />
+
+         </fieldset>
+         </form>
+     </div>
+     </div>
+ </section>
  </body>
 </html>

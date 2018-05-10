@@ -1,29 +1,34 @@
 import flask
 import psycopg2
-from datetime import datetime
-
 
 app = flask.Flask(__name__)
-params = {
-  'host': 'localhost'
-}
+param = {'host': '127.0.0.1'}
+
 try:
-    conn = psycopg2.connect(**params)
+    conn = psycopg2.connect(**param)
     print("\n connecté")
 except:
     print("\n erreur de connection")
-
+    exit(1)
 
 cur = conn.cursor()
+# orieente la recherche des table dans le schema
+curr.execute("SET SEARCH_PATH TO asso")
 
-@app.route('/validation_inscription/', methods=['POST', 'GET'])
-def inscription():
-    if flask.request.method == 'POST':
+@app.route('/subscription/', methods=['GET', 'POST'])
+def subscription():
+    if request.method == 'POST':
         pseudo = flask.request.form['pseudo']
-        mdp = flask.request.form['mdp']
-        num_étudiant = flask.request.form['Num_Etudiant']
+        mdp = request.form["mdp"]
+        mdpConfC = request.form["mdp_vérifié"]
+        if (mdpC == mdpConfC):
+            query = "INSERT INTO inscrit(pseudo, mdp, Num_Etudiant) VALUES (%s, %s, %d);"
+            cur.execute(query)
+            conn.commit()
+        flash("Les mots de passe ne sont pas identiques.")
+        return redirect(url_for('inscription'))
+    else:
+        abort(404)
 
-        query = "INSERT INTO inscrit(pseudo, mdp, Num_Etudiant) VALUES (%s, %s, %d);"
-
-@app.route('/verif_connection', methods=['POST', 'GET'])
-def connection():
+if __name__ == '__main__':
+    app.run(debug=True)
