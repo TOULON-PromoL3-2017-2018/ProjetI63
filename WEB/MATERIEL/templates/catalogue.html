@@ -4,6 +4,16 @@
   <!-- en-tête de la page -->
   <meta charset="utf-8" />
   <style>/*css*/
+  /* afin de transformer mon <a en 'bouton' viqsuellement*/
+  form a
+  {
+    background-color: white;
+    text-decoration: none;/*Pour que le lien ne soit plus "souligné"...*/
+    color: black;
+    padding: 3px 5px 3px 5px;
+    border:1px solid black;
+    border-radius:5px;
+  }
  #conteneur_page
 {
     display: flex;
@@ -17,6 +27,8 @@
   <title> Catalogue </title>
 </head>
   <body>
+    {%include 'message.html'%}
+
     <h2>Que recherchez-vous ?</h2>
     <div id = 'conteneur_page'>
     {% for article in pigeon %}
@@ -24,8 +36,14 @@
       <p class= "img1"><img src="../static/{{article[0]}}.jpeg" height="305" alt="accueil logement"></p><br/><br/><br/>
       <form method="post" action="/catalogue/">
         <input type="number"  name="quantite" id="myNumber" value="0"/>
+        <input id="prodId" name="intitule_materiel" type="hidden" value={{article[0]}}>
+        <input id="prod_prix" name="prix_u_hf" type="hidden" value={{article[2]}}>
         <p><strong>Note:</strong> veuillez ne rentrer que des chiffres afin que cela soit prit en compte</p>
+        {%if (est_connecte)%}
         <input id="envoyer" type="submit" value="commander" />
+        {%else%}
+        <a href="/subscription/">commander</a>
+        {%endif%}
       </form>
       </div>
     {% endfor %}

@@ -5,7 +5,7 @@ from flask import *
 import psycopg2
 
 app = Flask(__name__)
-#param = {'host': '10.9.185.1'}
+# param = {'host': '10.9.185.1'}
 
 
 def connect():
@@ -19,11 +19,16 @@ def connect():
         exit(1)
 
 
-def incrementation_pigeon(quantite, nom_article):
-    if nom_article in session['pigeon']:
-        session['pigeon'][1] += quantite
+def incrementation_pigeon( nom_article, quantite, prix):
+    index = -1
+    for i,article in enumerate(session['pigeon']):
+        if nom_article in article:
+            index = i
+    if index != -1:
+        session['pigeon'][index][1] += quantite
     else:
-        session['pigeon'] += [nom_article,quantite]
+        session['pigeon'] += [[nom_article,quantite,prix]]
+
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -35,6 +40,12 @@ def accueil():
 def inscription_reussi():
     return render_template('incription_reussi.html', nom_user = session['user'][0])
 
+@app.route('/logout/', methods=['GET'])
+def logout():
+    session.pop('user')
+    session.pop('pigeon')
+    return redirect(url_for('accueil'))
+
 @app.route('/subscription/', methods=['GET', 'POST'])
 def subscription():
     if request.method == 'POST':
@@ -43,12 +54,14 @@ def subscription():
         mdp_confirme = request.form["mdp_vérifié"]
         Num_Etudiant = request.form["Num_Etudiant"]
         if (mdp == mdp_confirme):
-            query = ("INSERT INTO inscrit (pseudo, mdp, num_Etudiant) VALUES (%s, %s, %s)")
+            query = ("INSERT INTO inscrit (pseudo, mdp, num_Etudiant) \
+            VALUES (%s, %s, %s)")
             donnee = (pseudo,mdp,Num_Etudiant)
             curr.execute(query,donnee)
             conn.commit()
             #gestion de session
             session["user"] = donnee[:2]
+            session["pigeon"] = []
             return redirect(url_for('inscription_reussi'))
 
         # flash fournit un moyen de donner un feedback à un utilisateur
@@ -68,6 +81,7 @@ def login():
         curr.execute(query,donnee)
         donnee_table = curr.fetchall()
         if (len(donnee_table) > 0):
+            session["pigeon"] = []
             session['user'] = donnee
             flash("connection réussi")
             return redirect(url_for('accueil'))
@@ -80,27 +94,25 @@ def login():
 
 @app.route('/catalogue/',methods=['GET', 'POST'])
 def catalogue():
-    query=("SELECT intitule_materiel,quantite,prix_unite_hf FROM materiel_stock ,type_materiel WHERE materiel_stock.Ref_Type_Materiel = type_materiel.Ref_Type_Materiel")
+    query=("SELECT intitule_materiel,quantite,prix_unite_hf \
+    FROM materiel_stock ,type_materiel \
+    WHERE materiel_stock.Ref_Type_Materiel = type_materiel.Ref_Type_Materiel")
     curr.execute(query)
     donnee = curr.fetchall()
-    print(len(donnee))
-    return render_template("catalogue.html", pigeon = donnee)
+    if request.method == 'POST':
+        quantite_acheter = int(request.form['quantite'])
+        intitule_materiel = request.form['intitule_materiel']
+        prix_u_hf = int(request.form['prix_u_hf'])
+        incrementation_pigeon(intitule_materiel, quantite_acheter, prix_u_hf)
+        flash("ajout au panier")
 
+    return render_template("catalogue.html", pigeon = donnee,
+                            est_connecte = ('user' in session))
 
-
-
-
-
-#     if request.method == 'GET':
-#         return render_template("catalogue.html")
-#
-#     else:
-#         incrementation_pigeon()
-#         flash("ajout au panier")
-#         return render_template("catalogue.html")
 
 @app.route('/panier/',methods=['GET'])
 def panier():
+    print("\n\n\n",session["pigeon"],"\n\n\n")
     return render_template("panier.html", articles = session["pigeon"])
 
 
