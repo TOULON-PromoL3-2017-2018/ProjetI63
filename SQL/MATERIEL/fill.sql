@@ -24,9 +24,9 @@ INSERT INTO Type_Materiel VALUES
 ('plein air',5, 60);
 
 INSERT INTO Materiel_stock VALUES
-(1,'chaussure de ski',1, 'TB', 30),
-(2,'baton de ski',1, 'TB', 30),
-(3,'combi de ski',1, 'TB', 30),
+(1,'chaussure_de_ski',1, 'TB', 30),
+(2,'baton_de_ski',1, 'TB', 30),
+(3,'combi_de_ski',1, 'TB', 30),
 (4,'ski',1, 'TB', 30);
 
 INSERT INTO Caution VALUES

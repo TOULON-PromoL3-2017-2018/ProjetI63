@@ -1,0 +1,5 @@
+{% for message in get_flashed_messages() %}
+    <p id="flash">
+        {{ message }}
+    </p>
+{% endfor %}

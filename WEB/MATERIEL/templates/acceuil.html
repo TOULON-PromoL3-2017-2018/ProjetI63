@@ -13,10 +13,16 @@
   <!-- titre de la page ( sur le navigateur) -->
   <title> Réservation de matériel </title>
 </head>
-<body>
-  <!-- corp de la page -->
-  <p><div align="right"><a href='/subscription/'> inscription </a>
 
+
+<body>
+  {%include 'message.html'%}
+  <!-- corp de la page -->
+  {%if (est_connecte)%}
+  <p><div align="right"><a href='/panier/'> panier </a>
+  {%else%}
+  <p><div align="right"><a href='/subscription/'> inscription </a>
+  {%endif-%}
     <!--<button onclick="fonction_inscription()">Inscription</button>-->
 
   <h1 align = "center">

@@ -19,9 +19,16 @@ def connect():
         exit(1)
 
 
+def incrementation_pigeon(quantite, nom_article):
+    if nom_article in session['pigeon']:
+        session['pigeon'][1] += quantite
+    else:
+        session['pigeon'] += [nom_article,quantite]
+
+
 @app.route('/', methods=['POST', 'GET'])
 def accueil():
-    return render_template('acceuil.html')
+    return render_template('acceuil.html', est_connecte = ('user' in session))
 
 
 @app.route('/inscription_reussi/', methods=['GET'])
@@ -63,14 +70,38 @@ def login():
         if (len(donnee_table) > 0):
             session['user'] = donnee
             flash("connection réussi")
-            return redirect(url_for('acceuil'))
+            return redirect(url_for('accueil'))
         else:
             flash("Information incorectes")
-            return redirect(url_for('inscription'))
+            return redirect(url_for('subscription'))
     else:
         abort(404)
 
-#@app.route('/catalogue/',met)
+
+@app.route('/catalogue/',methods=['GET', 'POST'])
+def catalogue():
+    query=("SELECT intitule_materiel,quantite,prix_unite_hf FROM materiel_stock ,type_materiel WHERE materiel_stock.Ref_Type_Materiel = type_materiel.Ref_Type_Materiel")
+    curr.execute(query)
+    donnee = curr.fetchall()
+    print(len(donnee))
+    return render_template("catalogue.html", pigeon = donnee)
+
+
+
+
+
+
+#     if request.method == 'GET':
+#         return render_template("catalogue.html")
+#
+#     else:
+#         incrementation_pigeon()
+#         flash("ajout au panier")
+#         return render_template("catalogue.html")
+
+@app.route('/panier/',methods=['GET'])
+def panier():
+    return render_template("panier.html", articles = session["pigeon"])
 
 
 if __name__ == '__main__':
