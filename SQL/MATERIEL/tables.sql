@@ -22,7 +22,7 @@ create table Forfait(--
   primary key (Ref_Forfait));
 
 
-CREATE TABLE Etudiant(-- xavier l'a écris
+CREATE TABLE Etudiant(-- base de la table écrite par xavier
   Num_Etudiant SERIAL NOT NULL,
   nom_etudiant VARCHAR(25) NOT NULL,
   prenom_etudiant VARCHAR(25) NOT NULL,
@@ -88,7 +88,7 @@ create table Facture(--
   Num_Facture INTEGER,
   Date_Facture DATE,
   Prix_Facture INTEGER,
-  Num_Entreprise INTEGER;
+  Num_Entreprise INTEGER,
   foreign key (Num_Entreprise) REFERENCES Entreprise,
   primary key (Num_Facture)
 );
@@ -96,8 +96,8 @@ create table Facture(--
 create table Devis(--
   Num_Devis INTEGER,
   Prix_estime INTEGER,
-  Date_Devis INTEGER,
-  Num_Entreprise INTEGER;
+  Date_Devis DATE,
+  Num_Entreprise INTEGER,
   foreign key(Num_Entreprise) REFERENCES Entreprise,
   primary key (Num_Devis)
 );
@@ -136,17 +136,24 @@ create table matériel_retour(--trigger
   primary key (Ref_Materiel,Num_Location)
 );
 
+-- en commentaire pour les tables caution_encaisser et inscrit
+-- ligne apportant l'erreur :
+--psql:tables.sql:145: ERROR:  syntax error at or near "Num_Etudiant"
+-- LINE 5:   foreign key Num_Etudiant REFERENCES Etudiant,
+-- erreur corigé par : "Num_Etudiant INTEGER REFERENCES Etudiant,"
+
 create table Caution_encaisser(--trigger
   Num_Caution INTEGER,
-  Num_Etudiant INTEGER,
-  Caution_encaisser BOOL
+  Num_Etudiant INTEGER NOT NULL REFERENCES Etudiant,
+  Caution_encaisser BOOL,
+  --foreign key Num_Etudiant REFERENCES Etudiant,
   primary key(Num_Etudiant,Num_Caution)
 );
 
 create table inscrit(
   pseudo VARCHAR(20),
   mdp VARCHAR(20),
-  Num_Etudiant INTEGER,
-  foreign key Num_Etudiant REFERENCES Etudiant,
+  Num_Etudiant INTEGER NOT NULL REFERENCES Etudiant,
+  --foreign key Num_Etudiant REFERENCES Etudiant,
   primary key (pseudo)
 );
