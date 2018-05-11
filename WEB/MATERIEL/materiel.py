@@ -9,6 +9,30 @@ app = Flask(__name__)
 # param = {'host': '10.9.185.1'}
 
 
+def update_table_stock():
+    # affichage du tuple
+    # print("\n\n\n\n",session['pigeon'],"\n\n\n\n")
+    index = -1
+    query = ("SELECT intitule_materiel, quantite FROM materiel_stock")
+    curr.execute(query)
+    donnee = curr.fetchall()
+    # print("\n\n\n\n\n",donnee,"\n\n\n\n\n")
+    for i, article in enumerate(session['pigeon']):
+        print("\n\n\n\n",session['pigeon'][i],"\n\n\n\n")
+        j = 0
+        while j< len(donnee):
+            if session['pigeon'][i][0] == donnee[j][0]:
+                intitule_materiel = donnee[j][0]
+                print("\n\n\n\n",intitule_materiel,"\n\n\n\n\n\n")
+                new_quantite_stock = int(donnee[j][1]) - int(session['pigeon'][i][1])
+                new_quantite_stock = str(new_quantite_stock)
+                print(new_quantite_stock)
+                query =" UPDATE materiel_stock set quantite = %s WHERE intitule_materiel = %s"
+                curr.execute(query,(new_quantite_stock, donnee[j][0]))
+                conn.commit()
+                print("fin du commit")
+            j += 1
+
 def connect():
     try:
         print("essaie1")
@@ -146,6 +170,7 @@ def verif_carte():
             flash("cryptogramme visuel invalide")
             return render_template('form_cb.html')
     flash("paiement effectué")
+    update_table_stock()
     session["pigeon"]=[]
     return redirect(url_for('accueil'))
 
