@@ -11,6 +11,9 @@
 
 <section>
     {% include 'message.html' %}
+    {%if (est_connecte)%}
+    <p><div align="right"><a href='/logout/'> deco </a></p>
+    {%endif%}
     <div id="container_articles">
 
         <h1>Nos composants</h1>

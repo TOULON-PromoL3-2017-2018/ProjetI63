@@ -21,15 +21,33 @@ def connect():
 
 def incrementation_pigeon( nom_article, quantite, prix):
     index = -1
+    # cherche si l'article est déjà présent dans le panier
     for i,article in enumerate(session['pigeon']):
         if nom_article in article:
             index = i
+    # cas ou l'article est dans le panier
     if index != -1:
-        session['pigeon'][index][1] += quantite
-    else:
+        var = (session['pigeon'][index][1] + quantite)
+        if (var > 30):
+            return(var)
+        session['pigeon'][index][1] = var
+        return(session['pigeon'][index][1])
+    # cas 1ère commande de cet article dans le panier actuelle
+    # necessite que la quantite soit inferieur au stock
+    # problème : 30 est la quantite de depart mais si j'ai 40 objet en stock la
+    # fonction utilisant une constante et non une variable sera a modifier
+    elif (quantite <= 30):
         session['pigeon'] += [[nom_article,quantite,prix]]
+        return(session['pigeon'][0][1])
+    # retourne faux car on demande + d'article que le stock
+    return(quantite)
 
-
+# enumerate : elle permet de récupérer une liste de tuples
+def peut_acheter(donnee, intitule_materiel, quantite_total_commandé):
+    index = -1
+    for i in enumerate(donnee):
+        if i[1][0] == intitule_materiel :
+            return((int(i[1][1]) >= quantite_total_commandé))
 
 @app.route('/', methods=['POST', 'GET'])
 def accueil():
@@ -103,16 +121,20 @@ def catalogue():
         quantite_acheter = int(request.form['quantite'])
         intitule_materiel = request.form['intitule_materiel']
         prix_u_hf = int(request.form['prix_u_hf'])
-        incrementation_pigeon(intitule_materiel, quantite_acheter, prix_u_hf)
-        flash("ajout au panier")
-
+        quantite_total_commandé = incrementation_pigeon(intitule_materiel,
+                                                        quantite_acheter,
+                                                        prix_u_hf)
+        if (peut_acheter(donnee, intitule_materiel, quantite_total_commandé)):
+            flash("ajout au panier")
+        else:
+            flash("pas assez en stock")
     return render_template("catalogue.html", pigeon = donnee,
                             est_connecte = ('user' in session))
 
 
 @app.route('/panier/',methods=['GET'])
 def panier():
-    print("\n\n\n",session["pigeon"],"\n\n\n")
+    # print("\n\n\n",session["pigeon"],"\n\n\n")
     return render_template("panier.html", articles = session["pigeon"])
 
 

@@ -4,6 +4,15 @@
   <!-- en-tête de la page -->
   <meta charset="utf-8" />
   <style>/*css*/
+  div  a
+  {
+    background-color: white;
+    text-decoration: none;/*Pour que le lien ne soit plus "souligné"...*/
+    color: black; /*couleur du text dans le "bouton "*/
+    padding: 3px 5px 3px 5px; /* taille en pixel  */
+    border:1px solid black;
+    border-radius:5px;
+  }
   /* creation du fond d'écran :
   url : nom de l'image (mis dans template)
   background-repeat:no-repeat l'image ne se repete pas
@@ -14,15 +23,14 @@
   <title> Réservation de matériel </title>
 </head>
 
-
 <body>
   {%include 'message.html'%}
   <!-- corp de la page -->
   {%if (est_connecte)%}
-  <p><div align="right"><a href='/panier/'> panier </a></p>
-  <p><div align="right"><a href='/logout/'> deco </a></p>
+  <p><div align="right"><a href='/panier/'> panier </a></div></p>
+  <p><div align="right"><a href='/logout/'> deco </a></div></p>
   {%else%}
-  <p><div align="right"><a href='/subscription/'> inscription </a></p>
+  <p><div align="right"><a href='/subscription/'> inscription </a></div></p>
   {%endif%}
     <!--<button onclick="fonction_inscription()">Inscription</button>-->
 
@@ -48,14 +56,12 @@
       document.body.appendChild(x);
   }
 </script> -->
-  <header>
     <!-- liste de lien (redirection ) -->
-    <nav>
-      <ul>
-        <!-- <a href> : lien hypertexte, qui est utilisé pour relier une page à l’autre -->
-        <div align="center"><li><a href="/catalogue/"> consulter le catalogue</a></li>
-        <div align="center"><li><a href="/"> prendre un rendez-vous</a></li>
-      </ul>
-    </nav>
-  </header>
+  <nav>
+    <ul>
+      <!-- <a href> : lien hypertexte, qui est utilisé pour relier une page à l’autre -->
+      <li><a href="/catalogue/"> consulter le catalogue</a></li>
+      <li><a href="/"> prendre un rendez-vous</a></li>
+    </ul>
+  </nav>
 </body>
