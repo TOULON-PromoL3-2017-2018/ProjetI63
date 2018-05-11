@@ -9,6 +9,17 @@ app = Flask(__name__)
 # param = {'host': '10.9.185.1'}
 
 
+def connect():
+    try:
+        print("essaie1")
+        conn = psycopg2.connect(dbname='sinfo1')
+        print("\n connecte")
+        return(conn)
+    except psycopg2.Error:
+        print("\n erreur de connection")
+        exit(1)
+
+
 def update_table_stock():
     # affichage du tuple
     # print("\n\n\n\n",session['pigeon'],"\n\n\n\n")
@@ -32,16 +43,6 @@ def update_table_stock():
                 conn.commit()
                 print("fin du commit")
             j += 1
-
-def connect():
-    try:
-        print("essaie1")
-        conn = psycopg2.connect(dbname='sinfo1')
-        print("\n connecte")
-        return(conn)
-    except psycopg2.Error:
-        print("\n erreur de connection")
-        exit(1)
 
 
 def incrementation_pigeon(nom_article, quantite, prix):
@@ -193,6 +194,7 @@ def catalogue():
             flash("ajout au panier")
         else:
             flash("pas assez en stock")
+            return render_template("catalogue.html")
     return render_template("catalogue.html", pigeon=donnee, est_connecte=('user' in session))
 
 
