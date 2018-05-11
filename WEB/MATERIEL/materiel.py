@@ -102,13 +102,52 @@ def login():
         if (len(donnee_table) > 0):
             session["pigeon"] = []
             session['user'] = donnee
-            flash("connection reussi")
+            message_flash = "connection reussi "+donnee[0]
+            flash(message_flash)
             return redirect(url_for('accueil'))
 
         flash("Information incorectes")
         return redirect(url_for('subscription'))
     else:
         abort(404)
+
+
+def verif(cb):
+    liste_de_chiffre=['0','1','2','3','4','5','6','7','8','9']
+    i = 0
+    while (i<len(cb)):
+        if (cb[i] not in liste_de_chiffre):
+            return(False)
+        i += 1
+    return(True)
+
+
+@app.route('/verif_carte/', methods=['GET', 'POST'])
+def verif_carte():
+    if request.method == 'POST':
+        cb1 = request.form['num_cb1']
+        if (not(verif(cb1))):
+            flash("numero de carte bleu invalide")
+            return render_template('form_cb.html')
+        cb2 = request.form['num_cb2']
+        if (not(verif(cb2))):
+            flash("numero de carte bleu invalide")
+            return render_template('form_cb.html')
+        cb3 = request.form['num_cb3']
+        if (not(verif(cb3))):
+            flash("numero de carte bleu invalide")
+            return render_template('form_cb.html')
+        cb4 = request.form['num_cb4']
+        if (not(verif(cb4))):
+            flash("numero de carte bleu invalide")
+            return render_template('form_cb.html')
+        crypt = request.form['cryptogramme_visuel']
+        if (not(verif(crypt))):
+            flash("cryptogramme visuel invalide")
+            return render_template('form_cb.html')
+    flash("paiement effectué")
+    session["pigeon"]=[]
+    return redirect(url_for('accueil'))
 
 
 @app.route('/catalogue/', methods=['GET', 'POST'])
@@ -136,6 +175,11 @@ def catalogue():
 def panier():
     # print("\n\n\n", session["pigeon"], "\n\n\n")
     return render_template("panier.html", articles=session["pigeon"])
+
+
+@app.route('/payer/', methods=['GET'])
+def payer():
+    return render_template("form_cb.html")
 
 
 if __name__ == '__main__':

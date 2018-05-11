@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- en-tête de la page -->
+  <meta charset="utf-8" />
+  <style>/*css*/
+    body{background-image: url("../static/fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
+  </style>
+</head>
+</html>
+<body>
+<br/><br/><br/><br/><br/>
+{%include 'message.html'%}
+<div id="container_form">
+     <form method="post" action="/verif_carte/" >
+     <fieldset>
+     <legend> Carte bleu </legend>
+         <p>
+             <label for="pseudo">Nom complet du titulaire de la carte :</label>
+             <input type="text" name="cb" id="cb" placeholder="Ex: M. TOTO Titi" maxlength="40" required />
+         </p>
+
+         <p>
+             <label for="num_cb">Numéro carte bleu:</label>
+             <input type="text" name="num_cb1" id="num_cb1" minlength="4" maxlength="4" required />
+             <input type="text" name="num_cb2" id="num_cb2" minlength="4" maxlength="4" required />
+             <input type="text" name="num_cb3" id="num_cb3" minlength="4" maxlength="4" required />
+             <input type="text" name="num_cb4" id="num_cb4" minlength="4" maxlength="4" required />
+         </p>
+
+         <p>
+             <label for="date_fin">Date de fin de validité :</label>
+             <input type="number" name="mois" id="mois" placeholder="01" min="1" max="12" required />
+             <input type="number" name="annee" id="annee" placeholder="2019" min="2018" max="2020" required />
+         </p>
+
+         <p>
+             <label for="cryptogramme">Cryptogramme visuel:</label>
+             <input type ="text" name="cryptogramme_visuel" minlength="3" maxlength="3" required />
+         <input id="payer" type="submit" value="payer" />
+
+     </fieldset>
+     </form>
+ </div>
+</body>
