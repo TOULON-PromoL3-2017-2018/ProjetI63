@@ -4,28 +4,31 @@
   <!-- en-tête de la page -->
   <meta charset="utf-8" />
   <style>/*css*/
-  body{background-image: url("fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
+  body{background-image: url("../static/fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
   </style>
   <title> Catalogue </title>
 </head>
 
-<section>
-    {% include 'message.html' %}
-    {%if (est_connecte)%}
-    <p><div align="right"><a href='/logout/'> deco </a></p>
-    {%endif%}
-    <div id="container_articles">
+<body>
+  <section>
+      {% include 'message.html' %}
+      {%if (est_connecte)%}
+      <p><div><a href='/logout/'> deco </a></div></p>
+      {%endif%}
+      <div id="container_articles">
 
-        <h1>Nos composants</h1>
+          <h1>Nos composants</h1>
 
-        {% for article in articles %}
-            <div id="container_pigeon">
-                <p id="id">{{article[0]}}</p>
-                <p id="new_quantite">{{article[1]}}</p>
-                <p id="prix">{{article[2]}}</p>
-            </div>
-        {% endfor %}
+          {% for article in articles %}
+              <div id="container_pigeon">
+                  <p id="id">article : {{article[0]}}</p>
+                  <p id="new_quantite"> quantité : {{article[1]}}</p>
+                  <p id="prix">prix unité: {{article[2]}}</p>
+                  <!-- rajouter un prix total -->
+              </div>
+            {% endfor %}
 
-    </div>
+      </div>
 
-</section>
+  </section>
+</body>

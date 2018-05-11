@@ -7,36 +7,37 @@
   div  a
   {
     background-color: white;
-    text-decoration: none;/*Pour que le lien ne soit plus "souligné"...*/
+    text-decoration: none;/*Pour que le lien ne soit plus "souligne"...*/
     color: black; /*couleur du text dans le "bouton "*/
     padding: 3px 5px 3px 5px; /* taille en pixel  */
     border:1px solid black;
     border-radius:5px;
   }
-  /* creation du fond d'écran :
+  /* creation du fond d'ecran :
   url : nom de l'image (mis dans template)
   background-repeat:no-repeat l'image ne se repete pas
   background-size: cover : l'image s'etend au site*/
   body{background-image: url("static/fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
   </style>
   <!-- titre de la page ( sur le navigateur) -->
-  <title> Réservation de matériel </title>
+  <title> Reservation de materiel </title>
 </head>
 
 <body>
-  {%include 'message.html'%}
   <!-- corp de la page -->
   {%if (est_connecte)%}
   <p><div align="right"><a href='/panier/'> panier </a></div></p>
   <p><div align="right"><a href='/logout/'> deco </a></div></p>
   {%else%}
-  <p><div align="right"><a href='/subscription/'> inscription </a></div></p>
+  <p><div align="right"><a href='/subscription/'> compte </a></div></p>
   {%endif%}
     <!--<button onclick="fonction_inscription()">Inscription</button>-->
 
   <h1 align = "center">
-    Louer son matériel
+    Louer son materiel
   </h1>
+  {%include 'message.html'%}
+
   <br />
   <p>
     <!-- src permet d'indiquer où se trouve l'image -->
@@ -59,7 +60,7 @@
     <!-- liste de lien (redirection ) -->
   <nav>
     <ul>
-      <!-- <a href> : lien hypertexte, qui est utilisé pour relier une page à l’autre -->
+      <!-- <a href> : lien hypertexte, qui est utilise pour relier une page à l’autre -->
       <li><a href="/catalogue/"> consulter le catalogue</a></li>
       <li><a href="/"> prendre un rendez-vous</a></li>
     </ul>

@@ -5,10 +5,10 @@
   <meta charset="utf-8" />
   <style>/*css*/
   /* afin de transformer mon <a en 'bouton' viqsuellement*/
-  form a
+  a
   {
     background-color: white;
-    text-decoration: none;/*Pour que le lien ne soit plus "souligné"...*/
+    text-decoration: none;/*Pour que le lien ne soit plus "souligne"...*/
     color: black;
     padding: 3px 5px 3px 5px;
     border:1px solid black;
@@ -30,6 +30,14 @@
     {%include 'message.html'%}
 
     <h2>Que recherchez-vous ?</h2>
+
+    {%if (est_connecte)%}
+    <p><div align="right"><a href='/panier/'> panier </a></div></p>
+    <p><div align="right"><a href='/logout/'> deco </a></div></p>
+    {%else%}
+    <p><div align="right"><a href='/subscription/'> inscription </a></div></p>
+    {%endif%}
+
     <div id = 'conteneur_page'>
     {% for article in pigeon %}
     <div id ='conteneur_article'>
@@ -52,5 +60,5 @@
   </body>
 </html>
 
-<!--<strong> indique que le texte a une importance particulière ou un certain sérieux voire un caractère urgent-->
+<!--<strong> indique que le texte a une importance particulière ou un certain serieux voire un caractère urgent-->
 <!--https://www.w3schools.com/jsref/dom_obj_number.asp-->

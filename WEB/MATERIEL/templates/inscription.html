@@ -4,7 +4,7 @@
     <!-- en-tête de la page -->
     <meta charset = "utf-8" />
     <style>/*css*/
-    /* creation du fond d'écran :
+    /* creation du fond d'ecran :
     url : nom de l'image (mis dans template)
     background-repeat:no-repeat l'image ne se repete pas
     background-size: cover : l'image s'etend au site*/
@@ -42,8 +42,10 @@
     <div id="container_form">
          <form method="post" action="/subscription/" >
          <fieldset>
-         <legend> Créer un compte </legend>
-
+         <legend> Creer un compte </legend>
+             <p>
+               Il faut être inscrit à l'association pour s'inscrire a la location
+            </p>
              <p>
                  <label for="pseudo">pseudo :</label>
                  <input type="text" name="pseudo" id="pseudo" placeholder="Ex: Toto" maxlength="20" required />
@@ -55,13 +57,14 @@
              </p>
 
              <p>
-                 <label for="mdp_vérifié">Confirmé le mot de passe :</label>
-                 <input type="password" name="mdp_vérifié" id="mdp_vérifié" maxlength="20" required />
+                 <label for="mdp_verifie">Confirme le mot de passe :</label>
+                 <input type="password" name="mdp_verifie" id="mdp_verifie" maxlength="20" required />
              </p>
 
              <p>
-                 <label for="Num_Etudiant">numéro etudiant :</label>
-                 <input type ="number" name="Num_Etudiant" maxlength="2" required />
+                 <label for="Num_Etudiant">numero etudiant (max 3):</label>
+                 <input type ="number" name="Num_Etudiant" min="1" max="3" required />
+                 <p>Par default vous aurez le numéro etudiant 3 si vous essayez de mettre plus</p>
              <input id="envoyer" type="submit" value="Envoyer" />
 
          </fieldset>
