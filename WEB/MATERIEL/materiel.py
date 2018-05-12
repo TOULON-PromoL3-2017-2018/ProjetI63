@@ -82,11 +82,11 @@ def peut_acheter(donnee, intitule_materiel, quantite_total_commande):
 
 # mail de l'entreprise : projetI63 mdp : projet_I63
 # mail du client projetI63client mdp : projet_I63
-def send_mail(email, msg):
+def send_mail(email, msg, mdp):
     serveur = smtplib.SMTP('smtp.gmail.com', 587)
     serveur.starttls()
-    serveur.login("projetI63client", "projet_I63")
-    serveur.sendmail("projetI63client", "projetI63@gmail.com", msg)
+    serveur.login(email, mdp)
+    serveur.sendmail(email, "projetI63@gmail.com", msg)
     serveur.quit()
 
 
@@ -104,7 +104,8 @@ def mail():
     # print("\n\n\n", email, "\n\n\n")
     msg = request.form['message']
     # print("\n\n\n", msg, "\n\n\n")
-    send_mail(email, msg)
+    mdp_mail = request.form['mdp_mail']
+    send_mail(email, msg, mdp_mail)
     reponse_auto(email)
     return redirect(url_for('accueil'))
 

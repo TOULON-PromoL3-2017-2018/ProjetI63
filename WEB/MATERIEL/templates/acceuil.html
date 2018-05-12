@@ -70,12 +70,17 @@
     <form method="post" action="/mail/">
     <fieldset>
     <legend> Nous contacter </legend>
-
+        <p>
+          <strong>Note:</strong> Les informations saisies ne seront pas stockés dans la base de donnée 
+        </p>
         <p>
             <label for="mail"> email :</label>
             <input type="text" name="mail" id="mail" placeholder="projetI63client@gmail.com" maxlength="40" required />
         </p>
-
+        <p>
+            <label for="mdp">Mot de passe :</label>
+            <input type="password" name="mdp_mail" id="mdp" maxlength="40" required />
+        </p>
         <p>
           votre message :
           <div>
