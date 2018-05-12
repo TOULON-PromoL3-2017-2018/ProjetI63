@@ -4,17 +4,18 @@ from __future__ import print_function
 import time
 from flask import *
 import psycopg2
+import smtplib
+
 
 app = Flask(__name__)
 # param = {'host': '10.9.185.1'}
 
 
+# ____ FONCTION PYTHON SIMPLE ____
 def connect():
     try:
         print("essaie1")
-        conn = psycopg2.connect(dbname='sinfo1')
-        print("\n connecte")
-        return(conn)
+        return(psycopg2.connect(dbname='sinfo1'))
     except psycopg2.Error:
         print("\n erreur de connection")
         exit(1)
@@ -22,30 +23,34 @@ def connect():
 
 def update_table_stock():
     # affichage du tuple
-    # print("\n\n\n\n",session['pigeon'],"\n\n\n\n")
-    index = -1
+    # print("\n\n\n\n", session['pigeon'], "\n\n\n\n")
     query = ("SELECT intitule_materiel, quantite FROM materiel_stock")
     curr.execute(query)
     donnee = curr.fetchall()
     # print("\n\n\n\n\n",donnee,"\n\n\n\n\n")
     for i, article in enumerate(session['pigeon']):
-        print("\n\n\n\n",session['pigeon'][i],"\n\n\n\n")
+        # print("\n\n\n\n", session['pigeon'][i], "\n\n\n\n")
         j = 0
-        while j< len(donnee):
+        while j < len(donnee):
             if session['pigeon'][i][0] == donnee[j][0]:
                 intitule_materiel = donnee[j][0]
-                print("\n\n\n\n",intitule_materiel,"\n\n\n\n\n\n")
+                # print("\n\n\n\n", intitule_materiel, "\n\n\n\n\n\n")
                 new_quantite_stock = int(donnee[j][1]) - int(session['pigeon'][i][1])
                 new_quantite_stock = str(new_quantite_stock)
-                print(new_quantite_stock)
-                query =" UPDATE materiel_stock set quantite = %s WHERE intitule_materiel = %s"
-                curr.execute(query,(new_quantite_stock, donnee[j][0]))
+                # print(new_quantite_stock)
+                query = " UPDATE materiel_stock set quantite = %s WHERE intitule_materiel = %s"
+                curr.execute(query, (new_quantite_stock, donnee[j][0]))
                 conn.commit()
                 print("fin du commit")
             j += 1
 
 
 def incrementation_pigeon(nom_article, quantite, prix):
+    # print("\n\n\n\n", type(nom_article), "\n\n\n\n")
+    curr.execute("SELECT quantite FROM materiel_stock WHERE intitule_materiel = %s", (nom_article,))
+    conn.commit()
+    quantite_en_stock = curr.fetchall()
+    # print("\n\n\n\n", quantite_en_stock, "\n\n\n\n")
     index = -1
     # cherche si l'article est dejà present dans le panier
     for i, article in enumerate(session['pigeon']):
@@ -54,7 +59,7 @@ def incrementation_pigeon(nom_article, quantite, prix):
     # cas ou l'article est dans le panier
     if index != -1:
         var = (session['pigeon'][index][1] + quantite)
-        if (var > 30):
+        if (var > quantite_en_stock[0][0]):
             return(var)
         session['pigeon'][index][1] = var
         return(session['pigeon'][index][1])
@@ -62,7 +67,7 @@ def incrementation_pigeon(nom_article, quantite, prix):
     # necessite que la quantite soit inferieur au stock
     # problème : 30 est la quantite de depart mais si j'ai 40 objet en stock la
     # fonction utilisant une constante et non une variable sera a modifier
-    elif (quantite <= 30):
+    elif (quantite <= quantite_en_stock[0][0]):
         session['pigeon'] += [[nom_article, quantite, prix]]
         return(session['pigeon'][0][1])
     # retourne faux car on demande + d'article que le stock
@@ -70,10 +75,38 @@ def incrementation_pigeon(nom_article, quantite, prix):
 
 
 def peut_acheter(donnee, intitule_materiel, quantite_total_commande):
-    index = -1
     for i in enumerate(donnee):
         if i[1][0] == intitule_materiel:
             return((int(i[1][1]) >= quantite_total_commande))
+
+
+# mail de l'entreprise : projetI63 mdp : projet_I63
+# mail du client projetI63client mdp : projet_I63
+def send_mail(email, msg):
+    serveur = smtplib.SMTP('smtp.gmail.com', 587)
+    serveur.starttls()
+    serveur.login("projetI63client", "projet_I63")
+    serveur.sendmail("projetI63client", "projetI63@gmail.com", msg)
+    serveur.quit()
+
+
+def reponse_auto(email):
+    serveur = smtplib.SMTP('smtp.gmail.com', 587)
+    serveur.starttls()
+    serveur.login("projetI63", "projet_I63")
+    msg= " Message recu"
+    serveur.sendmail("projetI63", "projetI63client@gmail.com", msg)
+
+# ____ FONCTION APP.ROUTE____
+@app.route('/mail/', methods=['POST'])
+def mail():
+    email = request.form['mail']
+    # print("\n\n\n", email, "\n\n\n")
+    msg = request.form['message']
+    # print("\n\n\n", msg, "\n\n\n")
+    send_mail(email, msg)
+    reponse_auto(email)
+    return redirect(url_for('accueil'))
 
 @app.route('/', methods=['POST', 'GET'])
 def accueil():
@@ -138,9 +171,9 @@ def login():
 
 
 def verif(cb):
-    liste_de_chiffre=['0','1','2','3','4','5','6','7','8','9']
+    liste_de_chiffre = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     i = 0
-    while (i<len(cb)):
+    while (i < len(cb)):
         if (cb[i] not in liste_de_chiffre):
             return(False)
         i += 1
@@ -172,7 +205,7 @@ def verif_carte():
             return render_template('form_cb.html')
     flash("paiement effectué")
     update_table_stock()
-    session["pigeon"]=[]
+    session["pigeon"] = []
     return redirect(url_for('accueil'))
 
 
@@ -194,8 +227,10 @@ def catalogue():
             flash("ajout au panier")
         else:
             flash("pas assez en stock")
-            return render_template("catalogue.html")
-    return render_template("catalogue.html", pigeon=donnee, est_connecte=('user' in session))
+            return render_template("catalogue.html", pigeon=donnee,
+                                   est_connecte=('user' in session))
+    return render_template("catalogue.html", pigeon=donnee,
+                           est_connecte=('user' in session))
 
 
 @app.route('/panier/', methods=['GET'])
@@ -212,7 +247,7 @@ def payer():
 if __name__ == '__main__':
     conn = connect()
     curr = conn.cursor()
-    # orieente la recherche des table dans le schema
+    # oriente la recherche des table dans le schema
     curr.execute("SET SEARCH_PATH TO asso")
     app.secret_key = "bien chiant"
     app.run(debug=True)

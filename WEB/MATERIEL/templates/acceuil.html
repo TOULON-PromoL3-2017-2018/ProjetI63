@@ -62,7 +62,30 @@
     <ul>
       <!-- <a href> : lien hypertexte, qui est utilise pour relier une page à l’autre -->
       <li><a href="/catalogue/"> consulter le catalogue</a></li>
-      <li><a href="/"> prendre un rendez-vous</a></li>
     </ul>
   </nav>
+</br></br></br>
+<div id="container_formulaire">
+<div id="container_form">
+    <form method="post" action="/mail/">
+    <fieldset>
+    <legend> Nous contacter </legend>
+
+        <p>
+            <label for="mail"> email :</label>
+            <input type="text" name="mail" id="mail" placeholder="projetI63client@gmail.com" maxlength="40" required />
+        </p>
+
+        <p>
+          votre message :
+          <div>
+              <textarea rows="4" cols="50" name="message" ></textarea>
+          </div>
+        </p>
+
+        <input id="envoyer" type="submit" value="Envoyer" />
+
+    </fieldset>
+    </form>
+</div>
 </body>
