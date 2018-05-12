@@ -27,7 +27,7 @@
   <!-- corp de la page -->
   {%if (est_connecte)%}
   <p><div align="right"><a href='/panier/'> panier </a></div></p>
-  <p><div align="right"><a href='/logout/'> deco </a></div></p>
+  <p><div align="right">  <a href='/logout/'> deco </a></div></p>
   {%else%}
   <p><div align="right"><a href='/subscription/'> compte </a></div></p>
   {%endif%}
@@ -38,7 +38,7 @@
   </h1>
   {%include 'message.html'%}
 
-  <br />
+  <br/>
   <p>
     <!-- src permet d'indiquer où se trouve l'image -->
     <!-- alt permet d'afficher un text alternatif si l'image ne peut charger -->
@@ -62,7 +62,35 @@
     <ul>
       <!-- <a href> : lien hypertexte, qui est utilise pour relier une page à l’autre -->
       <li><a href="/catalogue/"> consulter le catalogue</a></li>
-      <li><a href="/"> prendre un rendez-vous</a></li>
     </ul>
   </nav>
+</br></br></br>
+<div id="container_formulaire">
+<div id="container_form">
+    <form method="post" action="/mail/">
+    <fieldset>
+    <legend> Nous contacter </legend>
+        <p>
+          <strong>Note:</strong> Les informations saisies ne seront pas stockés dans la base de donnée 
+        </p>
+        <p>
+            <label for="mail"> email :</label>
+            <input type="text" name="mail" id="mail" placeholder="projetI63client@gmail.com" maxlength="40" required />
+        </p>
+        <p>
+            <label for="mdp">Mot de passe :</label>
+            <input type="password" name="mdp_mail" id="mdp" maxlength="40" required />
+        </p>
+        <p>
+          votre message :
+          <div>
+              <textarea rows="4" cols="50" name="message" ></textarea>
+          </div>
+        </p>
+
+        <input id="envoyer" type="submit" value="Envoyer" />
+
+    </fieldset>
+    </form>
+</div>
 </body>

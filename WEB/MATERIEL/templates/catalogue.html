@@ -27,26 +27,26 @@
   <title> Catalogue </title>
 </head>
   <body>
-    {%include 'message.html'%}
-
-    <h2>Que recherchez-vous ?</h2>
 
     {%if (est_connecte)%}
     <p><div align="right"><a href='/panier/'> panier </a></div></p>
     <p><div align="right"><a href='/logout/'> deco </a></div></p>
     {%else%}
-    <p><div align="right"><a href='/subscription/'> inscription </a></div></p>
+    <p><div align="right"><a href='/subscription/'> comtpe </a></div></p>
     {%endif%}
-
+    <h2 align="center">Que recherchez-vous ?</h2>
+    <p><div align="center"><strong>Note:</strong> veuillez ne rentrer que des chiffres afin que cela soit prit en compte</p>
+    {%include 'message.html'%}</div>
     <div id = 'conteneur_page'>
+
     {% for article in pigeon %}
     <div id ='conteneur_article'>
       <p class= "img1"><img src="../static/{{article[0]}}.jpeg" height="305" alt="accueil logement"></p><br/><br/><br/>
       <form method="post" action="/catalogue/">
+
         <input type="number"  name="quantite" id="myNumber" value="0"/>
         <input id="prodId" name="intitule_materiel" type="hidden" value={{article[0]}}>
-        <input id="prod_prix" name="prix_u_hf" type="hidden" value={{article[2]}}>
-        <p><strong>Note:</strong> veuillez ne rentrer que des chiffres afin que cela soit prit en compte</p>
+        <input id="prod_prix" name="prix_u_hf" type="hidden" value={{article[2]}}> {{article[2]}} euros
         {%if (est_connecte)%}
         <input id="envoyer" type="submit" value="commander" />
         {%else%}
@@ -62,3 +62,5 @@
 
 <!--<strong> indique que le texte a une importance particulière ou un certain serieux voire un caractère urgent-->
 <!--https://www.w3schools.com/jsref/dom_obj_number.asp-->
+<!-- http://flask.pocoo.org/docs/1.0/quickstart/-->
+<!-- http://mysql-python.sourceforge.net/MySQLdb.html -->
