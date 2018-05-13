@@ -377,11 +377,5 @@ def afficheclass():
         return flask.render_template('erreursport.html', NomSport=NomSp)
 
 
-# si le temps faire test si aucun classement à afficher
-
-
-
-# en voie d'amelioration ajout de notation dans les inscrits et avec trigger
-# mettre la notation moyenne dans evenement
 # manque traitement si déjà inscrit donc risque de bug
 app.run(debug=True)

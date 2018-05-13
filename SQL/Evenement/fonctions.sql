@@ -14,7 +14,6 @@ $$ LANGUAGE PLPGSQL;
 
 --Retourne les personnes gagnantes pour ce sport
 --Sport individuel uniquement
---Retourne le NoParticipant en attendant fusion avec table Etudiant
 CREATE OR REPLACE FUNCTION GagnantPers(clsport TEXT) RETURNS
 TABLE(NumParticipant INTEGER, NbVictoire BIGINT) AS $$
 DECLARE
@@ -28,6 +27,3 @@ BEGIN
 
 END;
 $$ LANGUAGE PLPGSQL;
-
-
---select novainqueur, count(*) from (select noparticipantautre, nouniversite from participantautre union all select * from participantasso) as participant, evenementsport where participant.noparticipantautre = evenementsport.novainqueur and nosport = 2 group by novainqueur;
