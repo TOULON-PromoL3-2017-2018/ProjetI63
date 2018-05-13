@@ -30,10 +30,10 @@ INSERT INTO Materiel_stock VALUES
 (4,'ski',1, 'TB', 30);
 
 INSERT INTO Caution VALUES
-(1,30,1,1),
-(2,30,2,1),
-(3,30,3,4),
-(4,30,3,2);
+(DEFAULT,30,1),
+(DEFAULT,30,2),
+(DEFAULT,30,3),
+(DEFAULT,30,3);
 
 INSERT INTO Entreprise VALUES
 (1,'DECAT','32 rue de azrea','la garde','henri','henri@henri.mail'),

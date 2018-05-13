@@ -65,12 +65,10 @@ create table Materiel_stock(--
 );
 
 create table Caution(--
-  Num_Caution INTEGER,
+  Num_Caution SERIAL NOT NULL,
   Prix_Caution INTEGER,
   Num_Etudiant INTEGER,
-  Ref_Materiel INTEGER,
   foreign key (Num_Etudiant) REFERENCES Etudiant,
-  foreign key (Ref_Materiel) REFERENCES Materiel_stock,
   primary key (Num_Caution));
 
 
@@ -142,6 +140,8 @@ create table matériel_retour(--trigger
 -- LINE 5:   foreign key Num_Etudiant REFERENCES Etudiant,
 -- erreur corigé par : "Num_Etudiant INTEGER REFERENCES Etudiant,"
 
+-- table caution encaisser concerne les caution que l'asso encaisse 
+-- car le matériel est en mauvais état
 create table Caution_encaisser(--trigger
   Num_Caution INTEGER,
   Num_Etudiant INTEGER NOT NULL REFERENCES Etudiant,

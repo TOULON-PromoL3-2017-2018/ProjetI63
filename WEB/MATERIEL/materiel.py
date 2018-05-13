@@ -21,6 +21,21 @@ def connect():
         exit(1)
 
 
+def update_table_caution():
+    print("\n\n\n\n", session['user'], "\n\n\n\n")
+    prix_tot = 0
+    for i, article in enumerate(session['pigeon']):
+        j = 0
+        while j < session['pigeon'][i][1]:
+            prix_tot = prix_tot + session['pigeon'][i][2]
+            j += 1
+    num_etude = session['user'][0][2]
+    donnee = (prix_tot, num_etude)
+    query = ("INSERT INTO Caution(Prix_Caution, Num_Etudiant) VALUES (%s,%s)")
+    curr.execute(query, donnee)
+    conn.commit()
+
+
 def update_table_stock():
     # affichage du tuple
     # print("\n\n\n\n", session['pigeon'], "\n\n\n\n")
@@ -97,6 +112,7 @@ def reponse_auto(email):
     msg= " Message recu"
     serveur.sendmail("projetI63", "projetI63client@gmail.com", msg)
 
+
 # ____ FONCTION APP.ROUTE____
 @app.route('/mail/', methods=['POST'])
 def mail():
@@ -138,7 +154,7 @@ def subscription():
             curr.execute(query, donnee)
             conn.commit()
             #gestion de session
-            session["user"] = donnee[:2]
+            session["user"] = donnee
             session["pigeon"] = []
             return redirect(url_for('inscription_reussi'))
 
@@ -160,7 +176,7 @@ def login():
         donnee_table = curr.fetchall()
         if (len(donnee_table) > 0):
             session["pigeon"] = []
-            session['user'] = donnee
+            session['user'] = donnee_table
             message_flash = "connection reussi "+donnee[0]
             flash(message_flash)
             return redirect(url_for('accueil'))
@@ -206,6 +222,7 @@ def verif_carte():
             return render_template('form_cb.html')
     flash("paiement effectué")
     update_table_stock()
+    update_table_caution()
     session["pigeon"] = []
     return redirect(url_for('accueil'))
 
@@ -237,7 +254,13 @@ def catalogue():
 @app.route('/panier/', methods=['GET'])
 def panier():
     # print("\n\n\n", session["pigeon"], "\n\n\n")
-    return render_template("panier.html", articles=session["pigeon"])
+    prix_tot = 0
+    for i, article in enumerate(session['pigeon']):
+        j = 0
+        while j < session['pigeon'][i][1]:
+            prix_tot = prix_tot + session['pigeon'][i][2]
+            j += 1
+    return render_template("panier.html", articles=session["pigeon"], prix_total = prix_tot)
 
 
 @app.route('/payer/', methods=['GET'])

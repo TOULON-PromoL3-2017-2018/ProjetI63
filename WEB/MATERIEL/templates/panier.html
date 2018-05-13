@@ -27,6 +27,7 @@
 
           {% for article in articles %}
               <div id="container_pigeon">
+              </br>
                   <p id="id">article : {{article[0]}}</p>
                   <p id="new_quantite"> quantité : {{article[1]}}</p>
                   <p id="prix">prix unité: {{article[2]}}</p>
@@ -35,6 +36,7 @@
             {% endfor %}
 
       </div>
+      <p id="prix_total"> Total : {{prix_total}} </p>
       <p><div align="left"><a href='/payer/'> payer </a></div></p>
   </section>
 </body>
