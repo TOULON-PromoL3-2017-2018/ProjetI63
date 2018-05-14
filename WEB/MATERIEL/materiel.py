@@ -8,14 +8,15 @@ import smtplib
 
 
 app = Flask(__name__)
-# param = {'host': '10.9.185.1'}
+param = {'host': '10.9.185.1'}
 
+#dbname='sinfo1'
 
 # ____ FONCTION PYTHON SIMPLE ____
 def connect():
     try:
         print("essaie1")
-        return(psycopg2.connect(dbname='sinfo1'))
+        return(psycopg2.connect(**param))
     except psycopg2.Error:
         print("\n erreur de connection")
         exit(1)
