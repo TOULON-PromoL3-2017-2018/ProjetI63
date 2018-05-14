@@ -46,7 +46,8 @@ CREATE TABLE Subventionneurs(num_subventionneur SERIAL NOT NULL,
 CREATE TABLE Financement(num_demande_argent SERIAL NOT NULL,
                          montant INTEGER NOT NULL,
                          source INTEGER NOT NULL,
-                         validation BOOLEAN NOT NULL,
+                         validation BOOLEAN NOT NULL DEFAULT '0',
+                         traitement BOOLEAN NOT NULL DEFAULT '0',
                          PRIMARY KEY (num_demande_argent),
                          FOREIGN KEY (source) REFERENCES Service_asso(num_service));
 

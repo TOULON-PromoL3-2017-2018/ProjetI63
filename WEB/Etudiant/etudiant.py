@@ -98,21 +98,6 @@ def inscription2():
         return flask.render_template('valid_insc_sub.html', res_nom=nom_subv)
 
 
-@app.route('/valid_compte/', methods=['POST', 'GET'])
-def val_insc_cpt():
-    if flask.request.method == 'POST':
-        login = flask.request.form['log']
-        mdp = flask.request.form['psw']
-        number = flask.request.form['num']
-
-        query = "INSERT INTO Comptes_membres(login, mdp, num_etudiant) VALUES \
-        (%s, %s, %s);"
-        data = (login, mdp, number)
-        curr.execute(query, data)
-        conn.commit()
-        return flask.render_template('valid_insc.html', log=login)
-
-
 @app.route('/finances/', methods=['POST', 'GET'])
 def finance():
     # return flask.render_template('finances.html', res_cpt=trigger de etat des
