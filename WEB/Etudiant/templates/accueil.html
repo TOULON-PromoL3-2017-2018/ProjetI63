@@ -15,8 +15,11 @@
 </head>
 
 <body>
-  <a href="/login_etu/" align="right"><div style="text-align:right">Nous rejoindre</a>
-</div>
+  {%if (user)%}
+  <a href="/logout_etu/" align="right"><div style="text-align:right">Se déconnecter</div></a>
+  {%else%}
+  <a href="/login_etu/" align="right"><div style="text-align:right">Nous rejoindre</div></a>
+  {%endif%}
   <h1>Asso MACKX:</h1>
   <br/><br/><br/><br/><br/><br/><br/>
   <nav>

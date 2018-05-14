@@ -17,6 +17,8 @@ curr.execute("SET SEARCH_PATH TO projeti63")
 
 @app.route('/accueil_etu/', methods=['POST', 'GET'])
 def hello():
+    if 'user' in flask.session:
+        return flask.render_template('accueil.html', user=flask.session['user'])
     return flask.render_template('accueil.html')
 
 
@@ -32,8 +34,8 @@ def new_insc_cpt():
 
 @app.route("/logout_etu/")
 def logout_etu():
-    session.pop("login")
-    return redirect("/")
+    flask.session.pop("user")
+    return flask.redirect("/accueil_etu")
 
 
 @app.route('/form_insc_subv/', methods=['POST', 'GET'])
