@@ -1,0 +1,25 @@
+<!-- Fichier formulaire pour entrer la satisfaction -->
+
+<html>
+
+  <head>
+    <meta charset = "utf-8" />
+    <title> nouveau trajet </title>
+  </head>
+
+  <body>
+
+    <h1> Renseignez votre satisfaction </h1>
+
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+    <form action = "http://localhost:5000/voyage/finir_satisf" method = "POST">
+      <input type="hidden" name="id_n_v" value={{result_sat}}>
+      <p> Veuillez entrer votre satisfaction pour le voyage numero {{result_sat}} </p>
+      <p> Numero etudiant <input type = "text" name = "id_voyageur" /> </p>
+      <p> Satisaction <input type = "number" name = "s" min="0" max="10" /> </p>
+      <p> <input type = "submit" value = "confirmer l'ajout" /> </p>
+    </form>
+
+  </body>
+</html>

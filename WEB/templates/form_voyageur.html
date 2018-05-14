@@ -1,0 +1,23 @@
+<!-- Fichier formulaire pour entrer un nouveau voyageur -->
+
+<html>
+
+  <head>
+    <meta charset = "utf-8" />
+    <title> nouveau voyageur </title>
+  </head>
+
+  <body>
+
+    <h1> FICHE DE NOUVEAU VOYAGEUR </h1>
+
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+    <form action = "http://localhost:5000/voyage/finir_entrer_voyageur" method = "POST">
+      <p> Numero étudiant <input type = "text" name = "num_v" /> </p>
+      <p> du <input type = "text" name = "du" /> </p>
+      <p> <input type = "submit" value = "confirmer l'ajout" /> </p>
+    </form>
+
+  </body>
+</html>
