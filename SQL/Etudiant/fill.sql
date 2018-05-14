@@ -72,21 +72,21 @@ INSERT INTO Subventionneurs(nom_subventionneur, rue_subventionneur, ville_subven
 INSERT INTO Subventionneurs(nom_subventionneur, rue_subventionneur, ville_subventionneur, code_postal_subventionneur, tel_subventionneur, nom_représentant, mail_représentant) VALUES
 ('InterSport', '300 avenue de l’Université', 'La Garde', 83160, '0498043980', 'CAUNES', 'adecaunes@isport.fr');
 
-INSERT INTO Financement(montant, source, validation) VALUES
+INSERT INTO Financement(montant, source, validation, traitement) VALUES
 (500, 4, '1', '1');
-INSERT INTO Financement(montant, source, validation) VALUES
+INSERT INTO Financement(montant, source, validation, traitement) VALUES
 (4000, 3, '0', '1');
-INSERT INTO Financement(montant, source, validation) VALUES
+INSERT INTO Financement(montant, source, validation, traitement) VALUES
 (2000, 3, '1', '1');
-INSERT INTO Financement(montant, source, validation) VALUES
+INSERT INTO Financement(montant, source, validation, traitement) VALUES
 (800, 2, '0', '1');
-INSERT INTO Financement(montant, source, validation) VALUES
+INSERT INTO Financement(montant, source, validation, traitement) VALUES
 (40, 2, '1', '1');
-INSERT INTO Financement(montant, source, validation) VALUES
+INSERT INTO Financement(montant, source, validation, traitement) VALUES
 (3000, 1, '0', '1');
-INSERT INTO Financement(montant, source, validation) VALUES
+INSERT INTO Financement(montant, source, validation, traitement) VALUES
 (10000, 5, '0', '1');
-INSERT INTO Financement(montant, source, validation) VALUES
+INSERT INTO Financement(montant, source, validation, traitement) VALUES
 (1000, 1, '1', '1');
 
 INSERT INTO Subvention(montant, num_subventionneur) VALUES
