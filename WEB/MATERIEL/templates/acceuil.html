@@ -11,7 +11,7 @@
     color: black; /*couleur du text dans le "bouton "*/
     padding: 3px 5px 3px 5px; /* taille en pixel  */
     border:1px solid black;
-    border-radius:5px;
+    border-radius:5px;/* fait les bordures "arrondis " aux angles */
   }
   /* creation du fond d'ecran :
   url : nom de l'image (mis dans template)
@@ -47,7 +47,7 @@
     <img src="/etudiants/cclain594/proj_groupe/ProjetI63/WEB/MATERIEL/static/client.png" heigt ="100" width="500"><br><br>-->
 
   </p>
-  <!-- essaie de fonction pour le bouton
+  <!-- essaie de fonction pour le bouton abandon fait en python
   <script>
   function fonction_inscription() {
       var x = document.createElement("s'inscrire");
@@ -64,7 +64,7 @@
       <li><a href="/catalogue/"> consulter le catalogue</a></li>
     </ul>
   </nav>
-</br></br></br>
+</br></br></br> <!-- j'utilise <br> pour sauter une ligne et <p> pour faire un nouveau paragraphe -->
 <p> Nous vous proposons de louer du matériel après connection .
 </br> il faut faire partis de l'association pour se creer un compte
 </br> afin de reserver le matériel choisit veuillez le selectionner dans
@@ -72,10 +72,9 @@
 </br>  le materiel vous est reservé .
 </p>
 </br></br></br>
-<div id="container_formulaire">
 <div id="container_form">
     <form method="post" action="/mail/">
-    <fieldset>
+    <fieldset> <!-- utiliser pour l'estetisme de la page https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_fieldset -->
     <legend> Nous contacter </legend>
         <p>
           <strong>Note:</strong> Les informations saisies ne seront pas stockés dans la base de donnée
@@ -90,8 +89,8 @@
         </p>
         <p>
           votre message :
-          <div>
-              <textarea rows="4" cols="50" name="message" ></textarea>
+          <div> <!--La balise définit un contrôle d'entrée de texte multiligne.-->
+              <textarea rows="4" cols="50" placeholder="votre message" name="message" ></textarea>
           </div>
         </p>
 

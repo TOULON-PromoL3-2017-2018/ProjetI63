@@ -34,11 +34,11 @@
     {%else%}
     <p><div align="right"><a href='/subscription/'> comtpe </a></div></p>
     {%endif%}
-    <p><div align="right"><a href='/accueil/'> acceuil </a></div></p>
+    <p><div align="right"><a href='/'> acceuil </a></div></p>
     <h2 align="center">Que recherchez-vous ?</h2>
     <p><div align="center"><strong>Note:</strong> veuillez ne rentrer que des chiffres afin que cela soit prit en compte</p>
     {%include 'message.html'%}</div>
-    <div id = 'conteneur_page'>
+    <div id = 'conteneur_page'> <!-- ajout d'un id  a div afin de rajouter un style css le definissant si  j'ai le temps -->
 
     {% for article in pigeon %}
     <div id ='conteneur_article'>

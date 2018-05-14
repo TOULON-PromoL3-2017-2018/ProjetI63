@@ -11,7 +11,7 @@
 <body>
 <br/><br/><br/><br/><br/>
 {%include 'message.html'%}
-<div id="container_form">
+<div id="container_form_cb"><!-- ajout d'un id  a div afin de rajouter un style css le definissant si  j'ai le temps -->
      <form method="post" action="/verif_carte/" >
      <fieldset>
      <legend> Carte bleu </legend>
@@ -31,7 +31,7 @@
          <p>
              <label for="date_fin">Date de fin de validité :</label>
              <input type="number" name="mois" id="mois" placeholder="01" min="1" max="12" required />
-             <input type="number" name="annee" id="annee" placeholder="2019" min="2018" max="2020" required />
+             <input type="number" name="annee" id="annee" placeholder="2019" min="2018" max="2021" required />
          </p>
 
          <p>
