@@ -15,7 +15,7 @@ curr = conn.cursor()
 curr.execute("SET SEARCH_PATH TO projeti63")
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/accueil_etu/', methods=['POST', 'GET'])
 def hello():
     return flask.render_template('accueil.html')
 
