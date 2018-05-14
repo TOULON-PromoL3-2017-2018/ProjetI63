@@ -34,6 +34,7 @@
     {%else%}
     <p><div align="right"><a href='/subscription/'> comtpe </a></div></p>
     {%endif%}
+    <p><div align="right"><a href='/accueil/'> acceuil </a></div></p>
     <h2 align="center">Que recherchez-vous ?</h2>
     <p><div align="center"><strong>Note:</strong> veuillez ne rentrer que des chiffres afin que cela soit prit en compte</p>
     {%include 'message.html'%}</div>
@@ -44,7 +45,7 @@
       <p class= "img1"><img src="../static/{{article[0]}}.jpeg" height="305" alt="accueil logement"></p><br/><br/><br/>
       <form method="post" action="/catalogue/">
 
-        <input type="number"  name="quantite" id="myNumber" value="0"/>
+        <input type="number"  name="quantite" min="0" id="myNumber" value="0"/>
         <input id="prodId" name="intitule_materiel" type="hidden" value={{article[0]}}>
         <input id="prod_prix" name="prix_u_hf" type="hidden" value={{article[2]}}> {{article[2]}} euros
         {%if (est_connecte)%}

@@ -30,7 +30,7 @@ def update_table_caution():
         while j < session['pigeon'][i][1]:
             prix_tot = prix_tot + session['pigeon'][i][2]
             j += 1
-    num_etude = session['user'][0][2]
+    num_etude = session['user'][2]
     donnee = (prix_tot, num_etude)
     query = ("INSERT INTO Caution(Prix_Caution, Num_Etudiant) VALUES (%s,%s)")
     curr.execute(query, donnee)
