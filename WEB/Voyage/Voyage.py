@@ -3,7 +3,7 @@ import psycopg2
 
 app = flask.Flask(__name__)
 
-param = {'host': '10.9.185.1'}  # "dbname='testpython' user='marc'
+param = {'host': '10.9.185.1'}  # "dbname='testpython' user='username'
 # param = "host='localhost' dbname='testpython' user='marc' password='mdp'"
 
 try:
@@ -367,24 +367,60 @@ def liste_voy():
         var = curr.fetchall()
         return flask.render_template('liste_voyage.html', voyage=var)
 
+
 ###################################################
 
-@app.route('/voyage/note_voyage', methods=['POST', 'GET'])
-def note_voy():
-    print('coucou')
+@app.route('/voyage/entrer_satisf', methods=['POST', 'GET'])
+def satisf():
+    id_voy = flask.request.form['id_n_v']
+    return flask.render_template('entrer_satisf.html', result_sat=id_voy)
+
+
+# fonction pour entrer la satisfaction d'un voyage
+@app.route('/voyage/finir_satisf', methods=['POST', 'GET'])
+def fin_sat():
+    if flask.request.method == 'POST':
+        voy = flask.request.form['id_n_v']
+        voyageur = flask.request.form['id_voyageur']
+        sat = flask.request.form['s']
+        query = "UPDATE participe SET satisfaction=%s where num_voyageur=%s\
+                 and num_voyage=%s"
+        data = (sat, voyageur, voy)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('finir_satisf.html', result_voy=voy,
+                                result_voyageur=voyageur, result_sat=sat)
+
+###################################################
+
+# fonction pour calculer la moyenne d'un voyage
+@app.route('/voyage/consulter_note', methods=['POST', 'GET'])
+def note():
+    voy = flask.request.form['id_n_v']
+    query = "SELECT satisfaction from participe where num_voyage=%s"
+    data = (voy,)
+    curr.execute(query, data)
+    var = curr.fetchall()
+    fin = len(var)
+    i = 0
+    moy = 0
+    while i < fin:
+        moy = moy + var[i][0]
+        i = i + 1
+    moy = moy / fin
+    return flask.render_template('consulter_note.html', result_voy=voy, result_moy=moy)
+
+###################################################
+
+@app.route('/voyage/liste_voyage_note', methods=['POST', 'GET'])
+def liste_voy_note():
     if flask.request.method == 'GET':
-        print('coucou2')
-        var=var.get()
-        print(var)
-        num_voy = id
-        query = "SELECT satisfaction from participe where\
-        num_voyage=num_voy and satisfaction >= 0"
-        data = (num_voy,)
+        query = "SELECT * from Voyage"
         curr.execute(query)
         var = curr.fetchall()
-        print(var)
-        return flask.render_template('note_voyage.html', sat_moy=var,
-                                     result_voy=num_voy)
+        return flask.render_template('liste_voyage_note.html', voyage=var)
+
+
 
 
 if __name__ == '__main__':

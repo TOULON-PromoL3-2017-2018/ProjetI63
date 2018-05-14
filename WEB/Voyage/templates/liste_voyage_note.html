@@ -1,4 +1,4 @@
-<!-- Fichier formulaire pour associer un vehicule a un trajet -->
+<!-- Fichier formulaire pour lister les voyages -->
 
 <html>
 
@@ -14,8 +14,8 @@
     <p>num_voyage | num_responsable | num_organisateur | destination | type | prix </p>
     <br/><br/><br/><br/><br/>
     {% for elem in voyage %}
-      <form action = "http://localhost:5000/voyage/entrer_satisf" method="POST">
-      <li> {{elem}} <input type="submit" value="Renseigner votre satisfaction"></li>
+      <form action = "http://localhost:5000/voyage/consulter_note" method="POST">
+      <li> {{elem}} <input type="submit" value="consulter la note"></li>
       <input type="hidden" name="id_n_v" value={{elem[0]}}>
       </form>
     {% endfor %}
