@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <form action = "http://localhost:5000/evenement/forminscritev/" method="POST">
+    <p>Numero évènement <input type="number" name="NumEven" placeholder="Ex : 123456"></p>
+    <input type="submit" value="Envoyer">
+  </form>
+  <aside>
+    <nav>
+      <ul>
+        <li><a href="/evenement/evenement/">Retourner à la page des évènements</a></li>
+        <li><a href="/evenement/">Retourner à l'accueil</a></li>
+      </ul>
+    </nav>
+  </aside>
+</body>
+</html>

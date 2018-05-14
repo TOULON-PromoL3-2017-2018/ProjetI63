@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet"  />
+  </head>
+  <body>
+    <p>Numéro participant {{NoParti}} non enregistré dans la base veuillez vous inscrire d'abord</p>
+    <aside>
+      <nav>
+        <ul>
+          <li><a href="/evenement/formext/">Inscription pour les externes à l'association</a></li>
+          <li><a href="/evenement/formint/">Inscription pour les internes à l'association</a></li>
+          <li><a href="/evenement/equipe/">Revenir à la page des équipes</a></li>
+          <li><a href="/evenement/">Retourner à l'accueil</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <p>Voici les sports proposés par l'association</p>
+  {% for elem in Sport %}
+  <li>{{elem}}</li>
+  {% endfor %}
+  <p>Entrer le sport pour voir le classement</p>
+  <form action = "http://localhost:5000/evenement/afficheclass/" method="POST">
+    <p>Nom Sport <input type="text" name="NomSport" placeholder="Ex : Basket"></p>
+    <input type="submit" value="Envoyer">
+  </form>
+  <aside>
+    <nav>
+      <ul>
+        <li><a href="/evenement/">Retourner à l'accueil</a></li>
+      </ul>
+    </nav>
+  </aside>
+</body>
+</html>

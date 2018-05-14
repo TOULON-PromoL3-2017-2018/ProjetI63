@@ -116,6 +116,12 @@ def reponse_auto(email):
 
 
 # ____ FONCTION APP.ROUTE____
+
+@app.route('/', methods=['GET'])
+def accueil_commun():
+    return flask.render_template('accueil_commun.html')
+
+
 @app.route('/mail/', methods=['POST'])
 def mail():
     email = flask.request.form['mail']

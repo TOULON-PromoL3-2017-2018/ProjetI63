@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <form action = "http://localhost:5000/evenement/inscrituniv/" method="POST">
+    <p>Nom Université <input type=text name="NomU" placeholder="Ex : Université XXX"></p>
+    <p>Ville <input type="text" name="City" placeholder="Ex : Toulon"></p>
+    <p>Rue <input type="text" name="Street" placeholder="Ex : 123 place Victor"></p>
+    <p>Arrondissement (si non concerné mettre 0)<input type="number" name="Arrond" placeholder="Ex : 21"></p>
+    <p>Contact<input type="text" name="Contact" placeholder="Adresse mail ou téléphone"></p>
+    <input type="submit" value="Envoyer">
+  </form>
+</body>
+</html>

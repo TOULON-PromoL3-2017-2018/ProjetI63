@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <p>Classement pour le sport {{NomSport}}</p>
+  <p>Nom d'équipe ou numéro de participant + nombre de victoires
+  {% for elem in Class %}
+  <li>{{elem}}</li>
+  {% endfor %}
+  <aside>
+    <nav>
+      <ul>
+        <li><a href="/evenement/">Retourner à l'accueil</a></li>
+      </ul>
+    </nav>
+  </aside>
+</body>
+</html>

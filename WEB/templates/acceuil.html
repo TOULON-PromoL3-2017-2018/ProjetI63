@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- en-tête de la page -->
+  <meta charset="utf-8" />
+  <style>/*css*/
+  div  a
+  {
+    background-color: white;
+    text-decoration: none;/*Pour que le lien ne soit plus "souligne"...*/
+    color: black; /*couleur du text dans le "bouton "*/
+    padding: 3px 5px 3px 5px; /* taille en pixel  */
+    border:1px solid black;
+    border-radius:5px;/* fait les bordures "arrondis " aux angles */
+  }
+  /* creation du fond d'ecran :
+  url : nom de l'image (mis dans template)
+  background-repeat:no-repeat l'image ne se repete pas
+  background-size: cover : l'image s'etend au site*/
+  body{background-image: url("static/fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
+  </style>
+  <!-- titre de la page ( sur le navigateur) -->
+  <title> Reservation de materiel </title>
+</head>
+
+<body>
+  <!-- corp de la page -->
+  {%if (est_connecte)%}
+  <p><div align="right"><a href='/panier/'> panier </a></div></p>
+  <p><div align="right">  <a href='/logout/'> deco </a></div></p>
+  {%else%}
+  <p><div align="right"><a href='/subscription/'> compte </a></div></p>
+  {%endif%}
+    <!--<button onclick="fonction_inscription()">Inscription</button>-->
+
+  <h1 align = "center">
+    Louer son materiel
+  </h1>
+  {%include 'message.html'%}
+
+  <br/>
+  <p>
+    <!-- src permet d'indiquer où se trouve l'image -->
+    <!-- alt permet d'afficher un text alternatif si l'image ne peut charger -->
+    <!--<img src="/etudiants/cclain594/proj_groupe/ProjetI63/WEB/MATERIEL/static/client.png" alt ="Image d'un client qui sourit"/>
+    <img src="/etudiants/cclain594/proj_groupe/ProjetI63/WEB/MATERIEL/static/client.png" height="50"><br><br>
+    <img src="/etudiants/cclain594/proj_groupe/ProjetI63/WEB/MATERIEL/static/client.png" heigt ="100" width="500"><br><br>-->
+
+  </p>
+  <!-- essaie de fonction pour le bouton abandon fait en python
+  <script>
+  function fonction_inscription() {
+      var x = document.createElement("s'inscrire");
+      var t = document.createTextNode("Inscription");
+      x.setAttribute("href", "/home/cclain594/projet/WEB/MATERIEL/templates/inscription.html");
+      x.appendChild(t);
+      document.body.appendChild(x);
+  }
+</script> -->
+    <!-- liste de lien (redirection ) -->
+  <nav>
+    <ul>
+      <!-- <a href> : lien hypertexte, qui est utilise pour relier une page à l’autre -->
+      <li><a href="/catalogue/"> consulter le catalogue</a></li>
+    </ul>
+  </nav>
+</br></br></br> <!-- j'utilise <br> pour sauter une ligne et <p> pour faire un nouveau paragraphe -->
+<p> Nous vous proposons de louer du matériel après connection .
+</br> il faut faire partis de l'association pour se creer un compte
+</br> afin de reserver le matériel choisit veuillez le selectionner dans
+</br> catalogue et payer la caution . une fois la cautions payer
+</br>  le materiel vous est reservé .
+</p>
+</br></br></br>
+<div id="container_form">
+    <form method="post" action="/mail/">
+    <fieldset> <!-- utiliser pour l'estetisme de la page https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_fieldset -->
+    <legend> Nous contacter </legend>
+        <p>
+          <strong>Note:</strong> Les informations saisies ne seront pas stockés dans la base de donnée
+        </p>
+        <p>
+            <label for="mail"> email :</label>
+            <input type="text" name="mail" id="mail" placeholder="projetI63client@gmail.com" maxlength="40" required />
+        </p>
+        <p>
+            <label for="mdp">Mot de passe :</label>
+            <input type="password" name="mdp_mail" id="mdp" maxlength="40" required />
+        </p>
+        <p>
+          votre message :
+          <div> <!--La balise définit un contrôle d'entrée de texte multiligne.-->
+              <textarea rows="4" cols="50" placeholder="votre message" name="message" ></textarea>
+          </div>
+        </p>
+
+        <input id="envoyer" type="submit" value="Envoyer" />
+
+    </fieldset>
+    </form>
+</div>
+</body>

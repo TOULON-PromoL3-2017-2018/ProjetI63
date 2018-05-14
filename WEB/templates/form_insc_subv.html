@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8" />
+    <title>Nouvelle inscription</title>
+</head>
+
+ <body>
+
+   <h1 align = 'center'>Données Subventionneur :</h1>
+
+   <br/><br/><br/><br/>
+
+   <form action = "http://localhost:5000/valid_insc_subv/" method = "POST">
+      <!-- Le debut de la ligne est ce qui va apparaitre à l'écran -->
+       <br/>Nom subventionneur <input type = "text" name = "name_sub" placeholder="Ex : Magasin"/> 
+       <br/>Rue subventionneur <input type = "text" name = "rue" placeholder="Ex : Adresse"/>
+       <br/>Ville subventionneur <input type = "text" name = "vil" placeholder="Ex : Ville"/>
+       <br/>Code postal <input type="number" name="code" placeholder="Ex : 88888"/>
+       <br/>Telephone <input type = "tel" name ="tel" placeholder="Ex : 0601241648"/>
+       <br/>Nom représentant <input type = "text" name = "nom_rep" placeholder="Ex : Branleur"/>
+       <br/>Mail représentant <input type="email" name="mail" placeholder="Ex : branleur@exemple.fr"/>
+       <br/><input type = "submit" value = "Ajouter le subventionneur" />
+    </form>
+    <br/><br/>
+    <nav>
+      <a href="/"> Retourner à l'accueil </a>
+    </nav>
+ </body>
+</html>

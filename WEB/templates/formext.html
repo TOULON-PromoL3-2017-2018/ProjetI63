@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <p>Universités disponibles</p>
+  <p>{{Universites}}</p>
+  <form action = "http://localhost:5000/evenement/inscritext/" method="POST">
+    <!--Pour s'inscrire à un evenement il doit fournir son numparticipant à defaut de compte-->
+    <p>Numéro Université <input type="number" name="NoUniv" placeholder="Ex : 012345"></p>
+    <p>Nom <input type="text" name="NomEtud" placeholder="Ex : DUPOND"></p>
+    <p>Prénom<input type="text" name="PrenomEtud" placeholder="Ex : Jean"></p>
+    <p>Mail<input type="email" name="Mail" placeholder="Ex : DUPOND.Jean@mail.com"></p>
+    <p>Téléphone<input type="tel" name="Tel" placeholder="Ex : 0601234567"></p>
+    <p>Numéro Etudiant<input type="number" name="NoEtud" placeholder="Ex : 123456789"></p>
+    <input type="submit" value="Envoyer">
+  </form>
+</body>
+</html>
