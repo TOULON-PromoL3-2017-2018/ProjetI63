@@ -42,7 +42,7 @@ create table Participe
   (
   num_voyageur integer references Voyageur NOT NULL,
   num_voyage integer references Voyage NOT NULL,
-  satisfaction integer,
+  satisfaction integer NOT NULL default '1',
   nb_baggages integer,
   primary key (num_voyageur, num_voyage)
   );
