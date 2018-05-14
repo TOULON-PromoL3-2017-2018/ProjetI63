@@ -1,0 +1,25 @@
+<!-- Fichier formulaire pour associer un voyageur à un voyage  -->
+
+<html>
+
+  <head>
+      <meta charset = "utf-8" />
+      <title> voyageur => voyage </title>
+  </head>
+
+   <body>
+
+     <h1> FICHE D'INSCRIPTION D'UN VOYAGEUR A UN VOYAGE' </h1>
+
+     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+     <form action = "http://localhost:5000/voyage/finir_participe" method = "POST">
+        <!-- Le debut de la ligne est ce qui va apparaitre à l'écran -->
+         <p>Numero étudiant <input type = "text" name = "num_vr" /> </p>
+         <p>Numero de voyage <input type = "text" name = "num_voy" /> </p>
+         <p>Nombre de baggages <input type = "number" name = "n_bag" /> </p>
+         <p><input type = "submit" value = "confirmer l'ajout" /> </p>
+      </form>
+
+   </body>
+</html>

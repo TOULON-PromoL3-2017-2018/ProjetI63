@@ -10,13 +10,16 @@
 
   <body>
 
-    <h1> liste des voyages </h1>
-
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-
-
-      <p> {{bob}} </p>
-
+    <h1> <p>Voici les voyages effectuées</p> </h1>
+    <p>num_voyage | num_responsable | num_organisateur | destination | type | prix </p>
+    <br/><br/><br/><br/><br/>
+    {% for elem in voyage %}
+      <form action = "http://localhost:5000/voyage/note_voyage" method="GET">
+      <li> {{elem}} <input type="submit" value="Consulter la satisfaction"></li>
+      <!-- id = "select num_voyage form {{elem}}" -->
+      <var={{elem}}>
+      </form>
+    {% endfor %}
 
   </body>
 </html>

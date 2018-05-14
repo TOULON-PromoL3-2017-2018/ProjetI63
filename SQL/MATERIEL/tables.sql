@@ -22,8 +22,8 @@ create table Forfait(--
   primary key (Ref_Forfait));
 
 
-CREATE TABLE Etudiant( -- base écrite par xavier
-  Num_Etudiant SERIAL primary key,
+CREATE TABLE Etudiant(-- base de la table écrite par xavier
+  Num_Etudiant SERIAL NOT NULL,
   nom_etudiant VARCHAR(25) NOT NULL,
   prenom_etudiant VARCHAR(25) NOT NULL,
   date_naissance_etudiant DATE NOT NULL,
@@ -33,7 +33,8 @@ CREATE TABLE Etudiant( -- base écrite par xavier
   rue_etudiant VARCHAR(30) NOT NULL,
   ville_etudiant VARCHAR(25) NOT NULL,
   code_postal_etudiant INTEGER NOT NULL,
-  membre_asso BOOLEAN NOT NULL);
+  membre_asso BOOLEAN NOT NULL,
+  PRIMARY KEY (Num_Etudiant));
 
 
 
@@ -64,12 +65,10 @@ create table Materiel_stock(--
 );
 
 create table Caution(--
-  Num_Caution INTEGER,
+  Num_Caution SERIAL NOT NULL,
   Prix_Caution INTEGER,
   Num_Etudiant INTEGER,
-  Ref_Materiel INTEGER,
   foreign key (Num_Etudiant) REFERENCES Etudiant,
-  foreign key (Ref_Materiel) REFERENCES Materiel_stock,
   primary key (Num_Caution));
 
 
@@ -135,21 +134,26 @@ create table matériel_retour(--trigger
   primary key (Ref_Materiel,Num_Location)
 );
 
+-- en commentaire pour les tables caution_encaisser et inscrit
+-- ligne apportant l'erreur :
+--psql:tables.sql:145: ERROR:  syntax error at or near "Num_Etudiant"
+-- LINE 5:   foreign key Num_Etudiant REFERENCES Etudiant,
+-- erreur corigé par : "Num_Etudiant INTEGER REFERENCES Etudiant,"
+
+-- table caution encaisser concerne les caution que l'asso encaisse
+-- car le matériel est en mauvais état
 create table Caution_encaisser(--trigger
   Num_Caution INTEGER,
-  --Num_Etudiant INTEGER,
+  Num_Etudiant INTEGER NOT NULL REFERENCES Etudiant,
   Caution_encaisser BOOL,
-  Num_Etudiant INTEGER REFERENCES Etudiant(Num_Etudiant),
+  --foreign key Num_Etudiant REFERENCES Etudiant,
   primary key(Num_Etudiant,Num_Caution)
 );
 
 create table inscrit(
-  pseudo VARCHAR(20) NOT NULL,
-  mdp VARCHAR(20) NOT NULL,
-  Num_Etudiant integer REFERENCES Etudiant,-- on pourrais laisser des non étudiants s'inscrire
-  Mail VARCHAR(40) NOT NULL
-  Rue VARCHAR(30) NOT NULL,
-  Ville VARCHAR(25) NOT NULL,
-  Code_postal INTEGER NOT NULL,
+  pseudo VARCHAR(20),
+  mdp VARCHAR(20),
+  Num_Etudiant INTEGER NOT NULL REFERENCES Etudiant,
+  --foreign key Num_Etudiant REFERENCES Etudiant,
   primary key (pseudo)
 );

@@ -1,0 +1,54 @@
+	Descriptif structurel et fonction:
+
+Forfait: 
+Cette entité sert a stocker tout les forfaits de location proposé par l'association.
+La clef primaire est donc la reference du forfait qui est unique .
+
+Location :
+ Entité sotckant les differentes location , avec leur durée et la date de début de location . la clef primaire est un numéro unique . et le numéro étudiant sert a retrouver la personne qui nous a louer du matériel .
+
+Type_Materiel:
+L'entité Type_Materiel sert à stocker le matériel par type ainsi que leur prix . clef primaire Ref_Type_Materiel unique.
+
+Materiel_stock 
+l'entite Materiel_stock sert a sotcker le materiel  proposé a la location . clef primaire numéro unique , utilise la clef retrangère RRef_Type_Materiel afin d'acceder aux prix /materiel
+
+Caution: Entité servant a stocker les cautions payer par les étudiants qui nous loue un bien .Payer a traver l'application Web afin de pouvoir reserver son materiel .
+
+Entreprise:
+Entite stockant les divers entreprise auprès desquelle l'association a obtenu un devis .
+clef primaire unique, descriptif de l'entreprise et de son contact.
+
+Facture:
+L'entité Facture definit la facture qu'une entreprise fait a l'associtaion , possede une clef primaire  numero unique une date et un prix .
+
+Materiel_Entreprise:
+ entité stockant la quantié de materiel fournit a l'asso par une entreprise .
+
+matériel_retour:
+Entité stockant l'état du materiel qui nous est retourné apres location ( afin de pouvoir faire une étud ? )
+
+Caution_encaisser
+entité qui va de paire avec matériel_retour , servant a stocker si pour un Etudiant donnée ses cautions sont souvent encaisser et donc si il prend soin ou non du materiel fournit
+
+inscrit:
+Ne concerne que le site web , un étudiant faisant partis de l'asso c'est-il inscrit au site afin d'avoir accèes aux service proposer ?
+
+
+Evolution:
+
+	Ajout d'une entité Inscrit afin de gerer des sessions
+	deparation de l'entité materiel en stock et type
+	ajout d'une entié  "est encaisser" pour la caution 
+
+Future : 
+	Une partie admin qui permettrer d'interagir avec des entreprise
+	une partie entreprise ou le contact entreprise aurait un compte pour suivre son actualité
+	un trigger avec xavier pour vérifier que je peut achetr X stock a l'entreprise en fonction des fond que je possède
+	partie client:
+		une selection d'article en fonction du nom ( control f)
+		une prise de rdv (non traiter car deja traiter formulaire + mail)
+		laisser  un commentaire sur l'appli web
+		un code de confirmation envoyer a l'@etud du num etud pour vérifier que la personne inscrit saisie ses informations correctement 
+		une sessiuon super_utilisateur pouvant modifier les stock directement sur le site sans passer par la base de donnée 
+		

@@ -4,36 +4,72 @@
     <!-- en-tête de la page -->
     <meta charset = "utf-8" />
     <style>/*css*/
-    /* creation du fond d'écran :
+    /* creation du fond d'ecran :
     url : nom de l'image (mis dans template)
     background-repeat:no-repeat l'image ne se repete pas
     background-size: cover : l'image s'etend au site*/
-    body{background-image: url("fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
+    body{background-image: url("../static/fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
     </style>
     <title>Nouvelle inscription</title>
 </head>
 
  <body>
+   {%include 'message.html'%}
+   <!-- permet aux message flash de s'afficher à l'apel de "{%include 'message.html'%} voir messsage.html" -->
    <!-- corp de la page -->
-   <!-- un titre -->
-   <h1><div align="middle">INSCRIPTION :</h1>
-   <h1><div align="left">CONNECTION :</h1>
+   <br/><br/><br/><br/><br/><br/>
+    <div id="container_formulaire">
+    <div id="container_form">
+        <form method="post" action="/login/">
+        <fieldset>
+        <legend> Se connecter </legend>
 
-   <br/><br/><br/><br/>
-   <!-- INSCRIPTION et CONNECTION-->
-   <form action = "http://localhost:5000/valid_insc/" method = "POST">
-      <!-- Le debut de la ligne est ce qui va apparaitre à l'écran -->
-      <p><div align="left"> Se connecter <div align="middle"> Les informations seront envoyé a votre mail </p>
-      <p><div align="left">Pseudo <input type = "text" name = "pseudo" placeholder="Ex : ..."/><div align="middle">pseudo <input type = "text" name = "pseudo" placeholder="Ex : ..."/> </p>
-      <p><div align="left">Mot de passe <input type = "password" name = "mot de passe" placeholder="Ex : ..."/><div align="middle">mot de passe <input type = "password" name = "mot de passe" placeholder="Ex : ..."/></p>
-      <p>Numéro étudiant <input type = "text" name = "num_etudiant" placeholder="Ex : 11........"/> </p>
-      <p>Mail     <input type="email" name="mail" id="mail" class="field-long" placeholder="exemple@mail.com" /> </p>
-      <p>Rue <input type="text" name="rue" placeholder="Ex : 7 rue emille pellepol"/></p>
-      <p>Ville <input type="text" name="town" placeholder="Ex : LE LUC"/></p>
-      <p>Code postal <input type="number" value="83000" name="code_postal" placeholder="Ex : 83200"/></p>
-      <p><div align="left"><input type = "submit" value = "Connecter" /><div align="middle"><input type = "submit" value = "Créer un compte" /> </p>
-      <!-- sert a effacer toute les parties saisie
-      <input type="reset" value="Reset"> -->
+            <p>
+                <label for="pseudo"> pseudo :</label>
+                <input type="text" name="pseudo" id="pseudo" maxlength="20" required />
+            </p>
 
+            <p>
+                <label for="mdp">Mot de passe :</label>
+                <input type="password" name="mdp" id="mdp" maxlength="20" required />
+            </p>
+
+            <input id="envoyer" type="submit" value="Envoyer" />
+
+        </fieldset>
+        </form>
+    </div>
+    <div id="container_form">
+         <form method="post" action="/subscription/" >
+         <fieldset>
+         <legend> Creer un compte </legend>
+             <p>
+               Il faut être inscrit à l'association pour s'inscrire a la location
+            </p>
+             <p>
+                 <label for="pseudo">pseudo :</label>
+                 <input type="text" name="pseudo" id="pseudo" placeholder="Ex: Toto" maxlength="20" required />
+             </p>
+
+             <p>
+                 <label for="mdp">Mot de passe :</label>
+                 <input type="password" name="mdp" id="mdp" maxlength="20" required />
+             </p>
+
+             <p>
+                 <label for="mdp_verifie">Confirme le mot de passe :</label>
+                 <input type="password" name="mdp_verifie" id="mdp_verifie" maxlength="20" required />
+             </p>
+
+             <p>
+                 <label for="Num_Etudiant">numero etudiant (max 3):</label>
+                 <input type ="number" name="Num_Etudiant" min="1" max="3" required />
+                 <p>Par default vous aurez le numéro etudiant 3 si vous essayez de mettre plus</p>
+             <input id="envoyer" type="submit" value="Envoyer" />
+
+         </fieldset>
+         </form>
+     </div>
+     </div>
  </body>
 </html>

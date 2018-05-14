@@ -1,0 +1,33 @@
+<html>
+
+  <head>
+      <meta charset = "utf-8" />
+      <title> Note moyenne du voyage </title>
+  </head>
+
+   <body>
+
+     <h1> Note moyenne du voyage </h1>
+
+     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+     <p> Le voyage {{result_voy}}a obtenu une note moyenne de {{sat_moy}}</p>
+          <nav>
+            <a href="/voyage"> Retourner à l'accueil </a>
+          </nav>
+   </body>
+</html>
+
+
+
+
+
+<p>Voici les sports proposés par l'association</p>
+{% for elem in Sport %}
+<li>{{elem}}</li>
+{% endfor %}
+<p>Entrer le sport pour voir le classement</p>
+<form action = "http://localhost:5000/evenement/afficheclass/" method="POST">
+  <p>Nom Sport <input type="text" name="NomSport" placeholder="Ex : Basket"></p>
+  <input type="submit" value="Envoyer">
+</form>

@@ -4,21 +4,63 @@
   <!-- en-tête de la page -->
   <meta charset="utf-8" />
   <style>/*css*/
-  body{background-image: url("fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
+  /* afin de transformer mon <a en 'bouton' viqsuellement*/
+  a
+  {
+    background-color: white;
+    text-decoration: none;/*Pour que le lien ne soit plus "souligne"...*/
+    color: black;
+    padding: 3px 5px 3px 5px;
+    border:1px solid black;
+    border-radius:5px;
+  }
+ #conteneur_page
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+  body{background-image: url("../static/fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
   </style>
   <title> Catalogue </title>
 </head>
   <body>
-    <div><h2>Que recherchez-vous ?</h2></div>
-    <p class= "img1"><img src="ski.jpeg" height="305" alt="accueil logement"></p><br/><br/><br/>
-      <input type="number" id="myNumber" value="0">
-      <button onclick="fonction_commande()">commander</button>
-      <p><strong>Note:</strong> veuillez ne rentrer que des chiffres afin que cela soit prit en compte</p>
-      <script>
-      function fonction_commande() {
-        var x = document.getElementById("myNumber").value;
-        document.getElementById("demo").innerHTML = x;
-      }
-</script>
-<!--<strong> indique que le texte a une importance particulière ou un certain sérieux voire un caractère urgent-->
+
+    {%if (est_connecte)%}
+    <p><div align="right"><a href='/panier/'> panier </a></div></p>
+    <p><div align="right"><a href='/logout/'> deco </a></div></p>
+    {%else%}
+    <p><div align="right"><a href='/subscription/'> comtpe </a></div></p>
+    {%endif%}
+    <h2 align="center">Que recherchez-vous ?</h2>
+    <p><div align="center"><strong>Note:</strong> veuillez ne rentrer que des chiffres afin que cela soit prit en compte</p>
+    {%include 'message.html'%}</div>
+    <div id = 'conteneur_page'>
+
+    {% for article in pigeon %}
+    <div id ='conteneur_article'>
+      <p class= "img1"><img src="../static/{{article[0]}}.jpeg" height="305" alt="accueil logement"></p><br/><br/><br/>
+      <form method="post" action="/catalogue/">
+
+        <input type="number"  name="quantite" id="myNumber" value="0"/>
+        <input id="prodId" name="intitule_materiel" type="hidden" value={{article[0]}}>
+        <input id="prod_prix" name="prix_u_hf" type="hidden" value={{article[2]}}> {{article[2]}} euros
+        {%if (est_connecte)%}
+        <input id="envoyer" type="submit" value="commander" />
+        {%else%}
+        <a href="/subscription/">commander</a>
+        {%endif%}
+      </form>
+      </div>
+    {% endfor %}
+  </div>
+
+  </body>
+</html>
+
+<!--<strong> indique que le texte a une importance particulière ou un certain serieux voire un caractère urgent-->
 <!--https://www.w3schools.com/jsref/dom_obj_number.asp-->
+<!-- http://flask.pocoo.org/docs/1.0/quickstart/-->
+<!-- http://mysql-python.sourceforge.net/MySQLdb.html -->

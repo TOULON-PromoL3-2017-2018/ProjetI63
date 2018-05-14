@@ -27,6 +27,91 @@ def accueil():
 ###################################################
 ###################################################
 
+@app.route('/voyage/form_voyageur', methods=['POST', 'GET'])
+def n_voyageur():
+    return flask.render_template('form_voyageur.html')
+
+###################################################
+
+
+@app.route('/voyage/finir_entrer_voyageur', methods=['POST', 'GET'])
+def fin_voyageur():
+    if flask.request.method == 'POST':
+        # Les mots entre '' doivent correspondre à ceux entre "" dans le
+        # fichier entrer_voyage.html
+        num_voyageur = flask.request.form['num_v']
+        du = flask.request.form['du']
+        query = "INSERT into voyageur (num_voyageur, du) Values (%s, %s)"
+        data = (num_voyageur, du)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('finir_entrer_voyageur.html',
+                                     result_voyageur=num_voyageur,
+                                     result_du=du)
+
+###################################################
+###################################################
+###################################################
+
+@app.route('/voyage/form_satisfaction', methods=['POST', 'GET'])
+def n_satis():
+    return flask.render_template('form_satisfaction.html')
+
+###################################################
+
+
+@app.route('/voyage/finir_satisfaction', methods=['POST', 'GET'])
+def fin_satis():
+    if flask.request.method == 'POST':
+        # Les mots entre '' doivent correspondre à ceux entre "" dans le
+        # fichier entrer_voyage.html
+        sat = flask.request.form['s']
+        num_voyageur = flask.request.form['num_v']
+        num_voyage = flask.request.form['num_voy']
+        query = "Update participe set satisfaction=(%s) where\
+        num_voyageur=(%s) and num_voyage = (%s)"
+        data = (sat, num_voyageur, num_voyage)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('finir_satisfaction.html',
+                                     result_voyageur=num_voyageur,
+                                     result_voyage=num_voyage,
+                                     result_sat=sat)
+
+###################################################
+###################################################
+###################################################
+
+@app.route('/voyage/form_participe', methods=['POST', 'GET'])
+def n_participation():
+    return flask.render_template('form_participe.html')
+
+###################################################
+
+
+@app.route('/voyage/finir_participe', methods=['POST', 'GET'])
+def fin_participation():
+    if flask.request.method == 'POST':
+        # Les mots entre '' doivent correspondre à ceux entre "" dans le
+        # fichier entrer_voyage.html
+        num_voyageur = flask.request.form['num_vr']
+        num_voyage = flask.request.form['num_voy']
+        nb_bag = flask.request.form['n_bag']
+        query = "INSERT into Participe (num_voyageur, num_voyage,\
+        nb_baggages) Values (%s, %s, %s)"
+        # print(num_voyageur, num_voyage, nb_bag)
+        data = (num_voyageur, num_voyage, nb_bag)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('finir_participe.html',
+                                     result_voyageur=num_voyageur,
+                                     result_voyage=num_voyage)
+
+
+###################################################
+###################################################
+###################################################
+
 
 @app.route('/voyage/form_voyage', methods=['POST', 'GET'])
 def n_voyage():
@@ -48,7 +133,7 @@ def fin_voy():
 
         # les mots après le .format doibent correspondre à ceux ecrit avant
         # le = au dessus
-        query = "INSERT into VOYAGE (num_responsable, num_organisateur, \
+        query = "INSERT into VOYAGE (num_responsable, num_organisateur,\
         destination, type, prix) Values (%s, %s, %s, %s, %s);"
         # attention: data est un tuple !!
         data = (num_responsable, num_organisateur, dest, type_voy, prix)
@@ -275,13 +360,31 @@ def trait():
 ###################################################
 
 @app.route('/voyage/liste_voyage', methods=['POST', 'GET'])
-def fin_liste_voy():
+def liste_voy():
     if flask.request.method == 'GET':
         query = "SELECT * from Voyage"
         curr.execute(query)
-
         var = curr.fetchall()
-        return flask.render_template('liste_voyage.html', bob=var)
+        return flask.render_template('liste_voyage.html', voyage=var)
+
+###################################################
+
+@app.route('/voyage/note_voyage', methods=['POST', 'GET'])
+def note_voy():
+    print('coucou')
+    if flask.request.method == 'GET':
+        print('coucou2')
+        var=var.get()
+        print(var)
+        num_voy = id
+        query = "SELECT satisfaction from participe where\
+        num_voyage=num_voy and satisfaction >= 0"
+        data = (num_voy,)
+        curr.execute(query)
+        var = curr.fetchall()
+        print(var)
+        return flask.render_template('note_voyage.html', sat_moy=var,
+                                     result_voy=num_voy)
 
 
 if __name__ == '__main__':
