@@ -229,7 +229,7 @@ def financements():
 # en attendant la mise en commun
 # @app.route("/",  methods=["POST", "GET"])
 @app.route("/evenement/", methods=["POST", "GET"])
-def accueil():
+def accueilev():
     return flask.render_template('accueilev.html')
 
 
@@ -605,7 +605,7 @@ def inscription_reussi():
 def logout():
     flask.session.pop('user')
     flask.session.pop('pigeon')
-    return flask.redirect(flask.url_for('accueil'))
+    return flask.redirect(flask.url_for('accueil_commun'))
 
 @app.route('/subscription/', methods=['GET', 'POST'])
 def subscription():
@@ -697,7 +697,7 @@ def verif_carte():
     update_table_stock()
     update_table_caution()
     flask.session["pigeon"] = []
-    return flask.redirect(flask.url_for('accueil'))
+    return flask.redirect(flask.url_for('accueil_mat'))
 
 
 @app.route('/catalogue/', methods=['GET', 'POST'])
