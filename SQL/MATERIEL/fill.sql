@@ -3,11 +3,11 @@ INSERT INTO Forfait VALUES
 (2,30),
 (3,60),
 (4,80);
-
-INSERT INTO Etudiant VALUES
-(DEFAULT,'DIALLO', 'Thierno', '1996-09-12', 'INFO', '0782563131', 'tdiallo@hotmail.fr', '25 avenue de l université', 'La Garde', 83500, '0'),
-(DEFAULT,'SANCI', 'Enzo', '1995-07-18', 'INFO', '0657429412', 'esanci@free.fr', 'qwertyuiop', 'Computer over the Sea', 83550, '0'),
-(DEFAULT,'LEMAN', 'Jean-Christophe', '1993-04-27', 'INFO', '0689453251', 'jcleman@wanadoo.fr', '18 rue st catherine', 'Bordeaux', 33100, '0');
+--
+-- INSERT INTO Etudiant VALUES
+-- (DEFAULT,'DIALLO', 'Thierno', '1996-09-12', 'INFO', '0782563131', 'tdiallo@hotmail.fr', '25 avenue de l université', 'La Garde', 83500, '0'),
+-- (DEFAULT,'SANCI', 'Enzo', '1995-07-18', 'INFO', '0657429412', 'esanci@free.fr', 'qwertyuiop', 'Computer over the Sea', 83550, '0'),
+-- (DEFAULT,'LEMAN', 'Jean-Christophe', '1993-04-27', 'INFO', '0689453251', 'jcleman@wanadoo.fr', '18 rue st catherine', 'Bordeaux', 33100, '0');
 
 INSERT INTO Location VALUES
 (1,5,'2018-03-04',1),
@@ -52,10 +52,10 @@ INSERT INTO Devis VALUES
 INSERT INTO Materiel_Entreprise VALUES
 (1,1,120);
 
-INSERT INTO ParticipantAsso VALUES
-(1,1),
-(2,2),
-(3,3);
+-- INSERT INTO ParticipantAsso VALUES
+-- (1,1),
+-- (2,2),
+-- (3,3);
 
 INSERT INTO matériel_retour VALUES
 (1,1,'TB'),

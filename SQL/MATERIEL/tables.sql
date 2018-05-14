@@ -21,20 +21,20 @@ create table Forfait(--
   Prix_Forfait INTEGER,
   primary key (Ref_Forfait));
 
-
-CREATE TABLE Etudiant(-- base de la table écrite par xavier
-  Num_Etudiant SERIAL NOT NULL,
-  nom_etudiant VARCHAR(25) NOT NULL,
-  prenom_etudiant VARCHAR(25) NOT NULL,
-  date_naissance_etudiant DATE NOT NULL,
-  filiere_etudiant Filiere NOT NULL,
-  tel_etudiant VARCHAR(12) NOT NULL,
-  mail_etudiant VARCHAR(40) NOT NULL,
-  rue_etudiant VARCHAR(30) NOT NULL,
-  ville_etudiant VARCHAR(25) NOT NULL,
-  code_postal_etudiant INTEGER NOT NULL,
-  membre_asso BOOLEAN NOT NULL,
-  PRIMARY KEY (Num_Etudiant));
+--
+-- CREATE TABLE Etudiant(-- base de la table écrite par xavier
+--   Num_Etudiant SERIAL NOT NULL,
+--   nom_etudiant VARCHAR(25) NOT NULL,
+--   prenom_etudiant VARCHAR(25) NOT NULL,
+--   date_naissance_etudiant DATE NOT NULL,
+--   filiere_etudiant Filiere NOT NULL,
+--   tel_etudiant VARCHAR(12) NOT NULL,
+--   mail_etudiant VARCHAR(40) NOT NULL,
+--   rue_etudiant VARCHAR(30) NOT NULL,
+--   ville_etudiant VARCHAR(25) NOT NULL,
+--   code_postal_etudiant INTEGER NOT NULL,
+--   membre_asso BOOLEAN NOT NULL,
+--   PRIMARY KEY (Num_Etudiant));
 
 
 
@@ -108,23 +108,23 @@ create table Materiel_Entreprise(--trigger
   foreign key(Ref_type_Materiel) REFERENCES Type_Materiel,
   primary key (Num_Entreprise,Ref_type_Materiel)
 );
-
-create table ParticipantAsso(--
-  Num_ParticipantAsso INTEGER,
-  Num_Etudiant INTEGER,
-  foreign key(Num_Etudiant) REFERENCES Etudiant,
-  primary key (Num_ParticipantAsso)
-);
-
-create table Evenement(--
-  Num_Evenement INTEGER,
-  primary key (Num_Evenement)
-);
-
-create table Responsable_de_service(--
-  Num_Responsable_de_service INTEGER,
-  primary key (Num_Responsable_de_service)
-);
+--
+-- create table ParticipantAsso(--
+--   Num_ParticipantAsso INTEGER,
+--   Num_Etudiant INTEGER,
+--   foreign key(Num_Etudiant) REFERENCES Etudiant,
+--   primary key (Num_ParticipantAsso)
+-- );
+-- 
+-- create table Evenement(--
+--   Num_Evenement INTEGER,
+--   primary key (Num_Evenement)
+-- );
+--
+-- create table Responsable_de_service(--
+--   Num_Responsable_de_service INTEGER,
+--   primary key (Num_Responsable_de_service)
+-- );
 
 create table matériel_retour(--trigger
   Ref_Materiel INTEGER,

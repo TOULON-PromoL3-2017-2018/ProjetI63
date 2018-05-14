@@ -111,14 +111,15 @@ def reponse_auto(email):
     serveur.starttls()
     serveur.login("projetI63", "projet_I63")
     msg= " Message recu"
-    serveur.sendmail("projetI63", "projetI63client@gmail.com", msg)
+    mail = email+'@gmail.com'
+    serveur.sendmail("projetI63", mail, msg)
 
 
 # ____ FONCTION APP.ROUTE____
 @app.route('/mail/', methods=['POST'])
 def mail():
     email = request.form['mail']
-    # print("\n\n\n", email, "\n\n\n")
+    print("\n\n\n", email, "\n\n\n")
     msg = request.form['message']
     # print("\n\n\n", msg, "\n\n\n")
     mdp_mail = request.form['mdp_mail']
@@ -273,6 +274,6 @@ if __name__ == '__main__':
     conn = connect()
     curr = conn.cursor()
     # oriente la recherche des table dans le schema
-    curr.execute("SET SEARCH_PATH TO asso")
+    curr.execute("SET SEARCH_PATH TO projeti63")
     app.secret_key = "bien chiant"
 app.run(debug=True)
