@@ -20,8 +20,8 @@ curr = conn.cursor()
 
 @app.route('/', methods=['POST', 'GET'])
 @app.route('/voyage', methods=['POST', 'GET'])
-def accueil():
-    return flask.render_template('accueil.html')
+def accueil_voy():
+    return flask.render_template('accueil_voyage.html')
 
 ###################################################
 ###################################################
