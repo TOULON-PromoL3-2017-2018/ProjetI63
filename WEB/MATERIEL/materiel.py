@@ -2,12 +2,12 @@
 
 from __future__ import print_function
 import time
-from flask import *
+import flask
 import psycopg2
 import smtplib
 
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
 param = {'host': '10.9.185.1'}
 
 #dbname='sinfo1'
@@ -15,7 +15,7 @@ param = {'host': '10.9.185.1'}
 # ____ FONCTION PYTHON SIMPLE ____
 def connect():
     try:
-        print("essaie1")
+        # print("essaie1")
         return(psycopg2.connect(**param))
     except psycopg2.Error:
         print("\n erreur de connection")
@@ -23,14 +23,14 @@ def connect():
 
 
 def update_table_caution():
-    print("\n\n\n\n", session['user'], "\n\n\n\n")
+    # print("\n\n\n\n", flask.session['user'], "\n\n\n\n")
     prix_tot = 0
-    for i, article in enumerate(session['pigeon']):
+    for i, article in enumerate(flask.session['pigeon']):
         j = 0
-        while j < session['pigeon'][i][1]:
-            prix_tot = prix_tot + session['pigeon'][i][2]
+        while j < flask.session['pigeon'][i][1]:
+            prix_tot = prix_tot + flask.session['pigeon'][i][2]
             j += 1
-    num_etude = session['user'][0][2]
+    num_etude = flask.session['user'][0][2]
     donnee = (prix_tot, num_etude)
     query = ("INSERT INTO Caution(Prix_Caution, Num_Etudiant) VALUES (%s,%s)")
     curr.execute(query, donnee)
@@ -39,19 +39,19 @@ def update_table_caution():
 
 def update_table_stock():
     # affichage du tuple
-    # print("\n\n\n\n", session['pigeon'], "\n\n\n\n")
+    # print("\n\n\n\n", flask.session['pigeon'], "\n\n\n\n")
     query = ("SELECT intitule_materiel, quantite FROM materiel_stock")
     curr.execute(query)
     donnee = curr.fetchall()
     # print("\n\n\n\n\n",donnee,"\n\n\n\n\n")
-    for i, article in enumerate(session['pigeon']):
-        # print("\n\n\n\n", session['pigeon'][i], "\n\n\n\n")
+    for i, article in enumerate(flask.session['pigeon']):
+        # print("\n\n\n\n", flask.session['pigeon'][i], "\n\n\n\n")
         j = 0
         while j < len(donnee):
-            if session['pigeon'][i][0] == donnee[j][0]:
+            if flask.session['pigeon'][i][0] == donnee[j][0]:
                 intitule_materiel = donnee[j][0]
                 # print("\n\n\n\n", intitule_materiel, "\n\n\n\n\n\n")
-                new_quantite_stock = int(donnee[j][1]) - int(session['pigeon'][i][1])
+                new_quantite_stock = int(donnee[j][1]) - int(flask.session['pigeon'][i][1])
                 new_quantite_stock = str(new_quantite_stock)
                 # print(new_quantite_stock)
                 query = " UPDATE materiel_stock set quantite = %s WHERE intitule_materiel = %s"
@@ -69,23 +69,23 @@ def incrementation_pigeon(nom_article, quantite, prix):
     # print("\n\n\n\n", quantite_en_stock, "\n\n\n\n")
     index = -1
     # cherche si l'article est dejà present dans le panier
-    for i, article in enumerate(session['pigeon']):
+    for i, article in enumerate(flask.session['pigeon']):
         if nom_article in article:
             index = i
     # cas ou l'article est dans le panier
     if index != -1:
-        var = (session['pigeon'][index][1] + quantite)
+        var = (flask.session['pigeon'][index][1] + quantite)
         if (var > quantite_en_stock[0][0]):
             return(var)
-        session['pigeon'][index][1] = var
-        return(session['pigeon'][index][1])
+        flask.session['pigeon'][index][1] = var
+        return(flask.session['pigeon'][index][1])
     # cas 1ère commande de cet article dans le panier actuelle
     # necessite que la quantite soit inferieur au stock
     # problème : 30 est la quantite de depart mais si j'ai 40 objet en stock la
     # fonction utilisant une constante et non une variable sera a modifier
     elif (quantite <= quantite_en_stock[0][0]):
-        session['pigeon'] += [[nom_article, quantite, prix]]
-        return(session['pigeon'][0][1])
+        flask.session['pigeon'] += [[nom_article, quantite, prix]]
+        return(flask.session['pigeon'][0][1])
     # retourne faux car on demande + d'article que le stock
     return(quantite)
 
@@ -118,73 +118,73 @@ def reponse_auto(email):
 # ____ FONCTION APP.ROUTE____
 @app.route('/mail/', methods=['POST'])
 def mail():
-    email = request.form['mail']
+    email = flask.request.form['mail']
     print("\n\n\n", email, "\n\n\n")
-    msg = request.form['message']
+    msg = flask.request.form['message']
     # print("\n\n\n", msg, "\n\n\n")
-    mdp_mail = request.form['mdp_mail']
+    mdp_mail = flask.request.form['mdp_mail']
     send_mail(email, msg, mdp_mail)
     reponse_auto(email)
-    return redirect(url_for('accueil'))
+    return flask.redirect(flask.url_for('accueil'))
 
 @app.route('/', methods=['POST', 'GET'])
 def accueil():
-    return render_template('acceuil.html', est_connecte=('user' in session))
+    return flask.render_template('acceuil.html', est_connecte=('user' in flask.session))
 
 
 @app.route('/inscription_reussi/', methods=['GET'])
 def inscription_reussi():
-    return render_template('incription_reussi.html', nom_user=session['user'][0])
+    return flask.render_template('incription_reussi.html', nom_user=flask.session['user'][0])
 
 @app.route('/logout/', methods=['GET'])
 def logout():
-    session.pop('user')
-    session.pop('pigeon')
-    return redirect(url_for('accueil'))
+    flask.session.pop('user')
+    flask.session.pop('pigeon')
+    return flask.redirect(flask.url_for('accueil'))
 
 @app.route('/subscription/', methods=['GET', 'POST'])
 def subscription():
-    if request.method == 'POST':
-        pseudo = request.form['pseudo']
-        mdp = request.form["mdp"]
-        mdp_confirme = request.form["mdp_verifie"]
-        Num_Etudiant = request.form["Num_Etudiant"]
+    if flask.request.method == 'POST':
+        pseudo = flask.request.form['pseudo']
+        mdp = flask.request.form["mdp"]
+        mdp_confirme = flask.request.form["mdp_verifie"]
+        Num_Etudiant = flask.request.form["Num_Etudiant"]
         if (mdp == mdp_confirme):
             query = ("INSERT INTO inscrit (pseudo, mdp, num_Etudiant) \
             VALUES (%s, %s, %s)")
             donnee = (pseudo, mdp, Num_Etudiant)
             curr.execute(query, donnee)
             conn.commit()
-            #gestion de session
-            session["user"] = donnee
-            session["pigeon"] = []
-            return redirect(url_for('inscription_reussi'))
+            #gestion de flask.session
+            flask.session["user"] = donnee
+            flask.session["pigeon"] = []
+            return flask.redirect(flask.url_for('inscription_reussi'))
 
-        # flash fournit un moyen de donner un feedback à un utilisateur
-        flash("Les mots de passe ne sont pas identiques.")
+        # flask.flash fournit un moyen de donner un feedback à un utilisateur
+        flask.flash("Les mots de passe ne sont pas identiques.")
         # permet de rediriger la personne sur le formulaire d'inscription
-        return render_template('inscription.html')
+        return flask.render_template('inscription.html')
     else:
-        return render_template('inscription.html')
+        return flask.render_template('inscription.html')
 
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        pseudo = request.form['pseudo']
-        mdp = request.form['mdp']
+    if flask.request.method == 'POST':
+        pseudo = flask.request.form['pseudo']
+        mdp = flask.request.form['mdp']
         query = ("SELECT * FROM inscrit WHERE pseudo = %s and mdp = %s")
         donnee = (pseudo, mdp)
         curr.execute(query, donnee)
         donnee_table = curr.fetchall()
         if (len(donnee_table) > 0):
-            session["pigeon"] = []
-            session['user'] = donnee_table
+            flask.session["pigeon"] = []
+            flask.session['user'] = donnee_table
             message_flash = "connection reussi "+donnee[0]
-            flash(message_flash)
-            return redirect(url_for('accueil'))
+            flask.flash(message_flash)
+            return flask.redirect(flask.url_for('accueil'))
 
-        flash("Information incorectes")
-        return redirect(url_for('subscription'))
+        flask.flash("Information incorectes")
+        return flask.redirect(flask.url_for('subscription'))
     else:
         abort(404)
 
@@ -201,38 +201,38 @@ def verif(cb):
 
 @app.route('/verif_carte/', methods=['GET', 'POST'])
 def verif_carte():
-    if request.method == 'POST':
-        cb1 = request.form['num_cb1']
+    if flask.request.method == 'POST':
+        cb1 = flask.request.form['num_cb1']
         if (not(verif(cb1))):
-            flash("numero de carte bleu invalide")
-            return render_template('form_cb.html')
-        cb2 = request.form['num_cb2']
+            flask.flash("numero de carte bleu invalide")
+            return flask.render_template('form_cb.html')
+        cb2 = flask.request.form['num_cb2']
         if (not(verif(cb2))):
-            flash("numero de carte bleu invalide")
-            return render_template('form_cb.html')
-        cb3 = request.form['num_cb3']
+            flask.flash("numero de carte bleu invalide")
+            return flask.render_template('form_cb.html')
+        cb3 = flask.request.form['num_cb3']
         if (not(verif(cb3))):
-            flash("numero de carte bleu invalide")
-            return render_template('form_cb.html')
-        cb4 = request.form['num_cb4']
+            flask.flash("numero de carte bleu invalide")
+            return flask.render_template('form_cb.html')
+        cb4 = flask.request.form['num_cb4']
         if (not(verif(cb4))):
-            flash("numero de carte bleu invalide")
-            return render_template('form_cb.html')
-        crypt = request.form['cryptogramme_visuel']
+            flask.flash("numero de carte bleu invalide")
+            return flask.render_template('form_cb.html')
+        crypt = flask.request.form['cryptogramme_visuel']
         if (not(verif(crypt))):
-            flash("cryptogramme visuel invalide")
-            return render_template('form_cb.html')
-        annee = int(request.form['annee'])
+            flask.flash("cryptogramme visuel invalide")
+            return flask.render_template('form_cb.html')
+        annee = int(flask.request.form['annee'])
         if (annee == 2018):
-            mois = int(request.form['mois'])
+            mois = int(flask.request.form['mois'])
             if (mois < 5):
-                flash("carte bleu invalide")
-                return render_template('form_cb.html')
-    flash("paiement effectué")
+                flask.flash("carte bleu invalide")
+                return flask.render_template('form_cb.html')
+    flask.flash("paiement effectué")
     update_table_stock()
     update_table_caution()
-    session["pigeon"] = []
-    return redirect(url_for('accueil'))
+    flask.session["pigeon"] = []
+    return flask.redirect(flask.url_for('accueil'))
 
 
 @app.route('/catalogue/', methods=['GET', 'POST'])
@@ -242,38 +242,38 @@ def catalogue():
     WHERE materiel_stock.Ref_Type_Materiel = type_materiel.Ref_Type_Materiel")
     curr.execute(query)
     donnee = curr.fetchall()
-    if request.method == 'POST':
-        quantite_acheter = int(request.form['quantite'])
-        intitule_materiel = request.form['intitule_materiel']
-        prix_u_hf = int(request.form['prix_u_hf'])
+    if flask.request.method == 'POST':
+        quantite_acheter = int(flask.request.form['quantite'])
+        intitule_materiel = flask.request.form['intitule_materiel']
+        prix_u_hf = int(flask.request.form['prix_u_hf'])
         quantite_total_commande = incrementation_pigeon(intitule_materiel,
                                                         quantite_acheter,
                                                         prix_u_hf)
         if (peut_acheter(donnee, intitule_materiel, quantite_total_commande)):
-            flash("ajout au panier")
+            flask.flash("ajout au panier")
         else:
-            flash("pas assez en stock")
-            return render_template("catalogue.html", pigeon=donnee,
-                                   est_connecte=('user' in session))
-    return render_template("catalogue.html", pigeon=donnee,
-                           est_connecte=('user' in session))
+            flask.flash("pas assez en stock")
+            return flask.render_template("catalogue.html", pigeon=donnee,
+                                   est_connecte=('user' in flask.session))
+    return flask.render_template("catalogue.html", pigeon=donnee,
+                           est_connecte=('user' in flask.session))
 
 
 @app.route('/panier/', methods=['GET'])
 def panier():
-    # print("\n\n\n", session["pigeon"], "\n\n\n")
+    # print("\n\n\n", flask.session["pigeon"], "\n\n\n")
     prix_tot = 0
-    for i, article in enumerate(session['pigeon']):
+    for i, article in enumerate(flask.session['pigeon']):
         j = 0
-        while j < session['pigeon'][i][1]:
-            prix_tot = prix_tot + session['pigeon'][i][2]
+        while j < flask.session['pigeon'][i][1]:
+            prix_tot = prix_tot + flask.session['pigeon'][i][2]
             j += 1
-    return render_template("panier.html", articles=session["pigeon"], prix_total = prix_tot)
+    return flask.render_template("panier.html", articles=flask.session["pigeon"], prix_total = prix_tot)
 
 
 @app.route('/payer/', methods=['GET'])
 def payer():
-    return render_template("form_cb.html")
+    return flask.render_template("form_cb.html")
 
 
 if __name__ == '__main__':
@@ -282,4 +282,4 @@ if __name__ == '__main__':
     # oriente la recherche des table dans le schema
     curr.execute("SET SEARCH_PATH TO projeti63")
     app.secret_key = "bien chiant"
-app.run(debug=True)
+    app.run(debug=True)
