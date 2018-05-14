@@ -1141,6 +1141,18 @@ def liste_voy_note():
         var = curr.fetchall()
         return flask.render_template('liste_voyage_note.html', voyage=var)
 
+@app.route('/log_success_etu/', methods=['POST', 'GET'])
+def connexion_success():
+    if flask.request.method == 'POST':
+        login = flask.request.form['log']
+        mdp = flask.request.form['psw']
+
+        query = "SELECT * FROM Comptes_membres WHERE login = %s AND mdp = %s"
+        data = (login, mdp)
+        curr.execute(query, data)
+        user = curr.fetchall()
+        flask.session['user']=user
+        return flask.render_template('log_success_etu.html', log=login)
 
 
 
