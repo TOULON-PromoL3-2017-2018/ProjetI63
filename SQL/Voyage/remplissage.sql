@@ -1,6 +1,33 @@
+
 insert into voyageur values(123);
 insert into voyageur values(231, 200);
 insert into voyageur values(567);
+
+insert into trajet (lieu_depart, lieu_arrive) values('Toulon', 'Moscou');
+insert into trajet (lieu_depart, lieu_arrive) values('Moscou', 'Paris');
+insert into trajet (lieu_depart, lieu_arrive) values('Toulon', 'Paris');
+insert into trajet (lieu_depart, lieu_arrive) values('Paris', 'Toulon');
+
+
+insert into entre_location (nom_entreprise, ville_entreprise,
+  code_ps_entreprise, rue_entreprise, tel_entreprise, mail_entreprise)
+  values('entrep1', 'Puget', '83390', '65 rue de la cooperative',
+  '0635982654', 'myrtille@gmail.com');
+insert into entre_location (nom_entreprise, ville_entreprise,
+  code_ps_entreprise, rue_entreprise, tel_entreprise, mail_entreprise)
+  values('entrep2', 'Sollies', '83253', '32 rue de la liberation',
+  '0632598621', 'chausson@orange.fr');
+insert into entre_location (nom_entreprise, ville_entreprise,
+  code_ps_entreprise, rue_entreprise, tel_entreprise, mail_entreprise)
+  values('entrep3', 'Bormes', '83230', '89 avenue du pain', '0653894258',
+  'fondant@hotmail.fr');
+
+
+insert into Vehicule values('XA-23-FDS', 2, 'BUS', 50);
+insert into vehicule values('FTY-235-FDR', 1, 'Voiture', 4);
+
+insert into solicite values(1, 'XA-23-FDS', '0635982654', 56, 3, 45);
+insert into solicite values(2, 'FTY-235-FDR', '0633251478', 12, 1, 20);
 
 insert into Organisateur (nom, prenom, ville, code_ps, rue, tel, mail) values(
   'orgnum1', 'preorgnum1', 'toulouse', '11111', '32 rue du commerce',
@@ -32,16 +59,12 @@ insert into Voyage (num_responsable, num_organisateur, destination, type, prix)
 insert into Voyage (num_responsable, num_organisateur, destination, type, prix)
   values(2, 2, 'Moscou', 'culturel', '1200');
 
-insert into participe values(123, 2, NULL, 2);
+insert into participe values(123, 2, NULL, 1);
 insert into participe values(123, 4, NULL, 1);
 insert into participe values(231, 2, 8, 1);
-insert into participe values(567, 2, NULL, 2);
+insert into participe values(567, 2, NULL, 1);
 
 
-insert into trajet (lieu_depart, lieu_arrive) values('Toulon', 'Moscou');
-insert into trajet (lieu_depart, lieu_arrive) values('Moscou', 'Paris');
-insert into trajet (lieu_depart, lieu_arrive) values('Toulon', 'Paris');
-insert into trajet (lieu_depart, lieu_arrive) values('Paris', 'Toulon');
 
 
 insert into necessite (num_trajet, num_voyage, sens, date_depart, date_arrive,
@@ -56,22 +79,3 @@ insert into necessite (num_trajet, num_voyage, sens, date_depart, date_arrive,
 insert into necessite (num_trajet, num_voyage, sens, date_depart, date_arrive,
   heure_depart, heure_arrive, prix_trajet) values(2, 2, 'retour', '2018/03/25',
   '2018/03/26', '15:50', '11:00', 25);
-
-
-insert into entre_location (nom_entreprise, ville_entreprise,
-  code_ps_entreprise, rue_entreprise, tel_entreprise, mail_entreprise)
-  values('entrep1', 'Puget', '83390', '65 rue de la cooperative',
-  '0635982654', 'myrtille@gmail.com');
-insert into entre_location (nom_entreprise, ville_entreprise,
-  code_ps_entreprise, rue_entreprise, tel_entreprise, mail_entreprise)
-  values('entrep2', 'Sollies', '83253', '32 rue de la liberation',
-  '0632598621', 'chausson@orange.fr');
-insert into entre_location (nom_entreprise, ville_entreprise,
-  code_ps_entreprise, rue_entreprise, tel_entreprise, mail_entreprise)
-  values('entrep3', 'Bormes', '83230', '89 avenue du pain', '0653894258',
-  'fondant@hotmail.fr');
-
-insert into Vehicule values('XA-23-FDS', 2, 'BUS', 50);
-insert into vehicule values('FTY-235-FDR', 1, 'Voiture', 4);
-
-insert into solicite values(1, 'XA-23-FDS', '0635982654', 56, 3, 45);
