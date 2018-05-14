@@ -30,7 +30,7 @@ def update_table_caution():
         while j < session['pigeon'][i][1]:
             prix_tot = prix_tot + session['pigeon'][i][2]
             j += 1
-    num_etude = session['user'][2]
+    num_etude = session['user'][0][2]
     donnee = (prix_tot, num_etude)
     query = ("INSERT INTO Caution(Prix_Caution, Num_Etudiant) VALUES (%s,%s)")
     curr.execute(query, donnee)
@@ -222,6 +222,12 @@ def verif_carte():
         if (not(verif(crypt))):
             flash("cryptogramme visuel invalide")
             return render_template('form_cb.html')
+        annee = int(request.form['annee'])
+        if (annee == 2018):
+            mois = int(request.form['mois'])
+            if (mois < 5):
+                flash("carte bleu invalide")
+                return render_template('form_cb.html')
     flash("paiement effectué")
     update_table_stock()
     update_table_caution()
