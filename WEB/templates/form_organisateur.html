@@ -1,0 +1,29 @@
+<!-- Fichier formulaire pour entrer un nouvel organisateur -->
+
+<html>
+
+  <head>
+    <meta charset = "utf-8" />
+    <title> nouvel organisateur </title>
+  </head>
+
+  <body>
+
+    <h1> FICHE DE NOUVEL ORGANISATEUR </h1>
+
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+    <form action = "http://localhost:5000/voyage/finir_organisateur" method = "POST">
+      <p> Nom organisateur <input type = "text" name = "nom" /> </p>
+      <p> Prenom organisateur <input type = "text" name = "prenom" /> </p>
+      <p> Ville du centre à contacter <input type = "text" name = "ville" /> </p>
+      <p> code postal du centre à contacter <input type = "text" name = "c_p" /> </p>
+      <p> rue du centre à contacter <input type = "text" name = "rue" /> </p>
+      <p> numeros de telephone du centre à contacter <input type = "text" name = "tel" /> </p>
+      <p> mail du centre à contacter <input type = "text" name = "mail" /> </p>
+      <p> spécialisation de l'organisateur <input type = "text" name = "spe" /> </p>
+      <p> <input type = "submit" value = "confirmer l'ajout" /> </p>
+    </form>
+
+  </body>
+</html>

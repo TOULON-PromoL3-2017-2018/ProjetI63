@@ -1,0 +1,31 @@
+<!-- Fichier formulaire pour entrer une nouvelle entreprise de location -->
+
+<html>
+
+  <head>
+    <meta charset = "utf-8" />
+    <title> nouvelle entreprise de location de véhicule </title>
+
+  </head>
+
+  <body>
+
+    <h1> FICHE DE NOUVELLE ENTREPRISE DE LOCATION DE VEHICULE </h1>
+
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+    <form action = "http://localhost:5000/voyage/finir_entre_loc" method = "POST">
+      <p> Nom entreprise* <input type = "text" name = "nom" placeholder="Celio" required/> </p>
+      <p> Ville entreprise* <input type = "text" name = "ville" placeholder="Toulon" required/> </p>
+      <p> Code postal de l'entreprise* <input type = "text" name = "c_ps" placeholder="83130" required/> </p>
+      <p> Rue de l'entreprise* <input type = "text" name = "rue" placeholder="32 rue de la liberté" required/> </p>
+      <p> Numero de telephone* <input type = "text" name = "tel" placeholder="0654236589" required/> </p>
+      <p> Mail de l'entreprise* <input type = "text" name = "mail" placeholder="Lamartine@orange.fr" required/> </p>
+      <br/>
+      <p> Les champs avec une * sont obligatoires</p>
+      <br/>
+      <p> <input type = "submit" value = "confirmer l'ajout" /> </p>
+    </form>
+
+  </body>
+</html>

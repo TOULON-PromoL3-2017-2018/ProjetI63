@@ -1,0 +1,27 @@
+<!-- Fichier formulaire pour entrer un nouveau voyage  -->
+
+<html>
+
+  <head>
+      <meta charset = "utf-8" />
+      <title> nouveau voyage </title>
+  </head>
+
+   <body>
+
+     <h1> FICHE DE NOUVEAU VOYAGE </h1>
+
+     <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+     <form action = "http://localhost:5000/voyage/finir_entrer_voyage" method = "POST">
+        <!-- Le debut de la ligne est ce qui va apparaitre à l'écran -->
+         <p>Numero de responsable <input type = "number" name = "num_resp" /> </p>
+         <p>Numero organisateur <input type = "number" name = "num_org" /> </p>
+         <p>Destination<input type = "text" name = "destination" /> </p>
+         <p>Type du voyage <input type = "text" name = "type" /> </p>
+         <p>Prix du voyage <input type = "number" name = "prix" /> </p>
+         <p><input type = "submit" value = "confirmer l'ajout" /> </p>
+      </form>
+
+   </body>
+</html>

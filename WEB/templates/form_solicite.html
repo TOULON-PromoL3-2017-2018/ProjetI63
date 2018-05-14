@@ -1,0 +1,31 @@
+<!-- Fichier formulaire pour associer un vehicule a un trajet -->
+
+<html>
+
+  <head>
+    <meta charset = "utf-8" />
+    <title> nouvelle entreprise de location de véhicule </title>
+
+  </head>
+
+  <body>
+
+    <h1> FICHE DE NOUVELLE ENTREPRISE DE LOCATION DE VEHICULE </h1>
+
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+    <form action = "http://localhost:5000/voyage/finir_solicite" method = "POST">
+      <p> Numero de trajet* <input type = "text" name = "n_t" placeholder="2" required/> </p>
+      <p> immatriculation du vehicule* <input type = "text" name = "imm" placeholder="ax-32-jd" required/> </p>
+      <p> Numero de telephone du chauffeur* <input type = "text" name = "t_c" placeholder="0602124589" required/> </p>
+      <p> Nombre de passagers* <input type = "text" name = "n_p" placeholder="35" required/> </p>
+      <p> Nombre de baggages maximum* <input type = "text" name = "n_b_max" placeholder="3" required/> </p>
+      <p> Poids maximum par baggages* <input type = "text" name = "p_b_max" placeholder="10 (en kg)" required/> </p>
+      <br/>
+      <p> Les champs avec une * sont obligatoires</p>
+      <br/>
+      <p> <input type = "submit" value = "Valider" /> </p>
+    </form>
+
+  </body>
+</html>

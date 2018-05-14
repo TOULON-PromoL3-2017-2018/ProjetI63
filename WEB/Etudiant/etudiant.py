@@ -30,15 +30,32 @@ def new_insc_cpt():
     return flask.render_template('login_etu.html')
 
 
-@app.route("/logout/")
-def logout():
-    session.pop("login", None)
+@app.route("/logout_etu/")
+def logout_etu():
+    session.pop("login")
     return redirect("/")
 
 
 @app.route('/form_insc_subv/', methods=['POST', 'GET'])
 def new_inscr():
     return flask.render_template('form_insc_subv.html')
+
+
+#
+# moncul à modifier
+
+@app.route('/log_success_etu/', methods=['POST', 'GET'])
+def connexion_success():
+    if flask.request.method == 'POST':
+        login = flask.request.form['log']
+        mdp = flask.request.form['psw']
+
+        query = "SELECT * FROM Comptes_membres WHERE login = %s AND mdp = %s"
+        data = (login, mdp)
+        curr.execute(query, data)
+        user = curr.fetchall()
+        flask.session['user']=user
+        return flask.render_template('log_success_etu.html', log=login)
 
 
 @app.route('/valid_insc_etu/', methods=['POST', 'GET'])
@@ -104,12 +121,18 @@ def inscription2():
         return flask.render_template('valid_insc_sub.html', res_nom=nom_subv)
 
 
+#
+# moncul à modifier
+
 @app.route('/finances/', methods=['POST', 'GET'])
 def finance():
     # return flask.render_template('finances.html', res_cpt=trigger de etat des
     #comptes)
     return flask.render_template('finances.html')
 
+
+#
+# moncul à modifier
 
 @app.route('/financements/', methods=['POST', 'GET'])
 def financements():
@@ -120,4 +143,5 @@ def financements():
 
 if __name__ == '__main__':
 
+    app.secret_key = "bien chiant"
     app.run(debug=True)

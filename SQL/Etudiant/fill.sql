@@ -73,21 +73,21 @@ INSERT INTO Subventionneurs(nom_subventionneur, rue_subventionneur, ville_subven
 ('InterSport', '300 avenue de l’Université', 'La Garde', 83160, '0498043980', 'CAUNES', 'adecaunes@isport.fr');
 
 INSERT INTO Financement(montant, source, validation) VALUES
-(500, 4, '1');
+(500, 4, '1', '1');
 INSERT INTO Financement(montant, source, validation) VALUES
-(4000, 3, '0');
+(4000, 3, '0', '1');
 INSERT INTO Financement(montant, source, validation) VALUES
-(2000, 3, '1');
+(2000, 3, '1', '1');
 INSERT INTO Financement(montant, source, validation) VALUES
-(800, 2, '0');
+(800, 2, '0', '1');
 INSERT INTO Financement(montant, source, validation) VALUES
-(40, 2, '1');
+(40, 2, '1', '1');
 INSERT INTO Financement(montant, source, validation) VALUES
-(3000, 1, '0');
+(3000, 1, '0', '1');
 INSERT INTO Financement(montant, source, validation) VALUES
-(10000, 5, '0');
+(10000, 5, '0', '1');
 INSERT INTO Financement(montant, source, validation) VALUES
-(1000, 1, '1');
+(1000, 1, '1', '1');
 
 INSERT INTO Subvention(montant, num_subventionneur) VALUES
 (3000, 1);

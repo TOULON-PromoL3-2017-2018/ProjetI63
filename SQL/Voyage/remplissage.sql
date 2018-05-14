@@ -59,10 +59,15 @@ insert into Voyage (num_responsable, num_organisateur, destination, type, prix)
 insert into Voyage (num_responsable, num_organisateur, destination, type, prix)
   values(2, 2, 'Moscou', 'culturel', '1200');
 
-insert into participe values(123, 2, NULL, 1);
-insert into participe values(123, 4, NULL, 1);
-insert into participe values(231, 2, 8, 1);
-insert into participe values(567, 2, NULL, 1);
+
+insert into participe (num_voyageur, num_voyage, satisfaction, nb_baggages)
+  values(123, 2, DEFAULT, 2);
+insert into participe (num_voyageur, num_voyage, satisfaction, nb_baggages)
+  values(123, 4, DEFAULT, 1);
+insert into participe (num_voyageur, num_voyage, satisfaction, nb_baggages)
+  values(231, 2, 8, 1);
+insert into participe (num_voyageur, num_voyage, satisfaction, nb_baggages)
+  values(567, 2, DEFAULT, 2);
 
 
 
