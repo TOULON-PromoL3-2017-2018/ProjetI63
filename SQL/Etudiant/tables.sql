@@ -1,9 +1,6 @@
 CREATE SCHEMA projeti63;
 SET search_path to projeti63;
-CREATE DOMAIN Filiere AS VARCHAR(6) CHECK (VALUE IN ('INFO', 'EEA', 'BIO', 'PC',
-  'MATHS', 'LEA', 'STAPS', 'LLCERA', 'LLCERE', 'COMPTA', 'ECO', 'SOCIO', 'SEGPA',
-  'info', 'eea', 'bio', 'pc', 'maths', 'lea', 'staps', 'llcera', 'llcere',
-  'compta', 'eco', 'socio', 'segpa'));
+CREATE DOMAIN Filiere AS VARCHAR(6) CHECK (VALUE IN ('INFO', 'EEA', 'BIO', 'PC', 'MATHS', 'LEA', 'STAPS', 'LLCERA', 'LLCERE', 'COMPTA', 'ECO', 'SOCIO', 'SEGPA'));
 
 CREATE TABLE Etudiant(num_etudiant SERIAL NOT NULL,
                       nom_etudiant VARCHAR(25) NOT NULL,
@@ -49,8 +46,7 @@ CREATE TABLE Subventionneurs(num_subventionneur SERIAL NOT NULL,
 CREATE TABLE Financement(num_demande_argent SERIAL NOT NULL,
                          montant INTEGER NOT NULL,
                          source INTEGER NOT NULL,
-                         validation BOOLEAN NOT NULL DEFAULT '0',
-                         traitement BOOLEAN NOT NULL DEFAULT '0',
+                         validation BOOLEAN NOT NULL,
                          PRIMARY KEY (num_demande_argent),
                          FOREIGN KEY (source) REFERENCES Service_asso(num_service));
 
@@ -68,8 +64,8 @@ CREATE TABLE Contrat_asso(num_contrat SERIAL NOT NULL,
                           FOREIGN KEY (num_etudiant) REFERENCES Etudiant(num_etudiant));
 
 CREATE TABLE Comptes_membres(num_compte SERIAL NOT NULL,
-                             login varchar(30) NOT NULL,
-                             mdp varchar(30) NOT NULL,
+                             login VARCHAR(30) NOT NULL,
+                             mdp VARCHAR(30) NOT NULL,
                              num_etudiant INTEGER NOT NULL,
                              PRIMARY KEY (num_compte),
                              FOREIGN KEY (num_etudiant) REFERENCES Etudiant(num_etudiant));

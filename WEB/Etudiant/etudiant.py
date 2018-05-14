@@ -25,6 +25,11 @@ def new_insc():
     return flask.render_template('form_insc_etu.html')
 
 
+@app.route('/login/', methods=['POST', 'GET'])
+def new_insc_cpt():
+    return flask.render_template('login.html')
+
+
 @app.route('/form_insc_subv/', methods=['POST', 'GET'])
 def new_inscr():
     return flask.render_template('form_insc_subv.html')
@@ -47,12 +52,28 @@ def inscription():
         query = "INSERT INTO Etudiant(nom_etudiant, prenom_etudiant,\
         date_naissance_etudiant, filiere_etudiant, tel_etudiant,\
         mail_etudiant, rue_etudiant, ville_etudiant, code_postal_etudiant,\
-        membre_asso) VALUES (%s, %s, to_date(%s, 'DD MM YYYY'), %s, %s, %s, %s, %s, %s, %s);"
+        membre_asso) VALUES (%s, %s, to_date(%s, 'DD MM YYYY'), %s, %s, %s, %s,\
+        %s, %s, %s);"
         data = (nom_etu, pre_etu, date_nais, filiere, tel_etu, mail_etu,
                 rue_etu, ville_etu, code_post, mbr_asso)
         curr.execute(query, data)
         conn.commit()
         return flask.render_template('valid_insc.html', res_nom=nom_etu)
+
+
+@app.route('/valid_compte/', methods=['POST', 'GET'])
+def val_insc_cpt():
+    if flask.request.method == 'POST':
+        login = flask.request.form['log']
+        mdp = flask.request.form['psw']
+        number = flask.request.form['num']
+
+        query = "INSERT INTO Comptes_membres(login, mdp, num_etudiant) VALUES \
+        (%s, %s, %s);"
+        data = (login, mdp, number)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('valid_insc.html', log=login)
 
 
 @app.route('/valid_insc_sub/', methods=['POST', 'GET'])
@@ -75,6 +96,21 @@ def inscription2():
         curr.execute(query, data)
         conn.commit()
         return flask.render_template('valid_insc_sub.html', res_nom=nom_subv)
+
+
+@app.route('/valid_compte/', methods=['POST', 'GET'])
+def val_insc_cpt():
+    if flask.request.method == 'POST':
+        login = flask.request.form['log']
+        mdp = flask.request.form['psw']
+        number = flask.request.form['num']
+
+        query = "INSERT INTO Comptes_membres(login, mdp, num_etudiant) VALUES \
+        (%s, %s, %s);"
+        data = (login, mdp, number)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('valid_insc.html', log=login)
 
 
 @app.route('/finances/', methods=['POST', 'GET'])
