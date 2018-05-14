@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset = "utf-8" />
+  <title>Nouvelle inscription</title>
+  </head>
+
+  <body>
+
+  <h1 align = 'center'>Données étudiant :</h1>
+
+  <br/><br/><br/><br/>
+
+    <form action = "http://localhost:5000/valid_insc_etu/" method = "POST">
+      <!-- Le debut de la ligne est ce qui va apparaitre à l'écran, place holder ce qui
+      apparaitra de base dans le champ, name le nom qui me servira pour le placer dans
+      les tables -->
+       <br/>Nom étudiant <input type = "text" name = "name_etu" placeholder="Ex : CLAIN"/>
+       <br/>Prénom étudiant <input type = "text" name = "pren_etu" placeholder="Ex : Mauvais"/>
+       <br/>Date de naissance <input type = "text" name = "date" placeholder="yyyy-mm-dd"/>
+       <br/>Filière <input type = "text" name = "fil" placeholder="Ex : Branleur"/>
+       <br/>Telephone <input type = "tel" name ="tel" placeholder="Ex : 0601241648"/>
+       <br/>Mail <input type="email" name="mail" placeholder="Ex : branleur@exemple.fr"/>
+       <br/>Rue <input type="text" name="rue" placeholder="Ex : 12 rue des lillas"/>
+       <br/>Ville <input type="text" name="town" placeholder="Ex : Moncul"/>
+       <br/>Code postal <input type="number" name="code" placeholder="Ex : 88888"/>
+       <br/>Membre <input type="bool" name="suceur" placeholder="Ex : 1"/>
+       <br/><input type = "submit" value = "Ajouter l'étudiant" />
+    </form>
+    <br/><br/>
+    <nav>
+      <a href="/"> Retourner à l'accueil </a>
+    </nav>
+  </body>
+</html>

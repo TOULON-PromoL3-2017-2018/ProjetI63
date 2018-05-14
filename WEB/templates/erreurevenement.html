@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet"  />
+  </head>
+  <body>
+    <p>Numéro évènement {{NumEv}} inexistant ou évènement déjà passé</p>
+    <aside>
+      <nav>
+        <ul>
+          <li><a href="/evenement/evenementfutur/">Voir et s'inscrire aux prochains évènements</a></li>
+          <li><a href="/evenement/evenement/">Revenir à la page des évènements</a></li>
+          <li><a href="/evenement/">Retourner à l'accueil</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </body>
+</html>

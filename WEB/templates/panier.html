@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- en-tête de la page -->
+  <meta charset="utf-8" />
+  <style>/*css*/
+  div  a
+  {
+    background-color: white;
+    text-decoration: none;/*Pour que le lien ne soit plus "souligne"...*/
+    color: black; /*couleur du text dans le "bouton "*/
+    padding: 3px 5px 3px 5px; /* taille en pixel  */
+    border:1px solid black;
+    border-radius:5px;
+  }
+  body{background-image: url("../static/fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
+  </style>
+  <title> Catalogue </title>
+</head>
+
+<body>
+  <section>
+      <p><div align="right"><a href='/logout/'> deco </a></div></p>
+      <p><div align="right"><a href='/'> acceuil </a></div></p>
+      <div id="container_articles">
+
+          <h1>Nos composants</h1>
+
+          {% for article in articles %}
+              <div id="container_pigeon">
+              </br>
+                  <p id="id">article : {{article[0]}}</p>
+                  <p id="new_quantite"> quantité : {{article[1]}}</p>
+                  <p id="prix">prix unité: {{article[2]}}</p>
+                  <!-- rajouter un prix total -->
+              </div>
+            {% endfor %}
+
+      </div>
+      <p id="prix_total"> Total : {{prix_total}} </p>
+      <p><div align="left"><a href='/payer/'> payer </a></div></p>
+  </section>
+</body>

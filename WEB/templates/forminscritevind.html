@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <p>Inscription pour l'évènement {{NumEv}}</p>
+  <form action = "http://localhost:5000/evenement/inscritevind/" method="POST">
+    <p>Numero Participant <input type="number" name="NumPart" placeholder="Ex : 123456"></p>
+    <p>Numéro évènement <input type="number" name="NumEven" value={{NumEv}} readonly></p>
+    <input type="submit" value="Envoyer">
+  </form>
+</body>
+</html>

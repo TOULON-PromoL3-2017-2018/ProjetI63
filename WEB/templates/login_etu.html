@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset = "utf-8" />
+  <title>Nouvelle inscription</title>
+  <style>
+    body{background-image: url("/static/rejoindre.jpg");background-repeat: no-repeat;background-size: 1000px 1000px;}
+  </style>
+  </head>
+
+  <body>
+    <h1>Vous connecter</h1>
+    <form action="http://localhost:5000/log_success_etu/" method="POST">
+      <br/>Login <input type = "text" name = "log" placeholder="Ex : bigly" maxlength="30" required/>
+      <br/>Password <input type = "password" name = "psw" placeholder="Mauvais Ex : 123456" maxlength="30" required/>
+      <br/><input type = "submit" value = "Log in" />
+    </form>
+
+
+    <h1>Vous enregistrer</h1>
+    <form action="http://localhost:5000/valid_compte_etu" method="POST">
+      <br/>Login <input type = "text" name = "log" placeholder="Ex : bigly" maxlength="30" required/>
+      <br/>Password <input type = "password" name = "psw" placeholder="Mauvais Ex : 123456" maxlength="30" required/>
+      <br/>Num. Etudiant <input type = "number" name = "num" placeholder="1" required/>
+      <br/><input type = "submit" value = "Créer le compte" />
+    </form>
+    <br/><br/>
+    <nav>
+      <a href="/"> Retourner à l'accueil </a>
+    </nav>
+  </body>

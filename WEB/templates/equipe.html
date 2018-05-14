@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <p>Equipes déjà enregistrées</p>
+  <p>{{Equipes}}</p>
+  <aside>
+    <nav>
+      <ul>
+        <li><a href="/evenement/formequipe/">Enregistrer une nouvelle equipe</a></li>
+        <li><a href="/evenement/formpart/">S'inscrire dans une équipe</a></li>
+        <li><a href="/evenement/">Retourner à l'accueil</a></li>
+      </ul>
+    </nav>
+  </aside>
+</body>
+</html>

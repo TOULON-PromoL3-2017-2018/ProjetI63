@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- en-tête de la page -->
+    <meta charset = "utf-8" />
+    <style>/*css*/
+    /* creation du fond d'ecran :
+    url : nom de l'image (mis dans template)
+    background-repeat:no-repeat l'image ne se repete pas
+    background-size: cover : l'image s'etend au site*/
+    body{background-image: url("../static/fond-site-internet-comncaux.jpg");background-repeat: no-repeat;background-size: cover;}
+    </style>
+    <title>Nouvelle inscription</title>
+</head>
+
+ <body>
+   {%include 'message.html'%}
+   <!-- permet aux message flash de s'afficher à l'apel de "{%include 'message.html'%} voir messsage.html" -->
+   <!-- corp de la page -->
+   <br/><br/><br/><br/><br/><br/>
+    <div id="container_form"> <!-- ajout d'un id  a div afin de rajouter un style css le definissant si  j'ai le temps -->
+        <form method="post" action="/login/">
+        <fieldset>
+        <legend> Se connecter </legend>
+
+            <p>
+                <label for="pseudo"> pseudo :</label>
+                <input type="text" name="pseudo" id="pseudo" maxlength="20" required />
+            </p>
+
+            <p>
+                <label for="mdp">Mot de passe :</label>
+                <input type="password" name="mdp" id="mdp" maxlength="20" required />
+            </p>
+
+            <input id="envoyer" type="submit" value="Envoyer" />
+
+        </fieldset>
+        </form>
+    </div>
+    <div id="container_form">
+         <form method="post" action="/subscription/" >
+         <fieldset>
+         <legend> Creer un compte </legend>
+             <p>
+               Il faut être inscrit à l'association pour s'inscrire a la location
+            </p>
+             <p>
+                 <label for="pseudo">pseudo :</label>
+                 <input type="text" name="pseudo" id="pseudo" placeholder="Ex: Toto" maxlength="20" required />
+             </p>
+
+             <p>
+                 <label for="mdp">Mot de passe :</label>
+                 <input type="password" name="mdp" id="mdp" maxlength="20" required />
+             </p>
+
+             <p>
+                 <label for="mdp_verifie">Confirme le mot de passe :</label>
+                 <input type="password" name="mdp_verifie" id="mdp_verifie" maxlength="20" required />
+             </p>
+
+             <p>
+                 <label for="Num_Etudiant">numero etudiant (max 3):</label>
+                 <input type ="number" name="Num_Etudiant" min="1" max="3" required />
+                 <p>Par default vous aurez le numéro etudiant 3 si vous essayez de mettre plus</p>
+             <input id="envoyer" type="submit" value="Envoyer" />
+
+         </fieldset>
+         </form>
+     </div>
+     </div>
+ </body>
+</html>

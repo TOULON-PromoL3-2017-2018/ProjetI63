@@ -125,10 +125,10 @@ def mail():
     mdp_mail = flask.request.form['mdp_mail']
     send_mail(email, msg, mdp_mail)
     reponse_auto(email)
-    return flask.redirect(flask.url_for('accueil'))
+    return flask.redirect(flask.url_for('accueil_mat'))
 
-@app.route('/', methods=['POST', 'GET'])
-def accueil():
+@app.route('/accueil_mat/', methods=['POST', 'GET'])
+def accueil_mat():
     return flask.render_template('acceuil.html', est_connecte=('user' in flask.session))
 
 
@@ -181,7 +181,7 @@ def login():
             flask.session['user'] = donnee_table
             message_flash = "connection reussi "+donnee[0]
             flask.flash(message_flash)
-            return flask.redirect(flask.url_for('accueil'))
+            return flask.redirect(flask.url_for('accueil_mat'))
 
         flask.flash("Information incorectes")
         return flask.redirect(flask.url_for('subscription'))
