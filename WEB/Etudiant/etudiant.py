@@ -25,9 +25,15 @@ def new_insc():
     return flask.render_template('form_insc_etu.html')
 
 
-@app.route('/login/', methods=['POST', 'GET'])
+@app.route('/login_etu/', methods=['POST', 'GET'])
 def new_insc_cpt():
-    return flask.render_template('login.html')
+    return flask.render_template('login_etu.html')
+
+
+@app.route("/logout/")
+def logout():
+    session.pop("login", None)
+    return redirect("/")
 
 
 @app.route('/form_insc_subv/', methods=['POST', 'GET'])
@@ -35,7 +41,7 @@ def new_inscr():
     return flask.render_template('form_insc_subv.html')
 
 
-@app.route('/valid_insc/', methods=['POST', 'GET'])
+@app.route('/valid_insc_etu/', methods=['POST', 'GET'])
 def inscription():
     if flask.request.method == 'POST':
         nom_etu = flask.request.form['name_etu']
@@ -58,10 +64,10 @@ def inscription():
                 rue_etu, ville_etu, code_post, mbr_asso)
         curr.execute(query, data)
         conn.commit()
-        return flask.render_template('valid_insc.html', res_nom=nom_etu)
+        return flask.render_template('valid_insc_etu.html', res_nom=nom_etu)
 
 
-@app.route('/valid_compte/', methods=['POST', 'GET'])
+@app.route('/valid_compte_etu/', methods=['POST', 'GET'])
 def val_insc_cpt():
     if flask.request.method == 'POST':
         login = flask.request.form['log']
@@ -73,7 +79,7 @@ def val_insc_cpt():
         data = (login, mdp, number)
         curr.execute(query, data)
         conn.commit()
-        return flask.render_template('valid_insc.html', log=login)
+        return flask.render_template('valid_compte_etu.html', log=login)
 
 
 @app.route('/valid_insc_sub/', methods=['POST', 'GET'])
