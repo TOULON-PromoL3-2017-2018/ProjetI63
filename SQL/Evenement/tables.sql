@@ -9,8 +9,8 @@ CREATE TABLE Universite (
 
 CREATE TABLE ParticipantAsso (
   NoParticipantAsso INTEGER PRIMARY KEY,
-  NoUniversite INTEGER REFERENCES Universite
-  --NoEtudiant INTEGER REFERENCES Etudiant --partie Xavier
+  NoUniversite INTEGER REFERENCES Universite,
+  NoEtudiant INTEGER REFERENCES Etudiant --partie Xavier
 );
 
 CREATE TABLE ParticipantAutre (
