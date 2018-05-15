@@ -12,7 +12,12 @@
     <br/>
     <h2 align = 'center'>Liste des subventions :</h2>
     <!-- Fait ce qui est écrit dans le titre h2 ci-dessus (quelle surprise) -->
-    {%for s in Subvention%}
+    {%for s in res%}
+    <li>{{s}}</li>
+    {%endfor%}
+    <h2 align = 'center'>Liste des subventionneurs :</h2>
+    <!-- Fait ce qui est écrit dans le titre h2 ci-dessus (quelle surprise) -->
+    {%for s in sub%}
     <li>{{s}}</li>
     {%endfor%}
     <br/><br/><br/>

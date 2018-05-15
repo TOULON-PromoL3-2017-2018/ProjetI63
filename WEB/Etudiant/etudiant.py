@@ -142,7 +142,6 @@ def financements():
     curr.execute("SELECT (num_demande_argent, montant, source,\
     validation, traitement) FROM Financement")
     bordel = curr.fetchall()
-    print(bordel)
     return flask.render_template('financements.html', res=bordel)
 
 
@@ -153,7 +152,11 @@ def financements():
 def subventions():
     curr.execute("SELECT (num_subvention, montant, num_subventionneur) FROM\
     Subvention")
-    return flask.render_template('subventions.html')
+    bordel = curr.fetchall()
+    curr.execute("SELECT (num_subventionneur, nom_subventionneur) FROM\
+    Subventionneurs")
+    bordell = curr.fetchall()
+    return flask.render_template('subventions.html', res=bordel, sub=bordell)
 
 
 #
