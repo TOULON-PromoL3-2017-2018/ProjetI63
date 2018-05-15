@@ -18,7 +18,8 @@ curr.execute("SET SEARCH_PATH TO projeti63")
 @app.route('/accueil_etu/', methods=['POST', 'GET'])
 def hello():
     if 'user' in flask.session:
-        return flask.render_template('accueil.html', user=flask.session['user'])
+        return flask.render_template('accueil.html',
+                                     user=flask.session['user'])
     return flask.render_template('accueil.html')
 
 
@@ -56,7 +57,7 @@ def connexion_success():
         data = (login, mdp)
         curr.execute(query, data)
         user = curr.fetchall()
-        flask.session['user']=user
+        flask.session['user'] = user
         return flask.render_template('log_success_etu.html', log=login)
 
 
@@ -77,8 +78,8 @@ def inscription():
         query = "INSERT INTO Etudiant(nom_etudiant, prenom_etudiant,\
         date_naissance_etudiant, filiere_etudiant, tel_etudiant,\
         mail_etudiant, rue_etudiant, ville_etudiant, code_postal_etudiant,\
-        membre_asso) VALUES (%s, %s, to_date(%s, 'DD MM YYYY'), %s, %s, %s, %s,\
-        %s, %s, %s);"
+        membre_asso) VALUES (%s, %s, to_date(%s, 'DD MM YYYY'), %s, %s, %s, %s\
+        ,%s, %s, %s);"
         data = (nom_etu, pre_etu, date_nais, filiere, tel_etu, mail_etu,
                 rue_etu, ville_etu, code_post, mbr_asso)
         curr.execute(query, data)
@@ -129,7 +130,7 @@ def inscription2():
 @app.route('/finances/', methods=['POST', 'GET'])
 def finance():
     # return flask.render_template('finances.html', res_cpt=trigger de etat des
-    #comptes)
+    # comptes)
     return flask.render_template('finances.html')
 
 
@@ -143,7 +144,49 @@ def financements():
     return flask.render_template('financements.html')
 
 
+#
+# moncul à modifier ajout complet de cette app route et du .html associé
+
+@app.route('/subventions/', methods=['POST', 'GET'])
+def subventions():
+    curr.execute("SELECT (num_subvention, montant, num_subventionneur) FROM\
+    Subvention")
+    return flask.render_template('subventions.html')
+
+
+#
+# moncul à modifier ajout complet de cette app route et du .html associé
+
+@app.route('/valid_finance/', methods=['POST', 'GET'])
+def val_fin_etu():
+    if flask.request.method == 'POST':
+        number = flask.request.form['num_fin']
+        query = "UPDATE Financement SET validation='1' WHERE\
+        num_demande_argent=%s;"
+        data = (number)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('valid_finance.html', num_fin=number)
+
+
+#
+# moncul à modifier ajout complet de cette app route et du .html associé
+
+@app.route('/refus_finance/', methods=['POST', 'GET'])
+def ref_fin_etu():
+    if flask.request.method == 'POST':
+        number = flask.request.form['num_fin']
+        query = "UPDATE Financement SET validation='0' WHERE\
+        num_demande_argent=%s;"
+        data = (number)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('refus_finance.html', num_fin=number)
+
+
 if __name__ == '__main__':
 
+    # Apparement il faut mettre une secret_key sans quoi le login me casse
+    # les noix.
     app.secret_key = "bien chiant"
     app.run(debug=True)

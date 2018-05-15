@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "utf-8" />
+      <style media="screen">
+        body {background-image: url("diagramme-abstrait-de-finances-avec-graphe-linéaire-histogramme-et-numéros-d-article-sur-le-marché-haussier-sur-le-fond-noir-de-93748742.jpg");background-repeat: no-repeat;background-size: contain;}
+      </style>
+    <title>Subventions</title>
+  </head>
+  <body>
+    <h1>Subventions</h1>
+    <br/>
+    <h2 align = 'center'>Liste des subventions :</h2>
+    <!-- Fait ce qui est écrit dans le titre h2 ci-dessus (quelle surprise) -->
+    {%for s in Subvention%}
+    <li>{{s}}</li>
+    {%endfor%}
+    <br/><br/><br/>
+    <nav>
+      <a href="/accueil_etu/"> Retourner à l'accueil </a>
+    </nav>
+  </body>
+</html>

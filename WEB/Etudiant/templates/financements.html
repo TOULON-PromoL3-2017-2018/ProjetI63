@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset = "utf-8" />
-    <style media="screen">
-      body {background-image: url("diagramme-abstrait-de-finances-avec-graphe-linéaire-histogramme-et-numéros-d-article-sur-le-marché-haussier-sur-le-fond-noir-de-93748742.jpg");background-repeat: no-repeat;background-size: contain;}
-    </style>
-  <title>Financements</title>
-</head>
-<body>
-  <h1>Finances</h1>
-  <br/>
-  <h2 align = 'center'>Liste des financements en attente de traitement :</h2>
-  <!-- Fait ce qui est écrit dans le titre h2 ci-dessus (quelle surprise) -->
-  {%for f in Financement%}
-  {%if Traitement == '0'%}
-  <li>{{f}}</li>
-  {%endif%}
-  {%endfor%}
-  <h2 align = 'center'>Liste des financements déjà traités :</h2>
-  <!-- Fait ce qui est écrit dans le titre h2 ci-dessus (quelle surprise) -->
-  {%for f in Financement%}
-  {%if Traitement == '1'%}
-  <li>{{f}}</li>
-  {%endif%}
-  {%endfor%}
-  <br/>
-   <form action = "http://localhost:5000/valid_insc/" method = "GET">
-  </form>
-  <br/><br/>
-  <nav>
-    <a href="/accueil_etu/"> Retourner à l'accueil </a>
-  </nav>
-</body>
+  <head>
+    <meta charset = "utf-8" />
+      <style media="screen">
+        body {background-image: url("diagramme-abstrait-de-finances-avec-graphe-linéaire-histogramme-et-numéros-d-article-sur-le-marché-haussier-sur-le-fond-noir-de-93748742.jpg");background-repeat: no-repeat;background-size: contain;}
+      </style>
+    <title>Financements</title>
+  </head>
+  <body>
+    <h1>Finances</h1>
+    <br/>
+    <h2 align = 'center'>Liste des financements en attente de traitement :</h2>
+    <!-- Fait ce qui est écrit dans le titre h2 ci-dessus (quelle surprise) -->
+    {%for f in Financement%}
+    {%if Traitement == '0'%}
+    <li>{{f}}</li>
+    {%endif%}
+    {%endfor%}
+    <h2 align = 'center'>Liste des financements déjà traités :</h2>
+    <!-- Fait ce qui est écrit dans le titre h2 ci-dessus (quelle surprise) -->
+    {%for f in Financement%}
+    {%if Traitement == '1'%}
+    <li>{{f}}</li>
+    {%endif%}
+    {%endfor%}
+    <br/>Entrez le numéro du financement que vous souhaitez traiter
+    <form action = "http://localhost:5000/valid_finance/" method = "GET">
+      <br/><input type="number" name="num" placeholder="Ex : 1"/>
+      <br/><input type = "submit" value = "Valider le financement" />
+    </form>
+    <form action = "http://localhost:5000/refus_finance/" method = "GET">
+      <br/><input type="number" name="num" placeholder="Ex : 1"/>
+      <br/><input type = "submit" value = "Refuser le financement" />
+    </form>
+    <br/><br/>
+    <nav>
+      <a href="/accueil_etu/"> Retourner à l'accueil </a>
+    </nav>
+  </body>
 </html>
