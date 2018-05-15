@@ -22,7 +22,7 @@ BEGIN
   numsport := (SELECT nosport FROM sport WHERE nomsport = clsport);
   RETURN query
   select novainqueur, count(*)
-  from (select noparticipantautre, nouniversite from participantautre union all select * from participantasso) as participant, evenementsport
+  from (select noparticipantautre, nouniversite from participantautre union all select noparticipantasso, nouniversite from participantasso) as participant, evenementsport
   where participant.noparticipantautre = evenementsport.novainqueur and nosport = numsport group by novainqueur;
 
 END;
