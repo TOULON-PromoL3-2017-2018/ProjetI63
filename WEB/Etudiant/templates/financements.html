@@ -10,17 +10,20 @@
   <body>
     <h1>Finances</h1>
     <br/>
+    numéro demande, montant, service, validation, traitement
     <h2 align = 'center'>Liste des financements en attente de traitement :</h2>
     <!-- Fait ce qui est écrit dans le titre h2 ci-dessus (quelle surprise) -->
-    {%for f in Financement%}
-    {%if Traitement == '0'%}
+    {%for f in res%}
+    <input type="hidden" name="traite" value={{f[4]}}>
+    {%if traite == f%}
     <li>{{f}}</li>
     {%endif%}
     {%endfor%}
     <h2 align = 'center'>Liste des financements déjà traités :</h2>
     <!-- Fait ce qui est écrit dans le titre h2 ci-dessus (quelle surprise) -->
-    {%for f in Financement%}
-    {%if Traitement == '1'%}
+    {%for f in res%}
+    <input type="hidden" name="traite" value={{f[4]}}>
+    {%if traite == t%}
     <li>{{f}}</li>
     {%endif%}
     {%endfor%}

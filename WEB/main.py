@@ -215,15 +215,48 @@ def inscription2():
 @app.route('/finances/', methods=['POST', 'GET'])
 def finance():
     # return flask.render_template('finances.html', res_cpt=trigger de etat des
-    #comptes)
+    # comptes)
     return flask.render_template('finances.html')
 
 
 @app.route('/financements/', methods=['POST', 'GET'])
 def financements():
     curr.execute("SELECT (num_demande_argent, montant, source,\
-    validation) FROM Financement WHERE validation=1")
-    return flask.render_template('financements.html')
+    validation, traitement) FROM Financement")
+    bordel = curr.fetchall()
+    print(bordel)
+    return flask.render_template('financements.html', res=bordel)
+
+
+@app.route('/subventions/', methods=['POST', 'GET'])
+def subventions():
+    curr.execute("SELECT (num_subvention, montant, num_subventionneur) FROM\
+    Subvention")
+    return flask.render_template('subventions.html')
+
+
+@app.route('/valid_finance/', methods=['POST', 'GET'])
+def val_fin_etu():
+    if flask.request.method == 'POST':
+        number = flask.request.form['num_fin']
+        query = "UPDATE Financement SET validation='1' WHERE\
+        num_demande_argent=%s;"
+        data = (number)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('valid_finance.html', num_fin=number)
+
+
+@app.route('/refus_finance/', methods=['POST', 'GET'])
+def ref_fin_etu():
+    if flask.request.method == 'POST':
+        number = flask.request.form['num_fin']
+        query = "UPDATE Financement SET validation='0' WHERE\
+        num_demande_argent=%s;"
+        data = (number)
+        curr.execute(query, data)
+        conn.commit()
+        return flask.render_template('refus_finance.html', num_fin=number)
 
 
 # en attendant la mise en commun

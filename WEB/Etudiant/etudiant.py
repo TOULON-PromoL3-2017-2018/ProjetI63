@@ -140,8 +140,10 @@ def finance():
 @app.route('/financements/', methods=['POST', 'GET'])
 def financements():
     curr.execute("SELECT (num_demande_argent, montant, source,\
-    validation) FROM Financement WHERE validation=1")
-    return flask.render_template('financements.html')
+    validation, traitement) FROM Financement")
+    bordel = curr.fetchall()
+    print(bordel)
+    return flask.render_template('financements.html', res=bordel)
 
 
 #

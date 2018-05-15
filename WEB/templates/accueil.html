@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset = "utf-8" />
-  <title>Une bonne asso de merde :cœur:</title>
-  <style>
-    body {background-color: white;}
-    h1   {color: #DBA901;}
-    h2   {color: #FFBF00;}
-    a    {color: blue;}
-    p    {color: white;}
-    p.green {color: chartreuse;}
-    body{background-image: url("/static/BA8IyduCMAAcwkK.jpg");background-repeat: no-repeat;background-size: 300px 250px;}
-  </style>
-</head>
+  <head>
+    <meta charset = "utf-8" />
+    <title>Une bonne asso de merde :cœur:</title>
+    <style>
+      body {background-color: white;}
+      h1   {color: #DBA901;}
+      h2   {color: #FFBF00;}
+      a    {color: blue;}
+      p    {color: white;}
+      p.green {color: chartreuse;}
+      body{background-image: url("/static/BA8IyduCMAAcwkK.jpg");background-repeat: no-repeat;background-size: 300px 250px;}
+    </style>
+  </head>
 
-<body>
-  {%if (user)%}
-  <a href="/logout_etu/" align="right"><div style="text-align:right">Se déconnecter</div></a>
-  {%else%}
-  <a href="/login_etu/" align="right"><div style="text-align:right">Nous rejoindre</div></a>
-  {%endif%}
-  <h1>Asso MACKX:</h1>
-  <br/><br/><br/><br/><br/><br/><br/>
-  <nav>
-    <ul>
-      <a href="/">Acceuil asso</a>
-</ul>
-  </nav>
-  <br/><br/><br/><br/>
-  <h2>Administration:</h2>
-  <li>
-  <a href="/form_insc_etu/">Ajouter un étudiant</a>
-  </li>
-  <li>
-  <a href="/form_insc_subv/">Ajouter une subvention</a>
-  </li>
-  <li>
-  <a href="/finances/">Consulter les finances</a>
-  </li>
-</body>
+  <body>
+    {%if (user)%}
+    <a href="/logout_etu/" align="right"><div style="text-align:right">Se déconnecter</div></a>
+    {%else%}
+    <a href="/login_etu/" align="right"><div style="text-align:right">Nous rejoindre</div></a>
+    {%endif%}
+    <h1>Asso MACKX:</h1>
+    <br/><br/><br/><br/><br/><br/><br/>
+    <nav>
+      <ul>
+        <a href="/">Accueil asso</a>
+  </ul>
+    </nav>
+    <br/><br/><br/><br/>
+    {%if (user)%}
+    <h2>Administration:</h2>
+    <li>
+    <a href="/form_insc_etu/">Ajouter un étudiant</a>
+    </li>
+    <li>
+    <a href="/finances/">Consulter les finances</a>
+    </li>
+    {%endif%}
+  </body>
+</html>

@@ -12,3 +12,4 @@
 \i Voyage/remplissage.sql
 \i MATERIEL/fill.sql
 \i MATERIEL/trigger.sql
+\i Etudiant/fonctions.sql
