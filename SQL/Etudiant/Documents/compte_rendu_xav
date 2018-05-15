@@ -1,0 +1,49 @@
+La partie Etudiant comprends:
+  -Les tables SQL:
+    Etudiant (différentes informations au sujet de chaque étudiant),
+    Service_asso (car l'association est divisée en plusieurs parties),
+    Chef_de_Service (qui sont assignés à un service de l'asso) ainsi que
+    Sous_Chef_de_Service (de même);
+    Contrat_asso sert littéralement à contenir les infos du contrat qui lie
+    chaque étudiant membre de l'asso à ladite association.
+
+    Subventionneurs, qui contient les informations des différents organismes
+    qui peuvent chercher à nous financer, avec ainsi les tables Subvention
+    (qui contiennet les informations des différentes subventions apportées par
+    les sus-cités subventionneurs) ainsi que Financement qui elle contient les
+    informations des différentes demandes de financements faites par les
+    service de l'asso.
+
+    Enfin la table Comptes_membres a été ajoutée plus tard pour pouvoir
+    confirmer sur le site que l'on est bien membres de l'asso et ainsi avoir
+    potentiellement accès à des services que les non-membres ne peuvent
+    prétendre.
+
+  -Les fills (remplissages) desdites tables:
+    Sans trop m'étendre ici, chaque table ayant pour clé primaire un numéro,
+    elles ont toutes été incrémentées par un serial, comme conseillé, les
+    données personnelles sont presque toutes fausses (non, impossible d'avoir
+    le vrai numéro de la soeur de Gaiton)
+
+  -L'initialisation et la suppression des tables se fait assez facilement via
+    un schema que l'on drop en cascade pour aller plus vite.
+
+    Pour les différentes évolutions qu'il a pu y avoir au cours du projet, je
+    vous invite à vérifier les différents commits, toujours très justes
+    et plein de sens, vous en conviendrez, car je risque d'en omettre :
+
+    J'ai ajouté la table comptes_membre pour gérer un système de logins sur le
+    site, et j'ai ajouté la colonne Traitement dans la table Financement plus
+    tard, car il me fallait séparer les différentes demandes non seulement en
+    "acceptées ou pas" mais aussi en "déjà traitées ou pas", et je ne souhaitais
+    pas passer par une valeur default NULL pour essayer d'être un peu plus clair
+    dans mon code. (Bon, oui, j'ai pensé à faire ça que ce soir en vous
+    écrivant ces lignes, tout en me disant que j'étais un bon gros connard
+    d'avoir ajouté toutes ces conneries alors qu'enlever juste un "NOT NULL"
+    aurait été bien plus rapide pour le classement)
+
+
+  Il n'y aura surement pas (à ma connaissance, à l'heure actuelle du moins)
+  une partie commune, nous avons souhaité faire chacun notre partie, nous
+  aurons tout de même une page d'accueil qui mènera vers chaque partie, mais
+  elle sera irrémédiablement moche et simpliste.

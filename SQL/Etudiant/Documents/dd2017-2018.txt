@@ -1,0 +1,44 @@
+2  -num étudiant *
+3  -nom étudiant *
+4  -prénom étudiant *
+5  -filière étudiant
+6  -tél étudiant *
+7  -mail étudiant *
+8  -adresse (rue) étudiant *
+9  -adresse (ville) étudiant *
+10 -code postal étudiant *
+11 -Membre = False de base
+
+12 -num contrat
+13 -cotisation payée
+14 -date de signature
+
+15 -num service
+16 -nom service
+
+17 -Financement
+18 -Montant
+19 -Source
+20 -Validation
+
+21 -Num mouvement argent
+22 -Montant
+
+23 -Num subventionneur
+24 -Nom subventionneur
+25 -Rue subventionneur
+26 -Ville subventionneur
+27 -Code postal subventionneur
+28 -Tel subventionneur
+29 -Nom représentant
+30 -Mail représentant
+
+31 -Num Chef de service
+
+32 -Num Sous-Chef de service
+
+33 -Date naissance étudiant
+
+34 -Num compte
+35 -Login
+36 -Mdp

@@ -9,14 +9,23 @@
 </head>
 <body>
   <h1>Finances</h1>
-  <h2 align = 'center'>Liste des financements en attente de traitement :</h2>
   <br/>
-  <!-- faire le tri des financements à false -->
-  <h2 align = 'center'>Liste des financements traités :</h2>
-  <!-- faire le tri des financements à true -->
+  <h2 align = 'center'>Liste des financements en attente de traitement :</h2>
+  <!-- Fait ce qui est écrit dans le titre h2 ci-dessus (quelle surprise) -->
+  {%for f in Financement%}
+  {%if Traitement == '0'%}
+  <li>{{f}}</li>
+  {%endif%}
+  {%endfor%}
+  <h2 align = 'center'>Liste des financements déjà traités :</h2>
+  <!-- Fait ce qui est écrit dans le titre h2 ci-dessus (quelle surprise) -->
+  {%for f in Financement%}
+  {%if Traitement == '1'%}
+  <li>{{f}}</li>
+  {%endif%}
+  {%endfor%}
   <br/>
    <form action = "http://localhost:5000/valid_insc/" method = "GET">
-      <!-- Le debut de la ligne est ce qui va apparaitre à l'écran -->
   </form>
   <br/><br/>
   <nav>

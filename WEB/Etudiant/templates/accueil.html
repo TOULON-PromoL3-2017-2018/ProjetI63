@@ -28,6 +28,7 @@
 </ul>
   </nav>
   <br/><br/><br/><br/>
+  {%if (user)%}
   <h2>Administration:</h2>
   <li>
   <a href="/form_insc_etu/">Ajouter un étudiant</a>
@@ -38,4 +39,5 @@
   <li>
   <a href="/finances/">Consulter les finances</a>
   </li>
+  {%endif%}
 </body>
