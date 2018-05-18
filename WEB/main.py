@@ -853,8 +853,8 @@ def fin_participation():
         nb_bag = flask.request.form['n_bag']
         query = "INSERT into Participe (num_voyageur, num_voyage,\
         nb_baggages) Values (%s, %s, %s)"
-        # print(num_voyageur, num_voyage, nb_bag)
         data = (num_voyageur, num_voyage, nb_bag)
+        print("data=", data)
         curr.execute(query, data)
         conn.commit()
         return flask.render_template('finir_participe.html',
@@ -892,6 +892,7 @@ def fin_voy():
         # attention: data est un tuple !!
         data = (num_responsable, num_organisateur, dest, type_voy, prix)
         # execute la requete et met tout dans le buffer
+        # print("data=", data)
         curr.execute(query, data)
         # sert à mettre ce qu'il y a dans le buffer dans la table
         conn.commit()

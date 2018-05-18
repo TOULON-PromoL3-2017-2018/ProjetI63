@@ -43,6 +43,7 @@ def fin_voyageur():
         du = flask.request.form['du']
         query = "INSERT into voyageur (num_voyageur, du) Values (%s, %s)"
         data = (num_voyageur, du)
+        # print("data=", data)
         curr.execute(query, data)
         conn.commit()
         return flask.render_template('finir_entrer_voyageur.html',
@@ -137,6 +138,7 @@ def fin_voy():
         destination, type, prix) Values (%s, %s, %s, %s, %s);"
         # attention: data est un tuple !!
         data = (num_responsable, num_organisateur, dest, type_voy, prix)
+        # print("data=", data)
         # execute la requete et met tout dans le buffer
         curr.execute(query, data)
         # sert à mettre ce qu'il y a dans le buffer dans la table
